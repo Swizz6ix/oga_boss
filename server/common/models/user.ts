@@ -54,6 +54,7 @@ export class User extends Model<InferAttributes<User>, InferCreationAttributes<U
 {
   declare id: CreationOptional<number>;
   declare email: string;
+  declare password: string;
   declare userName: string;
   declare department: string;
   declare hod: string | null;
@@ -71,7 +72,7 @@ export const userCrud = {
   },
 
   findUser: (query: any) => {
-    return User.findOne({ where: query, include: { model: Task, required: true} });
+    return User.findOne({ where: query, include: { model: Task } });
   },
 
   findAllUsers: (query: any) => {

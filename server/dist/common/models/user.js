@@ -57,7 +57,7 @@ export const userCrud = {
         return User.create(user);
     },
     findUser: (query) => {
-        return User.findOne({ where: query, include: { model: Task, required: true } });
+        return User.findOne({ where: query, include: { model: Task } });
     },
     findAllUsers: (query) => {
         return User.findAll({ where: query, include: { model: Task } });

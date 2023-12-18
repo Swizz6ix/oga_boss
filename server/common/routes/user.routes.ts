@@ -2,15 +2,29 @@ import { Router } from 'express';
 import { userController } from '../controllers/user.controller.js';
 import { schemaValidator } from '../middlewares/schema.validation.middleware.js';
 import { userUpdatePayload } from '../schemas/user.update.payload.js';
-import { userPayload } from '../schemas/user.signup.payload.js';
+import { userPayload } from '../schemas/user.payload.js';
 import { permission } from '../middlewares/check.permission.middleware.js';
 import { configs } from '../../config.js';
+import { createUser } from '../auth/user.register.controller.js';
+import { login } from '../auth/user.login.controller.js';
+import { userLoginPayload } from '../schemas/user.login.payload.js';
 
 
 const role = configs.roles.ADMIN;
 export const userRoutes = Router();
-userRoutes.get('/all', [permission.has(role)], userController.getAllUsers);
+userRoutes.get('/all', 
+// [permission.has(role)], 
+userController.getAllUsers);
 userRoutes.get('/:userId', [permission.has(role)], userController.getUser);
-userRoutes.post('/signup', [ schemaValidator.verify(userPayload), permission.has(role)], userController.addUser);
-userRoutes.patch('/update/:userId', [schemaValidator.verify(userUpdatePayload), permission.has(role)], userController.updateUser);
+userRoutes.post('/signup', [ schemaValidator.verify(userPayload),
+  // permission.has(role)
+],
+  createUser);
+userRoutes.post('/login',
+  [schemaValidator.verify(userLoginPayload)], login,
+);
+userRoutes.patch('/update/:userId',
+  [schemaValidator.verify(userUpdatePayload), permission.has(role)],
+  userController.updateUser
+);
 userRoutes.delete('/:userId', [permission.has(role)], userController.deleteUser);
