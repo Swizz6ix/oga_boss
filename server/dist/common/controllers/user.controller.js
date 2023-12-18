@@ -1,10 +1,5 @@
 import { userCrud } from "../models/user.js";
 export const userController = {
-    userDash: (req, res) => {
-        res.json({
-            welcome: 'Admin'
-        });
-    },
     addUser: (req, res) => {
         const payload = req.body;
         userCrud.createUser(Object.assign(payload))

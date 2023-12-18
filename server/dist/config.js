@@ -28,6 +28,8 @@ export const configs = {
         NORMAL: 'normal',
         HIGH: 'high',
         PRIORITY: 'priority'
-    }
+    },
+    jwtSecret: '!!CryptoCat@!!',
+    jwtExpirationSeconds: 60 * 60
 };
 //# sourceMappingURL=config.js.map
