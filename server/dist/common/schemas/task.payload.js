@@ -1,5 +1,6 @@
+import { configs } from "../../config.js";
 export const taskPayload = {
-    type: Object,
+    type: 'object',
     properties: {
         name: {
             type: 'string',
@@ -7,23 +8,24 @@ export const taskPayload = {
         description: {
             type: 'string',
         },
-        duration: {
+        deadline: {
             type: 'string',
         },
         department: {
             type: 'string',
+            enum: Object.values(configs.department)
         },
         urgencyLevel: {
             type: 'string',
+            enum: Object.values(configs.urgencyLevel)
         },
     },
     required: [
         'name',
         'description',
-        'duration',
+        'deadline',
         'department',
-        'urgencyLevel',
     ],
-    additionalProperties: false,
+    additionalProperties: true,
 };
 //# sourceMappingURL=task.payload.js.map

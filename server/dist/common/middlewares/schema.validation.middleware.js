@@ -3,6 +3,9 @@ const AJV_OPTS = {
     allErrors: true,
 };
 export const schemaValidator = {
+    /**
+     *
+     */
     verify: (schema) => {
         if (!schema)
             throw new Error('Schema not provided');
@@ -12,7 +15,7 @@ export const schemaValidator = {
             const validate = ajv.compile(schema);
             const isValid = validate(body);
             if (isValid)
-                return next;
+                return next();
             return res.send({
                 status: false,
                 error: {

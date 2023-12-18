@@ -1,4 +1,7 @@
-import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from "sequelize";
+import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from 'sequelize';
+import { configs } from '../../config.js';
+import { Task } from './task.js';
+
 
 // The user's schema
 const userModel = {
@@ -21,14 +24,17 @@ const userModel = {
   department: {
     type: DataTypes.STRING(128),
     allowNull: false,
+    defaultValue: configs.department.UNASSIGNED
   },
   hod: {
     type: DataTypes.STRING(128),
     allowNull: true,
+    defaultValue: configs.hod.NO
   },
   role: {
     type: DataTypes.STRING(128),
     allowNull: false,
+    defaultValue: configs.roles.USER
   },
   firstName: {
     type: DataTypes.STRING(128),
@@ -40,7 +46,7 @@ const userModel = {
   }
 }
 
-class User extends Model<InferAttributes<User>, InferCreationAttributes<User>>
+export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>>
 {
   declare id: CreationOptional<number>;
   declare email: string;
@@ -61,11 +67,11 @@ export const userCrud = {
   },
 
   findUser: (query: any) => {
-    return User.findOne({ where: query });
+    return User.findOne({ where: query, include: { model: Task, required: true} });
   },
 
   findAllUsers: (query: any) => {
-    return User.findAll({ where: query });
+    return User.findAll({ where: query, include: { model: Task } });
   },
 
   updateUser: (query: any, updateValue: any) => {

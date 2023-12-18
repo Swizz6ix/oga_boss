@@ -1,4 +1,6 @@
 import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from "sequelize";
+import { configs } from "../../config.js";
+import { User } from "./user.js";
 
 const taskModel = {
   id: {
@@ -18,8 +20,8 @@ const taskModel = {
     allowNull: false,
   },
 
-  duration: {
-    type: DataTypes.DATE,
+  deadline: {
+    type: DataTypes.STRING(128),
     allowNull: false,
   },
 
@@ -30,15 +32,16 @@ const taskModel = {
 
   urgencyLevel: {
     type: DataTypes.STRING(128),
-    allowNull: false
+    allowNull: false,
+    defaultValue: configs.urgencyLevel.NORMAL
   }
 }
 
-class Task extends Model<InferAttributes<Task>, InferCreationAttributes<Task>> {
+export class Task extends Model<InferAttributes<Task>, InferCreationAttributes<Task>> {
   declare id: CreationOptional<number>;
   declare name: string;
   declare description: string;
-  declare duration: Date;
+  declare deadline: Date;
   declare department: string;
   declare urgencyLevel: string;
 }
@@ -49,15 +52,15 @@ export const taskCrud = {
   },
 
   createTask: (task: any) => {
-    return Task.create(task);
+    return Task.create(task, { include: User, required: true });
   },
 
   findTask: (query: any) => {
-    return Task.findOne({ where: query});
+    return Task.findOne({ where: query, include: { model: User } });
   },
 
   findAllTasks: (query: any) => {
-    return Task.findAll({ where: query });
+    return Task.findAll({ where: query, include: { model: User } });
   },
 
   updateTask: (query: any, updateValue: any) => {

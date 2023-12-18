@@ -1,5 +1,6 @@
+import { configs } from "../../config.js";
 export const userPayload = {
-    type: Object,
+    type: 'object',
     properties: {
         email: {
             type: 'string',
@@ -10,12 +11,16 @@ export const userPayload = {
         },
         department: {
             type: 'string',
+            enum: Object.values(configs.department)
         },
         hod: {
             type: 'string',
+            nullable: true,
+            enum: Object.values(configs.hod),
         },
         role: {
             type: 'string',
+            enum: Object.values(configs.roles)
         },
         firstName: {
             type: 'string',
@@ -27,8 +32,6 @@ export const userPayload = {
     required: [
         'email',
         'userName',
-        'department',
-        'role',
         'firstName',
         'lastName',
     ],

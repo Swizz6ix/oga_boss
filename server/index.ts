@@ -1,8 +1,9 @@
 import express, { Express, Request, Response } from 'express';
+// import { cors } from 'cors';
 import { Sequelize } from 'sequelize';
 import { configs } from './config.js';
-import { userCrud } from './common/models/user.js';
-import { taskCrud } from './common/models/task.js';
+import { User, userCrud } from './common/models/user.js';
+import { Task, taskCrud } from './common/models/task.js';
 import { userRoutes } from './common/routes/user.routes.js';
 import { taskRoutes } from './common/routes/task.routes.js';
 
@@ -34,6 +35,9 @@ export const sequelize = new Sequelize(
 
 userCrud.initialize(sequelize);
 taskCrud.initialize(sequelize);
+
+User.hasMany(Task, { foreignKey: { allowNull: false }});
+Task.belongsTo(User);
 
 // Authenticate the database credentials and connect to the database
 sequelize

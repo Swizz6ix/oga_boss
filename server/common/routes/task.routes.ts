@@ -6,7 +6,7 @@ import { taskUpdatePayload } from '../schemas/task.update.payload.js';
 
 
 export const taskRoutes = Router();
-taskRoutes.get('/tasks', taskController.getAllTasks);
+taskRoutes.get('/all', taskController.getAllTasks);
 taskRoutes.get('/:taskId', taskController.getTask);
 taskRoutes.post('/createTask', [schemaValidator.verify(taskPayload)], taskController.newTask);
 taskRoutes.patch('/update/:taskId', [schemaValidator.verify(taskUpdatePayload)], taskController.updateTask);

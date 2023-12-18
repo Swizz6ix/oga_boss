@@ -1,4 +1,6 @@
-import { DataTypes, Model } from "sequelize";
+import { DataTypes, Model } from 'sequelize';
+import { configs } from '../../config.js';
+import { Task } from './task.js';
 // The user's schema
 const userModel = {
     id: {
@@ -20,14 +22,17 @@ const userModel = {
     department: {
         type: DataTypes.STRING(128),
         allowNull: false,
+        defaultValue: configs.department.UNASSIGNED
     },
     hod: {
         type: DataTypes.STRING(128),
         allowNull: true,
+        defaultValue: configs.hod.NO
     },
     role: {
         type: DataTypes.STRING(128),
         allowNull: false,
+        defaultValue: configs.roles.USER
     },
     firstName: {
         type: DataTypes.STRING(128),
@@ -38,7 +43,7 @@ const userModel = {
         allowNull: false,
     }
 };
-class User extends Model {
+export class User extends Model {
 }
 export const userCrud = {
     initialize: (sequelize) => {
@@ -48,10 +53,10 @@ export const userCrud = {
         return User.create(user);
     },
     findUser: (query) => {
-        return User.findOne({ where: query });
+        return User.findOne({ where: query, include: { model: Task, required: true } });
     },
     findAllUsers: (query) => {
-        return User.findAll({ where: query });
+        return User.findAll({ where: query, include: { model: Task } });
     },
     updateUser: (query, updateValue) => {
         return User.update(updateValue, { where: query });
