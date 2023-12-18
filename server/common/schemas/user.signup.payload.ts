@@ -3,6 +3,7 @@ import { configs } from "../../config.js";
 
 interface Props {
   email: string,
+  password: string,
   userName: string,
   department: string,
   hod?: string,
@@ -17,6 +18,10 @@ export const userPayload: JSONSchemaType<Props> = {
     email: {
       type: 'string',
       pattern: '^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$',
+    },
+    password: {
+      type: 'string',
+      nullable: false,
     },
     userName: {
       type: 'string',
@@ -43,6 +48,7 @@ export const userPayload: JSONSchemaType<Props> = {
   },
   required: [
     'email',
+    'password',
     'userName',
     'firstName',
     'lastName',

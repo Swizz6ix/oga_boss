@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { userController } from '../controllers/user.controller.js';
 import { schemaValidator } from '../middlewares/schema.validation.middleware.js';
 import { userUpdatePayload } from '../schemas/user.update.payload.js';
-import { userPayload } from '../schemas/user.payload.js';
+import { userPayload } from '../schemas/user.signup.payload.js';
 import { permission } from '../middlewares/check.permission.middleware.js';
 import { configs } from '../../config.js';
 const role = configs.roles.ADMIN;

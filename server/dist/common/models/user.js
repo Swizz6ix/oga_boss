@@ -14,6 +14,10 @@ const userModel = {
         allowNull: false,
         unique: true,
     },
+    password: {
+        type: DataTypes.STRING(128),
+        allowNUll: false,
+    },
     userName: {
         type: DataTypes.STRING(128),
         allowNull: false,
