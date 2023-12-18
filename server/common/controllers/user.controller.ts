@@ -2,22 +2,6 @@ import { userCrud } from "../models/user.js";
 
 
 export const userController = {
-  addUser: (req: any, res: any) => {
-    const payload = req.body;
-    userCrud.createUser(Object.assign(payload))
-      .then((user) => {
-        return res.status(201).json({
-          user: user.toJSON(),
-        });
-      })
-      .catch((err) => {
-        return res.status(500).json({
-          status: false,
-          error: err,
-        });
-      });
-  },
-
   getUser: (req: any, res: any) => {
     const { params: { userId } } = req;
     userCrud.findUser({ id: userId })

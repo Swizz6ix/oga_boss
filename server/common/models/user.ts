@@ -1,4 +1,7 @@
-import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from "sequelize";
+import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from 'sequelize';
+import { configs } from '../../config.js';
+import { Task } from './task.js';
+
 
 // The user's schema
 const userModel = {
@@ -13,6 +16,10 @@ const userModel = {
     allowNull: false,
     unique: true,
   },
+  password: {
+    type: DataTypes.STRING(128),
+    allowNUll: false,
+  },
   userName: {
     type: DataTypes.STRING(128),
     allowNull: false,
@@ -21,14 +28,17 @@ const userModel = {
   department: {
     type: DataTypes.STRING(128),
     allowNull: false,
+    defaultValue: configs.department.UNASSIGNED
   },
   hod: {
     type: DataTypes.STRING(128),
     allowNull: true,
+    defaultValue: configs.hod.NO
   },
   role: {
     type: DataTypes.STRING(128),
     allowNull: false,
+    defaultValue: configs.roles.USER
   },
   firstName: {
     type: DataTypes.STRING(128),
@@ -40,10 +50,11 @@ const userModel = {
   }
 }
 
-class User extends Model<InferAttributes<User>, InferCreationAttributes<User>>
+export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>>
 {
   declare id: CreationOptional<number>;
   declare email: string;
+  declare password: string;
   declare userName: string;
   declare department: string;
   declare hod: string | null;
@@ -61,11 +72,11 @@ export const userCrud = {
   },
 
   findUser: (query: any) => {
-    return User.findOne({ where: query });
+    return User.findOne({ where: query, include: { model: Task } });
   },
 
   findAllUsers: (query: any) => {
-    return User.findAll({ where: query });
+    return User.findAll({ where: query, include: { model: Task } });
   },
 
   updateUser: (query: any, updateValue: any) => {

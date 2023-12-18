@@ -11,5 +11,28 @@ export const configs = {
       db_user: process.env.DB_USER as string,
       port: process.env.PORT,
       dialect: process.env.DIALECT as Dialect
-    }
+    },
+    roles: {
+      ADMIN: 'admin',
+      USER: 'user'
+    },
+    department: {
+      LOGISTIC: 'logistic',
+      FINANCE: 'finance',
+      DESIGN: 'design',
+      FRONT_DEV: 'front_dev',
+      BACK_DEV: 'back_dev',
+      UNASSIGNED: 'unassigned'
+    },
+    hod: {
+      YES: 'yes',
+      NO: 'no',
+    },
+    urgencyLevel: {
+      NORMAL: 'normal',
+      HIGH: 'high',
+      PRIORITY: 'priority'
+    },
+    jwtSecret: '!!CryptoCat@!!',
+    jwtExpirationSeconds: 60 * 60
 }

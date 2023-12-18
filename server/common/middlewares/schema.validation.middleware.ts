@@ -1,10 +1,14 @@
-import AJV, { JSONSchemaType } from 'ajv';
+import AJV from 'ajv';
+
 
 const AJV_OPTS = {
     allErrors: true,
 };
 
 export const schemaValidator = {
+  /**
+   * 
+   */
   verify: (schema: any) => {
     if (!schema) throw new Error('Schema not provided');
     return (req: any, res: any, next: any) => {
@@ -13,7 +17,7 @@ export const schemaValidator = {
       const validate = ajv.compile(schema);
       const isValid = validate(body);
 
-      if (isValid) return next;
+      if (isValid) return next();
       return res.send({
         status: false,
         error: {

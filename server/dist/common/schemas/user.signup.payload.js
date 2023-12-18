@@ -42,4 +42,4 @@ export const userPayload = {
     ],
     additionalProperties: false,
 };
-//# sourceMappingURL=user.payload.js.map
+//# sourceMappingURL=user.signup.payload.js.map

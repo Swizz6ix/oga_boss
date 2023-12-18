@@ -1,4 +1,6 @@
 import { DataTypes, Model } from "sequelize";
+import { configs } from "../../config.js";
+import { User } from "./user.js";
 const taskModel = {
     id: {
         type: DataTypes.INTEGER.UNSIGNED,
@@ -14,8 +16,8 @@ const taskModel = {
         type: DataTypes.STRING(128),
         allowNull: false,
     },
-    duration: {
-        type: DataTypes.DATE,
+    deadline: {
+        type: DataTypes.STRING(128),
         allowNull: false,
     },
     department: {
@@ -24,23 +26,24 @@ const taskModel = {
     },
     urgencyLevel: {
         type: DataTypes.STRING(128),
-        allowNull: false
+        allowNull: false,
+        defaultValue: configs.urgencyLevel.NORMAL
     }
 };
-class Task extends Model {
+export class Task extends Model {
 }
 export const taskCrud = {
     initialize: (sequelize) => {
         Task.init(taskModel, { tableName: 'tasks', sequelize });
     },
     createTask: (task) => {
-        return Task.create(task);
+        return Task.create(task, { include: User, required: true });
     },
     findTask: (query) => {
-        return Task.findOne({ where: query });
+        return Task.findOne({ where: query, include: { model: User } });
     },
     findAllTasks: (query) => {
-        return Task.findAll({ where: query });
+        return Task.findAll({ where: query, include: { model: User } });
     },
     updateTask: (query, updateValue) => {
         return Task.update(updateValue, { where: query });
