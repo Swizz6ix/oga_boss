@@ -1,4 +1,4 @@
-import { userCrud } from "../models/user.js";
+import { userCrud } from '../models/user.js';
 export const userController = {
     getUser: (req, res) => {
         const { params: { userId } } = req;

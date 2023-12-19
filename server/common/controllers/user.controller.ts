@@ -1,8 +1,9 @@
-import { userCrud } from "../models/user.js";
+import { Request, Response } from 'express';
+import { userCrud } from '../models/user.js';
 
 
 export const userController = {
-  getUser: (req: any, res: any) => {
+  getUser: (req: Request, res: Response) => {
     const { params: { userId } } = req;
     userCrud.findUser({ id: userId })
       .then((user) => {
@@ -19,7 +20,7 @@ export const userController = {
       });
   },
 
-  getAllUsers: (req: any, res: any) => {
+  getAllUsers: (req: Request, res: Response) => {
     userCrud.findAllUsers(req.query)
       .then((users) => {
         return res.status(200).json({
@@ -35,7 +36,7 @@ export const userController = {
       });
   },
 
-  updateUser: (req: any, res: any) => {
+  updateUser: (req: Request, res: Response) => {
     const {
       params: { userId },
       body: payload
@@ -68,7 +69,7 @@ export const userController = {
       });
   },
 
-  deleteUser: (req: any, res: any) => {
+  deleteUser: (req: Request, res: Response) => {
     const { params: { userId } } = req;
     userCrud.deleteUser({ id: userId })
       .then((numberOfUsersDeleted) => {

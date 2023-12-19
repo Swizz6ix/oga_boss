@@ -8,23 +8,30 @@ import { configs } from '../../config.js';
 import { createUser } from '../auth/user.register.controller.js';
 import { login } from '../auth/user.login.controller.js';
 import { userLoginPayload } from '../schemas/user.login.payload.js';
+import { authenticated } from '../middlewares/isAuthenticated.middleware.js';
 
 
 const role = configs.roles.ADMIN;
 export const userRoutes = Router();
-userRoutes.get('/all', 
-// [permission.has(role)], 
-userController.getAllUsers);
-userRoutes.get('/:userId', [permission.has(role)], userController.getUser);
-userRoutes.post('/signup', [ schemaValidator.verify(userPayload),
+
+userRoutes.get('/all',
+  [authenticated.check, permission.has(role)], userController.getAllUsers);
+
+userRoutes.get('/:userId',
+  [authenticated.check, permission.has(role)], userController.getUser);
+
+userRoutes.post('/signup',
+  [ schemaValidator.verify(userPayload),
   // permission.has(role)
 ],
   createUser);
+
 userRoutes.post('/login',
-  [schemaValidator.verify(userLoginPayload)], login,
-);
+  [schemaValidator.verify(userLoginPayload)], login);
+
 userRoutes.patch('/update/:userId',
-  [schemaValidator.verify(userUpdatePayload), permission.has(role)],
-  userController.updateUser
-);
-userRoutes.delete('/:userId', [permission.has(role)], userController.deleteUser);
+  [permission.has(role), authenticated.check,
+    schemaValidator.verify(userUpdatePayload)], userController.updateUser);
+
+userRoutes.delete('/:userId',
+  [authenticated.check, permission.has(role)], userController.deleteUser);

@@ -1,14 +1,13 @@
-import { userCrud } from "../models/user.js";
+import { NextFunction, Response } from 'express';
+import { userCrud } from '../models/user.js';
 
 
 export const permission = {
   has: (role: string) => {
-    return (req: any, res: any, next: any) => {
-      console.log('user>>>', req)
+    return (req: any, res: Response, next: NextFunction) => {
       const {
         user: { userId },
       } = req;
-      console.log('ere>>>', req)
 
       userCrud.findUser({ id: userId })
         .then((user) => {

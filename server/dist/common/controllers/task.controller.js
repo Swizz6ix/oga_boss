@@ -1,4 +1,4 @@
-import { taskCrud } from "../models/task.js";
+import { taskCrud } from '../models/task.js';
 export const taskController = {
     newTask: (req, res) => {
         const payload = req.body;

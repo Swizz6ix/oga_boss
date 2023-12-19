@@ -1,5 +1,5 @@
-import { userCrud } from "../models/user.js";
-import { encryptPassword, token } from "./auth.js";
+import { userCrud } from '../models/user.js';
+import { encryptPassword, token } from './auth.js';
 export const login = (req, res) => {
     const { userName, password } = req.body;
     userCrud.findUser({ userName })
