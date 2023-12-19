@@ -1,10 +1,8 @@
-import { userCrud } from "../models/user.js";
+import { userCrud } from '../models/user.js';
 export const permission = {
     has: (role) => {
         return (req, res, next) => {
-            console.log('user>>>', req);
             const { user: { userId }, } = req;
-            console.log('ere>>>', req);
             userCrud.findUser({ id: userId })
                 .then((user) => {
                 // if user does not exist return forbidden error

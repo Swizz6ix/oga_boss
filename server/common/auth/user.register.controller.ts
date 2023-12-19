@@ -1,8 +1,9 @@
-import { configs } from "../../config.js";
-import { userCrud } from "../models/user.js";
-import { encryptPassword, token } from "./auth.js";
+import { Request, Response } from 'express';
+import { configs } from '../../config.js';
+import { userCrud } from '../models/user.js';
+import { encryptPassword, token } from './auth.js';
 
-export const createUser = (req: any, res: any) => {
+export const createUser = (req: Request, res: Response) => {
     const payload = req.body;
     const user = configs.roles.USER;
     let role = payload.role;

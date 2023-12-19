@@ -1,9 +1,9 @@
 import pkg from 'jsonwebtoken';
 import { createHash } from 'crypto';
 import { configs } from '../../config.js';
-const { sign } = pkg;
 // Generate an Access Token using username and userId
 export const token = (userName, userId) => {
+    const { sign } = pkg;
     return sign({ userId, userName }, configs.jwtSecret, { expiresIn: configs.jwtExpirationSeconds });
 };
 // Defines password encryption

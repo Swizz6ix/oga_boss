@@ -1,7 +1,8 @@
-import { taskCrud } from "../models/task.js";
+import { Request, Response } from 'express';
+import { taskCrud } from '../models/task.js';
 
 export const taskController = {
-  newTask: (req: any, res: any) => {
+  newTask: (req: Request, res: Response) => {
     const payload = req.body;
     taskCrud.createTask(Object.assign(payload))
       .then((task) => {
@@ -18,7 +19,7 @@ export const taskController = {
       });
   },
 
-  getTask: (req: any, res: any) => {
+  getTask: (req: Request, res: Response) => {
     const { params: { taskId } } = req;
     taskCrud.findTask({ id: taskId })
       .then((task) => {
@@ -35,7 +36,7 @@ export const taskController = {
       });
   },
 
-  getAllTasks: (req: any, res: any) => {
+  getAllTasks: (req: Request, res: Response) => {
     taskCrud.findAllTasks(req.query)
       .then((tasks) => {
         return res.status(200).json({
@@ -51,7 +52,7 @@ export const taskController = {
       });
   },
 
-  updateTask: (req: any, res: any) => {
+  updateTask: (req: Request, res: Response) => {
     const {
       params: { taskId },
       body: payload
@@ -80,11 +81,11 @@ export const taskController = {
         return res.status(500).json({
           status: false,
           error: err,
-        });
+        })
       });
   },
 
-  deleteTask: (req: any, res: any) => {
+  deleteTask: (req: Request, res: Response) => {
     const { params: { taskId } } = req;
     taskCrud.deleteTask({ id: taskId })
       .then((numberOfTasksDeleted) => {

@@ -1,6 +1,6 @@
-import { configs } from "../../config.js";
-import { userCrud } from "../models/user.js";
-import { encryptPassword, token } from "./auth.js";
+import { configs } from '../../config.js';
+import { userCrud } from '../models/user.js';
+import { encryptPassword, token } from './auth.js';
 export const createUser = (req, res) => {
     const payload = req.body;
     const user = configs.roles.USER;

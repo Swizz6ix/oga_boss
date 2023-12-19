@@ -1,8 +1,9 @@
-import { userCrud } from "../models/user.js";
-import { encryptPassword, token } from "./auth.js";
+import { Request, Response } from 'express';
+import { userCrud } from '../models/user.js';
+import { encryptPassword, token } from './auth.js';
 
 
-export const login = (req: any, res: any) => {
+export const login = (req: Request, res: Response) => {
   const { userName, password } = req.body;
   userCrud.findUser({ userName })
     .then((user) => {
