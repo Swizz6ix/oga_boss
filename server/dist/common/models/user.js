@@ -67,6 +67,6 @@ export const userCrud = {
     },
     deleteUser: (query) => {
         return User.destroy({ where: query });
-    }
+    },
 };
 //# sourceMappingURL=user.js.map

@@ -6,6 +6,7 @@ import { User, userCrud } from './common/models/user.js';
 import { Task, taskCrud } from './common/models/task.js';
 import { userRoutes } from './common/routes/user.routes.js';
 import { taskRoutes } from './common/routes/task.routes.js';
+import { superUserCrud } from './common/models/super.user.js';
 
 const port = configs.db_connections.port
 
@@ -35,6 +36,7 @@ export const sequelize = new Sequelize(
 
 userCrud.initialize(sequelize);
 taskCrud.initialize(sequelize);
+superUserCrud.initialize(sequelize);
 
 User.hasMany(Task, { foreignKey: { allowNull: false }});
 Task.belongsTo(User);
