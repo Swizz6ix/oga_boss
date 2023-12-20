@@ -15,8 +15,14 @@ export const userUpdatePayload = {
             type: 'string',
             enum: Object.values(configs.roles),
         },
+        password: {
+            type: 'string',
+        },
+        userName: {
+            type: 'string',
+        }
     },
-    required: ['department'],
+    required: [],
     additionalProperties: false,
 };
 //# sourceMappingURL=user.update.payload.js.map
