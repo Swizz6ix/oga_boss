@@ -1,4 +1,4 @@
-import { superUserCrud } from "../models/super.user";
+import { superUserCrud } from '../models/super.user.js';
 export const superUserController = {
     getUser: (req, res) => {
         const { params: { userId } } = req;

@@ -1,5 +1,5 @@
-import { superUserCrud } from "../models/super.user";
-import { encryptPassword, token } from "./auth";
+import { superUserCrud } from "../models/super.user.js";
+import { encryptPassword, token } from "./auth.js";
 export const login = (req, res) => {
     const { username, password } = req.body;
     superUserCrud.findUser({ username })

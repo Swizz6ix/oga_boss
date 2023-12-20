@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { userCrud } from '../models/user.js';
 
-
 export const userController = {
   getUser: (req: Request, res: Response) => {
     const { params: { userId } } = req;
@@ -10,22 +9,6 @@ export const userController = {
         return res.status(200).json({
           status: true,
           data: user?.toJSON(),
-        });
-      })
-      .catch((err) => {
-        return res.status(500).json({
-          status: false,
-          error: err,
-        });
-      });
-  },
-
-  getAllUsers: (req: Request, res: Response) => {
-    userCrud.findAllUsers(req.query)
-      .then((users) => {
-        return res.status(200).json({
-          status: true,
-          data: users,
         });
       })
       .catch((err) => {

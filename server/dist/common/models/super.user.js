@@ -1,4 +1,5 @@
 import { DataTypes, Model, } from 'sequelize';
+import { User } from './user.js';
 const superUserModel = {
     id: {
         type: DataTypes.UUID,
@@ -44,7 +45,7 @@ export const superUserCrud = {
         return SuperUser.create(superUser);
     },
     findUser: (query) => {
-        return SuperUser.findOne({ where: query });
+        return SuperUser.findOne({ where: query, include: { model: User } });
     },
     updateUser: (query, updateValue) => {
         return SuperUser.update(updateValue, { where: query });

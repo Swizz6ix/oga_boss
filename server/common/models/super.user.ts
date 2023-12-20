@@ -5,6 +5,7 @@ import { CreationOptional,
   Model,
   literal,
 } from 'sequelize';
+import { User } from './user.js';
 
 
 const superUserModel = {
@@ -54,20 +55,20 @@ export class SuperUser extends Model<InferAttributes<SuperUser>,
     declare lastName: string;
   }
 
-  export const superUserCrud = {
-    initialize: (sequelize: any) => {
-      SuperUser.init(superUserModel, {tableName: 'super_user', sequelize});
-    },
-    register: (superUser: any) => {
-      return SuperUser.create(superUser);
-    },
-    findUser: (query: any) => {
-      return SuperUser.findOne({ where: query });
-    },
-    updateUser: (query: any, updateValue: any) => {
-      return SuperUser.update(updateValue, { where: query });
-    },
-    deleteUser: (query: any) => {
-      return SuperUser.destroy({ where: query });
-    },
-  };
+export const superUserCrud = {
+  initialize: (sequelize: any) => {
+    SuperUser.init(superUserModel, { tableName: 'super_user', sequelize });
+  },
+  register: (superUser: any) => {
+    return SuperUser.create(superUser);
+  },
+  findUser: (query: any) => {
+    return SuperUser.findOne({ where: query, include: { model: User } });
+  },
+  updateUser: (query: any, updateValue: any) => {
+    return SuperUser.update(updateValue, { where: query });
+  },
+  deleteUser: (query: any) => {
+    return SuperUser.destroy({ where: query });
+  },
+};

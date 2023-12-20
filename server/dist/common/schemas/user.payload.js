@@ -40,6 +40,6 @@ export const userPayload = {
         'firstName',
         'lastName',
     ],
-    additionalProperties: false,
+    // additionalProperties: false,
 };
 //# sourceMappingURL=user.payload.js.map
