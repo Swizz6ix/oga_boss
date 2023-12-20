@@ -53,5 +53,5 @@ export const userPayload: JSONSchemaType<Props> = {
     'firstName',
     'lastName',
   ],
-  additionalProperties: false,
+  // additionalProperties: false,
 };

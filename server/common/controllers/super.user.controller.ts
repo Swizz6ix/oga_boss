@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { superUserCrud } from "../models/super.user";
+import { Request, Response } from 'express';
+import { superUserCrud } from '../models/super.user.js';
 
 export const superUserController = {
   getUser: (req: Request, res: Response) => {

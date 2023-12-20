@@ -1,6 +1,7 @@
 import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from 'sequelize';
 import { configs } from '../../config.js';
 import { Task } from './task.js';
+import { SuperUser } from './super.user.js';
 
 
 // The user's schema
@@ -76,7 +77,7 @@ export const userCrud = {
   },
 
   findAllUsers: (query: any) => {
-    return User.findAll({ where: query, include: { model: Task } });
+    return User.findAll({ where: query, include: [Task, SuperUser] });
   },
 
   updateUser: (query: any, updateValue: any) => {

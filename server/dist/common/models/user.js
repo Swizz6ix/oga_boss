@@ -1,6 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import { configs } from '../../config.js';
 import { Task } from './task.js';
+import { SuperUser } from './super.user.js';
 // The user's schema
 const userModel = {
     id: {
@@ -60,7 +61,7 @@ export const userCrud = {
         return User.findOne({ where: query, include: { model: Task } });
     },
     findAllUsers: (query) => {
-        return User.findAll({ where: query, include: { model: Task } });
+        return User.findAll({ where: query, include: [Task, SuperUser] });
     },
     updateUser: (query, updateValue) => {
         return User.update(updateValue, { where: query });

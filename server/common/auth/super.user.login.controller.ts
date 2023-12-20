@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { superUserCrud } from "../models/super.user";
-import { encryptPassword, token } from "./auth";
+import { superUserCrud } from "../models/super.user.js";
+import { encryptPassword, token } from "./auth.js";
 
 export const login = (req: Request, res: Response) => {
   const { username, password } = req.body;
