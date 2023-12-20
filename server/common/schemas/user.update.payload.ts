@@ -5,6 +5,8 @@ interface Props {
   department: string,
   hod?: string,
   role: string,
+  password: string,
+  userName: string,
 }
 
 export const userUpdatePayload: JSONSchemaType<Props> = {
@@ -23,7 +25,13 @@ export const userUpdatePayload: JSONSchemaType<Props> = {
       type: 'string',
       enum: Object.values(configs.roles),
     },
+    password: {
+      type: 'string',
+    },
+    userName: {
+      type: 'string',
+    }
   },
-  required: ['department'],
+  required: [],
   additionalProperties: false,
 };

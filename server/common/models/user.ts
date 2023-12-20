@@ -85,5 +85,5 @@ export const userCrud = {
 
   deleteUser: (query: any) => {
     return User.destroy({ where: query })
-  }
-}
+  },
+};
