@@ -37,9 +37,25 @@ export const dailyReport = {
       });
   },
 
+  getAllReport: (req: Request, res: Response) => {
+    dailyRptCrud.findAllReport(req.query)
+      .then((reports) => {
+        return res.status(200).json({
+          status: true,
+          reports: reports,
+        });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          status: false,
+          error: err,
+        });
+      });
+  },
+
   deleteReport: (req: Request, res: Response) => {
     const {
-      params: { id: reportId }
+      params: { reportId }
     } = req;
     dailyRptCrud.deleteReport({ id: reportId })
       .then((numberOfReportsDeleted) => {

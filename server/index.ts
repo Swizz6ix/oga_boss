@@ -11,8 +11,8 @@ import { superUserRoutes } from './common/routes/super.user.routes.js';
 import { Department, departmentCrud } from './common/models/department.js';
 import { departmentRoutes } from './common/routes/department.routes.js';
 import { dailyReportRoutes } from './common/routes/daily.report.routes.js';
-import { genRoomCrud } from './common/models/general.room.js';
-import { dailyRptCrud } from './common/models/daily.report.js';
+import { GenRoom, genRoomCrud } from './common/models/general.room.js';
+import { DailyRpt, dailyRptCrud } from './common/models/daily.report.js';
 import { genRoomRoutes } from './common/routes/gen.room.routes.js';
 
 
@@ -53,12 +53,26 @@ departmentCrud.initialize(sequelize);
 dailyRptCrud.initialize(sequelize);
 genRoomCrud.initialize(sequelize);
 
+// Creating Model Association
 SuperUser.hasMany(User, { foreignKey: { allowNull: false }});
 User.belongsTo(SuperUser);
 User.hasMany(Task, { foreignKey: { allowNull: false }});
 Task.belongsTo(User);
+
 Department.hasMany(User, { foreignKey: { allowNull: false }});
 User.belongsTo(Department);
+
+SuperUser.hasMany(Department, { foreignKey: { allowNull: false }});
+Department.belongsTo(SuperUser);
+
+User.hasMany(GenRoom, { foreignKey: { allowNull: false }});
+GenRoom.belongsTo(User);
+
+SuperUser.hasMany(GenRoom);
+GenRoom.belongsTo(SuperUser);
+
+User.hasMany(DailyRpt, { foreignKey: { allowNull: false }});
+DailyRpt.belongsTo(User);
 
 // Authenticate the database credentials and connect to the database
 sequelize

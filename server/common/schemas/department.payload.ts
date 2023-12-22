@@ -13,5 +13,5 @@ export const departmentPayload: JSONSchemaType<Props> = {
     },
   },
   required: ['name'],
-  additionalProperties: false,
+  // additionalProperties: false,
 }

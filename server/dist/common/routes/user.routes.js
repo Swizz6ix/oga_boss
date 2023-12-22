@@ -11,6 +11,9 @@ import { userLoginPayload } from '../schemas/user.login.payload.js';
 import { authenticated } from '../middlewares/isAuthenticated.middleware.js';
 const role = configs.roles.ADMIN;
 export const userRoutes = Router();
+userRoutes.get('/all', 
+// [authenticated.check, permission.has(role)], 
+userController.getAllUsers);
 userRoutes.get('/:userId', 
 // [authenticated.check, permission.has(role)], 
 userController.getUser);
@@ -20,5 +23,7 @@ userRoutes.post('/signup', [schemaValidator.verify(userPayload),
 userRoutes.post('/login', [schemaValidator.verify(userLoginPayload)], login);
 userRoutes.patch('/update/:userId', [permission.has(role), authenticated.check,
     schemaValidator.verify(userUpdatePayload)], userController.updateUser);
-userRoutes.delete('/:userId', [authenticated.check, permission.has(role)], userController.deleteUser);
+userRoutes.delete('/:userId', 
+// [authenticated.check, permission.has(role)], 
+userController.deleteUser);
 //# sourceMappingURL=user.routes.js.map

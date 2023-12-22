@@ -3,6 +3,7 @@ import { CreationOptional,
   InferAttributes,
   InferCreationAttributes,
   Model } from "sequelize";
+import { User } from "./user.js";
 
 const genRoomModel = {
   id: {
@@ -31,7 +32,10 @@ export const genRoomCrud = {
     return GenRoom.create(message);
   },
   getMessage: (query: any) => {
-    return GenRoom.findOne({ where: query });
+    return GenRoom.findOne({ where: query, include: [User] });
+  },
+  getAllMessages: (query: any) => {
+    return GenRoom.findAll({ where: query, include: [User] })
   },
   updateMessage: (query: any, updateValue: any) => {
     return GenRoom.update(updateValue, { where: query });

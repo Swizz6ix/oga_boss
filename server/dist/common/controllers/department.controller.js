@@ -15,6 +15,21 @@ export const departmentController = {
             });
         });
     },
+    getAllDept: (req, res) => {
+        departmentCrud.findAllDept(req.query)
+            .then((dept) => {
+            return res.status(200).json({
+                status: true,
+                data: dept,
+            });
+        })
+            .catch((err) => {
+            return res.status(500).json({
+                status: false,
+                error: err,
+            });
+        });
+    },
     getDept: (req, res) => {
         const { params: { deptId } } = req;
         departmentCrud.findDept({ id: deptId })
@@ -60,7 +75,7 @@ export const departmentController = {
         });
     },
     deleteDept: (req, res) => {
-        const { params: { id: deptId } } = req;
+        const { params: { deptId } } = req;
         departmentCrud.deleteDept({ id: deptId })
             .then((numberOfDepartmentDeleted) => {
             return res.status(200).json({

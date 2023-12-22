@@ -5,7 +5,8 @@ import { dailyReportPayload } from '../schemas/daily.report.payload.js';
 
 export const dailyReportRoutes = Router();
 
+dailyReportRoutes.get('/all', dailyReport.getAllReport);
 dailyReportRoutes.get('/:reportId', dailyReport.getReport)
-dailyReportRoutes.post('/new',
+dailyReportRoutes.post('/write',
   [schemaValidator.verify(dailyReportPayload)], dailyReport.addReport);
 dailyReportRoutes.delete('/:reportId', dailyReport.deleteReport);

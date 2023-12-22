@@ -8,6 +8,6 @@ export const departmentPayload = {
         },
     },
     required: ['name'],
-    additionalProperties: false,
+    // additionalProperties: false,
 };
 //# sourceMappingURL=department.payload.js.map

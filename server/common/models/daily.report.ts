@@ -3,6 +3,7 @@ import { CreationOptional,
   InferAttributes,
   InferCreationAttributes,
   Model } from 'sequelize';
+import { User } from './user.js';
 
 const dailyRptModel = {
   id: {
@@ -31,7 +32,10 @@ export const dailyRptCrud = {
     return DailyRpt.create(report);
   },
   findReport: (query: any) => {
-    return DailyRpt.findOne({ where: query });
+    return DailyRpt.findOne({ where: query, include: { model: User } });
+  },
+  findAllReport: (query: any) => {
+    return DailyRpt.findAll({ where: query, include: { model: User } });
   },
   updateReport: (query: any, updateValue: any) => {
     return DailyRpt.update(updateValue, { where: query });
