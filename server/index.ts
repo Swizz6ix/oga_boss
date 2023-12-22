@@ -8,6 +8,12 @@ import { userRoutes } from './common/routes/user.routes.js';
 import { taskRoutes } from './common/routes/task.routes.js';
 import { SuperUser, superUserCrud } from './common/models/super.user.js';
 import { superUserRoutes } from './common/routes/super.user.routes.js';
+import { Department, departmentCrud } from './common/models/department.js';
+import { departmentRoutes } from './common/routes/department.routes.js';
+import { dailyReportRoutes } from './common/routes/daily.report.routes.js';
+import { genRoomCrud } from './common/models/general.room.js';
+import { dailyRptCrud } from './common/models/daily.report.js';
+import { genRoomRoutes } from './common/routes/gen.room.routes.js';
 
 
 const port = configs.db_connections.port
@@ -21,6 +27,9 @@ const expressApp = () => {
   app.use('/user', userRoutes);
   app.use('/task', taskRoutes);
   app.use('/superuser', superUserRoutes);
+  app.use('/department', departmentRoutes);
+  app.use('/report', dailyReportRoutes);
+  app.use('/room', genRoomRoutes);
   app.get('/', (req: Request, res: Response ) => {
     res.send('Hi!, welcome to OGA BOSS')
   });
@@ -40,11 +49,16 @@ export const sequelize = new Sequelize(
 userCrud.initialize(sequelize);
 taskCrud.initialize(sequelize);
 superUserCrud.initialize(sequelize);
+departmentCrud.initialize(sequelize);
+dailyRptCrud.initialize(sequelize);
+genRoomCrud.initialize(sequelize);
 
 SuperUser.hasMany(User, { foreignKey: { allowNull: false }});
 User.belongsTo(SuperUser);
 User.hasMany(Task, { foreignKey: { allowNull: false }});
 Task.belongsTo(User);
+Department.hasMany(User, { foreignKey: { allowNull: false }});
+User.belongsTo(Department);
 
 // Authenticate the database credentials and connect to the database
 sequelize

@@ -1,4 +1,5 @@
 import { DataTypes, Model } from "sequelize";
+import { User } from "./user.js";
 const departmentModel = {
     id: {
         type: DataTypes.UUID,
@@ -23,7 +24,7 @@ export const departmentCrud = {
         return Department.create(dept);
     },
     findDept: (query) => {
-        return Department.findOne({ where: query });
+        return Department.findOne({ where: query, include: { model: User } });
     },
     updateDept: (query, updateValue) => {
         return Department.update(updateValue, { where: query });

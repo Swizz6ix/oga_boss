@@ -8,7 +8,7 @@ export const superUserUpdate = {
             type: 'string',
         }
     },
-    required: ['password'],
+    required: [],
     additionalProperties: false,
 };
 //# sourceMappingURL=super.user.update.payload.js.map

@@ -4,9 +4,11 @@ export const superUserController = {
         const { params: { userId } } = req;
         superUserCrud.findUser({ id: userId })
             .then((user) => {
+            console.log('superUser>>>>', user === null || user === void 0 ? void 0 : user.getUsers().then((e) => console.log('super', e)));
             return res.status(200).json({
                 status: true,
                 data: user === null || user === void 0 ? void 0 : user.toJSON(),
+                cy: user === null || user === void 0 ? void 0 : user.countUsers(),
             });
         })
             .catch((err) => {

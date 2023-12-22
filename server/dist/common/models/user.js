@@ -2,6 +2,7 @@ import { DataTypes, Model } from 'sequelize';
 import { configs } from '../../config.js';
 import { Task } from './task.js';
 import { SuperUser } from './super.user.js';
+import { Department } from './department.js';
 // The user's schema
 const userModel = {
     id: {
@@ -24,11 +25,11 @@ const userModel = {
         allowNull: false,
         unique: true,
     },
-    department: {
-        type: DataTypes.STRING(128),
-        allowNull: false,
-        defaultValue: configs.department.UNASSIGNED
-    },
+    // department: {
+    //   type: DataTypes.STRING(128),
+    //   allowNull: false,
+    //   defaultValue: configs.department.UNASSIGNED
+    // },
     hod: {
         type: DataTypes.STRING(128),
         allowNull: true,
@@ -58,10 +59,10 @@ export const userCrud = {
         return User.create(user);
     },
     findUser: (query) => {
-        return User.findOne({ where: query, include: { model: Task } });
+        return User.findOne({ where: query, include: [Task, Department] });
     },
     findAllUsers: (query) => {
-        return User.findAll({ where: query, include: [Task, SuperUser] });
+        return User.findAll({ where: query, include: [Task, SuperUser, Department] });
     },
     updateUser: (query, updateValue) => {
         return User.update(updateValue, { where: query });

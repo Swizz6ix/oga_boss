@@ -1,18 +1,19 @@
+;
 export const superUserPayload = {
     type: 'object',
     properties: {
         id: {
             type: 'string',
-            nullable: false
+            nullable: false,
         },
         company: {
             type: 'string',
-            nullable: false
+            nullable: false,
         },
         email: {
             type: 'string',
             pattern: '^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$',
-            nullable: false
+            nullable: false,
         },
         password: {
             type: 'string',
@@ -20,19 +21,19 @@ export const superUserPayload = {
         },
         username: {
             type: 'string',
-            nullable: false
+            nullable: false,
         },
         firstName: {
             type: 'string',
-            nullable: false
+            nullable: false,
         },
         lastName: {
             type: 'string',
-            nullable: false
+            nullable: false,
         }
     },
     required: [
-        'id',
+        // 'id',
         'company',
         'email',
         'password',

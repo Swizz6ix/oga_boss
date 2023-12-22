@@ -8,9 +8,11 @@ export const superUserController = {
     } = req;
     superUserCrud.findUser({ id: userId })
       .then((user) => {
+        console.log('superUser>>>>', user?.getUsers().then((e) => console.log('super', e)))
         return res.status(200).json({
           status: true,
           data: user?.toJSON(),
+          cy: user?.countUsers(),
         });
       })
       .catch((err) => {

@@ -1,7 +1,8 @@
-import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from 'sequelize';
+import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model, NonAttribute } from 'sequelize';
 import { configs } from '../../config.js';
 import { Task } from './task.js';
 import { SuperUser } from './super.user.js';
+import { Department } from './department.js';
 
 
 // The user's schema
@@ -26,11 +27,11 @@ const userModel = {
     allowNull: false,
     unique: true,
   },
-  department: {
-    type: DataTypes.STRING(128),
-    allowNull: false,
-    defaultValue: configs.department.UNASSIGNED
-  },
+  // department: {
+  //   type: DataTypes.STRING(128),
+  //   allowNull: false,
+  //   defaultValue: configs.department.UNASSIGNED
+  // },
   hod: {
     type: DataTypes.STRING(128),
     allowNull: true,
@@ -49,7 +50,7 @@ const userModel = {
     type: DataTypes.STRING(128),
     allowNull: false,
   }
-}
+};
 
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>>
 {
@@ -57,11 +58,13 @@ export class User extends Model<InferAttributes<User>, InferCreationAttributes<U
   declare email: string;
   declare password: string;
   declare userName: string;
-  declare department: string;
+  // declare department: string;
   declare hod: string | null;
   declare role: string;
   declare firstName: string;
   declare lastName: string;
+  declare SuperUserId: ForeignKey<SuperUser['id']>;
+  declare SuperUser?: NonAttribute<SuperUser>
 }
 
 export const userCrud = {
@@ -73,11 +76,11 @@ export const userCrud = {
   },
 
   findUser: (query: any) => {
-    return User.findOne({ where: query, include: { model: Task } });
+    return User.findOne({ where: query, include: [Task, Department] });
   },
 
   findAllUsers: (query: any) => {
-    return User.findAll({ where: query, include: [Task, SuperUser] });
+    return User.findAll({ where: query, include: [Task, SuperUser, Department ] });
   },
 
   updateUser: (query: any, updateValue: any) => {

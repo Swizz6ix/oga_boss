@@ -1,9 +1,11 @@
-import { CreationOptional,
+import { Association, CreationOptional,
   DataTypes,
+  HasManyCountAssociationsMixin,
+  HasManyGetAssociationsMixin,
   InferAttributes,
   InferCreationAttributes,
   Model,
-  literal,
+  NonAttribute,
 } from 'sequelize';
 import { User } from './user.js';
 
@@ -53,6 +55,12 @@ export class SuperUser extends Model<InferAttributes<SuperUser>,
     declare username: string;
     declare firstName: string;
     declare lastName: string;
+    declare getUsers: HasManyGetAssociationsMixin<User>;
+    declare countUsers: HasManyCountAssociationsMixin;
+    declare Users?: NonAttribute<User[]>;
+    declare static associations: {
+      Users: Association<SuperUser, User>;
+    };
   }
 
 export const superUserCrud = {

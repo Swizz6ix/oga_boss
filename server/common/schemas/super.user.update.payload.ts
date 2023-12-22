@@ -15,6 +15,6 @@ export const superUserUpdate: JSONSchemaType<Props> = {
       type: 'string',
     }
   },
-  required: ['password'],
+  required: [],
   additionalProperties: false,
 }

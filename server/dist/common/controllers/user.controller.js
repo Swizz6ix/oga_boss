@@ -16,6 +16,21 @@ export const userController = {
             });
         });
     },
+    getAllUsers: (req, res) => {
+        userCrud.findAllUsers(req.query)
+            .then((users) => {
+            return res.status(200).json({
+                status: true,
+                data: users,
+            });
+        })
+            .catch((err) => {
+            return res.status(500).json({
+                status: false,
+                error: err,
+            });
+        });
+    },
     updateUser: (req, res) => {
         const { params: { userId }, body: payload } = req;
         // if the payload does not have any keys, return an error

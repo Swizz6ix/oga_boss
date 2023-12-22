@@ -1,8 +1,12 @@
-import { CreationOptional,
+import { Association, CreationOptional,
   DataTypes,
+  HasManyCountAssociationsMixin,
+  HasManyGetAssociationsMixin,
   InferAttributes,
   InferCreationAttributes,
-  Model } from "sequelize";
+  Model, 
+  NonAttribute} from "sequelize";
+import { User } from "./user.js";
 
 const departmentModel = {
   id: {
@@ -22,6 +26,12 @@ export class Department extends Model<InferAttributes<Department>,
   InferCreationAttributes<Department>> {
     declare id: CreationOptional<string>;
     declare name: string;
+    declare getUsers: HasManyGetAssociationsMixin<User>;
+    declare countUsers: HasManyCountAssociationsMixin;
+    declare Users?: NonAttribute<User[]>;
+    declare static associations: {
+      Users: Association<Department, User>;
+    }
   };
 
 export const departmentCrud = {
@@ -32,7 +42,7 @@ export const departmentCrud = {
     return Department.create(dept);
   },
   findDept: (query: any) => {
-    return Department.findOne({ where: query })
+    return Department.findOne({ where: query, include: { model: User } })
   },
   updateDept: (query: any, updateValue: any) => {
     return Department.update(updateValue, { where: query });

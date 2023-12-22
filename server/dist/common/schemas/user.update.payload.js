@@ -2,10 +2,10 @@ import { configs } from "../../config.js";
 export const userUpdatePayload = {
     type: 'object',
     properties: {
-        department: {
-            type: 'string',
-            enum: Object.values(configs.department),
-        },
+        // department: {
+        //   type: 'string',
+        //   enum: Object.values(configs.department),
+        // },
         hod: {
             type: 'string',
             nullable: true,
