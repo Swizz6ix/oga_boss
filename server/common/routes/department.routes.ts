@@ -5,6 +5,7 @@ import { departmentPayload } from '../schemas/department.payload.js';
 
 export const departmentRoutes = Router();
 
+departmentRoutes.get('/all', departmentController.getAllDept);
 departmentRoutes.get('/:deptId', departmentController.getDept);
 departmentRoutes.post('/add',
   [schemaValidator.verify(departmentPayload)], departmentController.addDepartment);

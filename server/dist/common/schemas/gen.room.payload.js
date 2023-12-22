@@ -8,6 +8,6 @@ export const genRoomPayload = {
         },
     },
     required: ['message'],
-    additionalProperties: false,
+    // additionalProperties: false,
 };
 //# sourceMappingURL=gen.room.payload.js.map

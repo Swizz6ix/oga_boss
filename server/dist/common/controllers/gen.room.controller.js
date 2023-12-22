@@ -32,8 +32,23 @@ export const genRoomController = {
             });
         });
     },
+    getAllMsg: (req, res) => {
+        genRoomCrud.getAllMessages(req.query)
+            .then((msg) => {
+            return res.status(200).json({
+                status: true,
+                data: msg,
+            });
+        })
+            .catch((err) => {
+            return res.status(500).json({
+                status: false,
+                error: err,
+            });
+        });
+    },
     deleteMsg: (req, res) => {
-        const { params: { id: msgId } } = req;
+        const { params: { msgId } } = req;
         genRoomCrud.deleteMessage({ id: msgId })
             .then((numberOfMsgDeleted) => {
             return res.status(200).json({

@@ -13,5 +13,5 @@ export const genRoomPayload: JSONSchemaType<Props> = {
     },
   },
   required: ['message'],
-  additionalProperties: false,
+  // additionalProperties: false,
 }

@@ -1,4 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
+import { User } from './user.js';
 const dailyRptModel = {
     id: {
         type: DataTypes.UUID,
@@ -22,7 +23,10 @@ export const dailyRptCrud = {
         return DailyRpt.create(report);
     },
     findReport: (query) => {
-        return DailyRpt.findOne({ where: query });
+        return DailyRpt.findOne({ where: query, include: { model: User } });
+    },
+    findAllReport: (query) => {
+        return DailyRpt.findAll({ where: query, include: { model: User } });
     },
     updateReport: (query, updateValue) => {
         return DailyRpt.update(updateValue, { where: query });

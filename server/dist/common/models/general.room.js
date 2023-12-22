@@ -1,4 +1,5 @@
 import { DataTypes, Model } from "sequelize";
+import { User } from "./user.js";
 const genRoomModel = {
     id: {
         type: DataTypes.UUID,
@@ -22,7 +23,10 @@ export const genRoomCrud = {
         return GenRoom.create(message);
     },
     getMessage: (query) => {
-        return GenRoom.findOne({ where: query });
+        return GenRoom.findOne({ where: query, include: [User] });
+    },
+    getAllMessages: (query) => {
+        return GenRoom.findAll({ where: query, include: [User] });
     },
     updateMessage: (query, updateValue) => {
         return GenRoom.update(updateValue, { where: query });

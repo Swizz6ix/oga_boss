@@ -3,6 +3,8 @@ import { configs } from '../../config.js';
 import { Task } from './task.js';
 import { SuperUser } from './super.user.js';
 import { Department } from './department.js';
+import { GenRoom } from './general.room.js';
+import { DailyRpt } from './daily.report.js';
 
 
 // The user's schema
@@ -76,11 +78,13 @@ export const userCrud = {
   },
 
   findUser: (query: any) => {
-    return User.findOne({ where: query, include: [Task, Department] });
+    return User.findOne({ where: query, include: [Department, Task, DailyRpt, GenRoom] });
   },
 
   findAllUsers: (query: any) => {
-    return User.findAll({ where: query, include: [Task, SuperUser, Department ] });
+    return User.findAll({ where: query, include: [Department, Task, DailyRpt, GenRoom]
+      // include: [Task, SuperUser, Department ] 
+    });
   },
 
   updateUser: (query: any, updateValue: any) => {

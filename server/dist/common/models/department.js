@@ -26,6 +26,9 @@ export const departmentCrud = {
     findDept: (query) => {
         return Department.findOne({ where: query, include: { model: User } });
     },
+    findAllDept: (query) => {
+        return Department.findAll({ where: query, include: { model: User } });
+    },
     updateDept: (query, updateValue) => {
         return Department.update(updateValue, { where: query });
     },
