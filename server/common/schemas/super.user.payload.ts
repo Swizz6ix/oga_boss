@@ -1,4 +1,7 @@
 import { JSONSchemaType } from "ajv";
+import { configs } from "../../config.js";
+
+const ADMIN = configs.roles.ADMIN;
 
 interface Props {
   id: string,
@@ -6,6 +9,7 @@ interface Props {
   email: string,
   password: string,
   username: string,
+  role: string,
   firstName: string,
   lastName: string,
 };
@@ -34,6 +38,11 @@ export const superUserPayload: JSONSchemaType<Props> = {
       type: 'string',
       nullable: false,
     },
+    role: {
+      type: 'string',
+      enum: Object.values(configs.roles),
+      default: ADMIN
+    },
     firstName: {
       type: 'string',
       nullable: false,
@@ -44,7 +53,6 @@ export const superUserPayload: JSONSchemaType<Props> = {
     }
   },
   required: [
-    // 'id',
     'company',
     'email',
     'password',

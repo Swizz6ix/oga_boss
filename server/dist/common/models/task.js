@@ -1,6 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import { configs } from "../../config.js";
 import { User } from "./user.js";
+import { Department } from "./department.js";
 const taskModel = {
     id: {
         type: DataTypes.INTEGER.UNSIGNED,
@@ -40,10 +41,75 @@ export const taskCrud = {
         return Task.create(task, { include: User, required: true });
     },
     findTask: (query) => {
-        return Task.findOne({ where: query, include: { model: User } });
+        return Task.findOne({ where: query, include: [{
+                    model: User,
+                    attributes: {
+                        exclude: [
+                            'password',
+                            'email',
+                            'userName',
+                            'SuperUserId',
+                            'createdAt',
+                            'updatedAt',
+                        ],
+                    },
+                },
+                {
+                    model: Department,
+                    attributes: {
+                        exclude: [
+                            'SuperUserId',
+                            'createdAt',
+                            'updatedAt',
+                        ],
+                    }
+                }],
+            attributes: {
+                exclude: [
+                    'deadline',
+                    'urgencyLevel',
+                    'UserId',
+                    'DepartmentId',
+                    'createdAt',
+                    'updatedAt'
+                ]
+            } });
     },
     findAllTasks: (query) => {
-        return Task.findAll({ where: query, include: { model: User } });
+        return Task.findAll({ where: query, include: [{
+                    model: User,
+                    attributes: {
+                        exclude: [
+                            'password',
+                            'email',
+                            'userName',
+                            'SuperUserId',
+                            'DepartmentId',
+                            'createdAt',
+                            'updatedAt',
+                        ],
+                    }
+                },
+                {
+                    model: Department,
+                    attributes: {
+                        exclude: [
+                            'SuperUserId',
+                            'createdAt',
+                            'updatedAt',
+                        ],
+                    }
+                }],
+            attributes: {
+                exclude: [
+                    'deadline',
+                    'urgencyLevel',
+                    'UserId',
+                    'DepartmentId',
+                    'createdAt',
+                    'updatedAt'
+                ]
+            } });
     },
     updateTask: (query, updateValue) => {
         return Task.update(updateValue, { where: query });

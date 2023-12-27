@@ -1,12 +1,25 @@
 import { userCrud } from '../models/user.js';
+import { user } from '../middlewares/user.middleware.js';
+import { configs } from '../../config.js';
+const _role = configs.roles.ADMIN;
 export const userController = {
     getUser: (req, res) => {
+        const reqId = req.user.userId;
         const { params: { userId } } = req;
-        userCrud.findUser({ id: userId })
-            .then((user) => {
-            return res.status(200).json({
-                status: true,
-                data: user === null || user === void 0 ? void 0 : user.toJSON(),
+        user.userIdentify(reqId, _role, userId)
+            .then((params) => {
+            userCrud.findUser({ id: params })
+                .then((user) => {
+                return res.status(200).json({
+                    status: true,
+                    data: user === null || user === void 0 ? void 0 : user.toJSON(),
+                });
+            })
+                .catch((err) => {
+                return res.status(500).json({
+                    status: false,
+                    error: err,
+                });
             });
         })
             .catch((err) => {
@@ -17,11 +30,207 @@ export const userController = {
         });
     },
     getAllUsers: (req, res) => {
-        userCrud.findAllUsers(req.query)
-            .then((users) => {
-            return res.status(200).json({
-                status: true,
-                data: users,
+        const { user: { userId } } = req;
+        user._user_id(userId)
+            .then((id) => {
+            userCrud.findAllUsers({ SuperUserId: id })
+                .then((users) => {
+                return res.status(200).json({
+                    status: true,
+                    data: users,
+                });
+            })
+                .catch((err) => {
+                return res.status(500).json({
+                    status: false,
+                    error: err,
+                });
+            });
+        })
+            .catch((err) => {
+            return res.status(500).json({
+                status: false,
+                error: err,
+            });
+        });
+    },
+    getTasks: (req, res) => {
+        const reqId = req.user.userId;
+        const { params: { userId } } = req;
+        user.userIdentify(reqId, _role, userId)
+            .then((params) => {
+            userCrud.findUser({ id: params })
+                .then((user) => {
+                user === null || user === void 0 ? void 0 : user.getTasks().then((tasks) => {
+                    return res.status(200).json({
+                        status: true,
+                        tasks: tasks,
+                    });
+                }).catch((err) => {
+                    return res.status(500).json({
+                        status: false,
+                        error: err,
+                    });
+                });
+            })
+                .catch((err) => {
+                return res.status(500).json({
+                    status: false,
+                    error: err,
+                });
+            });
+        })
+            .catch((err) => {
+            return res.status(500).json({
+                status: false,
+                error: err,
+            });
+        });
+    },
+    getTasksCount: (req, res) => {
+        const reqId = req.user.userId;
+        const { params: { userId } } = req;
+        user.userIdentify(reqId, _role, userId)
+            .then((params) => {
+            userCrud.findUser({ id: params })
+                .then((user) => {
+                user === null || user === void 0 ? void 0 : user.countTasks().then((tasks) => {
+                    return res.status(200).json({
+                        status: true,
+                        totalNumberOfTasks: tasks,
+                    });
+                }).catch((err) => {
+                    return res.status(500).json({
+                        status: false,
+                        error: err,
+                    });
+                });
+            })
+                .catch((err) => {
+                return res.status(500).json({
+                    status: false,
+                    error: err,
+                });
+            });
+        });
+    },
+    getReports: (req, res) => {
+        const reqId = req.user.userId;
+        const { params: { userId } } = req;
+        user.userIdentify(reqId, _role, userId)
+            .then((params) => {
+            userCrud.findUser({ id: params })
+                .then((user) => {
+                user === null || user === void 0 ? void 0 : user.getDailyRpts().then((reports) => {
+                    return res.status(200).json({
+                        status: true,
+                        reports: reports,
+                    });
+                }).catch((err) => {
+                    return res.status(500).json({
+                        status: false,
+                        error: err,
+                    });
+                });
+            })
+                .catch((err) => {
+                return res.status(500).json({
+                    status: false,
+                    error: err,
+                });
+            });
+        });
+    },
+    getReportsCount: (req, res) => {
+        const reqId = req.user.userId;
+        const { params: { userId } } = req;
+        user.userIdentify(reqId, _role, userId)
+            .then((params) => {
+            userCrud.findUser({ id: params })
+                .then((user) => {
+                user === null || user === void 0 ? void 0 : user.countDailyRpts().then((reports) => {
+                    return res.status(200).json({
+                        status: true,
+                        totalNumberOfReports: reports,
+                    });
+                }).catch((err) => {
+                    return res.status(500).json({
+                        status: false,
+                        error: err,
+                    });
+                });
+            })
+                .catch((err) => {
+                return res.status(500).json({
+                    status: false,
+                    error: err,
+                });
+            });
+        })
+            .catch((err) => {
+            return res.status(500).json({
+                status: false,
+                error: err,
+            });
+        });
+    },
+    getChats: (req, res) => {
+        const reqId = req.user.userId;
+        const { params: { userId }, } = req;
+        user.userIdentify(reqId, _role, userId)
+            .then((params) => {
+            userCrud.findUser({ id: params })
+                .then((user) => {
+                user === null || user === void 0 ? void 0 : user.getGenRooms().then((chats) => {
+                    return res.status(200).json({
+                        status: true,
+                        chats: chats,
+                    });
+                }).catch((err) => {
+                    return res.status(500).json({
+                        status: false,
+                        error: err,
+                    });
+                });
+            })
+                .catch((err) => {
+                return res.status(500).json({
+                    status: false,
+                    error: err,
+                });
+            });
+        })
+            .catch((err) => {
+            return res.status(500).json({
+                status: false,
+                error: err,
+            });
+        });
+    },
+    getChatsCount: (req, res) => {
+        const reqId = req.user.userId;
+        const { params: { userId }, } = req;
+        user.userIdentify(reqId, _role, userId)
+            .then((params) => {
+            userCrud.findUser({ id: params })
+                .then((user) => {
+                user === null || user === void 0 ? void 0 : user.countGenRooms().then((chats) => {
+                    return res.status(200).json({
+                        status: true,
+                        totalNumberOfChats: chats,
+                    });
+                }).catch((err) => {
+                    return res.status(500).json({
+                        status: false,
+                        error: err,
+                    });
+                });
+            })
+                .catch((err) => {
+                return res.status(500).json({
+                    status: false,
+                    error: err,
+                });
             });
         })
             .catch((err) => {

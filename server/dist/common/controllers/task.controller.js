@@ -1,4 +1,7 @@
 import { taskCrud } from '../models/task.js';
+import { user } from '../middlewares/user.middleware.js';
+import { configs } from '../../config.js';
+const _role = configs.roles.ADMIN;
 export const taskController = {
     newTask: (req, res) => {
         const payload = req.body;
@@ -17,9 +20,18 @@ export const taskController = {
         });
     },
     getTask: (req, res) => {
+        const reqId = req.user.userId;
+        console.log('>>>', reqId);
         const { params: { taskId } } = req;
         taskCrud.findTask({ id: taskId })
             .then((task) => {
+            console.log('dess', task === null || task === void 0 ? void 0 : task.UserId);
+            if (reqId !== (task === null || task === void 0 ? void 0 : task.UserId)) {
+                return res.status(500).json({
+                    status: false,
+                    error: `User ${reqId} does not have the required permission`,
+                });
+            }
             return res.status(200).json({
                 status: true,
                 data: task === null || task === void 0 ? void 0 : task.toJSON(),
@@ -33,11 +45,21 @@ export const taskController = {
         });
     },
     getAllTasks: (req, res) => {
-        taskCrud.findAllTasks(req.query)
-            .then((tasks) => {
-            return res.status(200).json({
-                status: true,
-                data: tasks,
+        const { user: { userId } } = req;
+        user._user_id(userId)
+            .then((id) => {
+            taskCrud.findAllTasks({ SuperUserId: id })
+                .then((tasks) => {
+                return res.status(200).json({
+                    status: true,
+                    data: tasks,
+                });
+            })
+                .catch((err) => {
+                return res.status(500).json({
+                    status: false,
+                    error: err,
+                });
             });
         })
             .catch((err) => {

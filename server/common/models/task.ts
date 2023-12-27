@@ -1,6 +1,7 @@
-import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from "sequelize";
+import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model, NonAttribute } from "sequelize";
 import { configs } from "../../config.js";
 import { User } from "./user.js";
+import { Department } from "./department.js";
 
 const taskModel = {
   id: {
@@ -44,6 +45,8 @@ export class Task extends Model<InferAttributes<Task>, InferCreationAttributes<T
   declare deadline: Date;
   declare department: string;
   declare urgencyLevel: string;
+  declare UserId: ForeignKey<User['id']>;
+  declare User?: NonAttribute<User>;
 }
 
 export const taskCrud = {
@@ -56,11 +59,76 @@ export const taskCrud = {
   },
 
   findTask: (query: any) => {
-    return Task.findOne({ where: query, include: { model: User } });
+    return Task.findOne({ where: query, include: [{
+      model: User,
+      attributes: {
+        exclude: [
+          'password',
+          'email',
+          'userName',
+          'SuperUserId',
+          'createdAt',
+          'updatedAt',
+        ],
+      },
+    },
+    {
+      model: Department,
+      attributes: {
+        exclude: [
+          'SuperUserId',
+          'createdAt',
+          'updatedAt',
+        ],
+      }
+    }],
+    attributes: {
+      exclude: [
+        'deadline',
+        'urgencyLevel',
+        'UserId',
+        'DepartmentId',
+        'createdAt',
+        'updatedAt'
+      ]
+    }});
   },
 
   findAllTasks: (query: any) => {
-    return Task.findAll({ where: query, include: { model: User } });
+    return Task.findAll({ where: query, include: [{
+      model: User,
+      attributes: {
+        exclude: [
+          'password',
+          'email',
+          'userName',
+          'SuperUserId',
+          'DepartmentId',
+          'createdAt',
+          'updatedAt',
+        ],
+      }
+    },
+    {
+      model: Department,
+      attributes: {
+        exclude: [
+          'SuperUserId',
+          'createdAt',
+          'updatedAt',
+        ],
+      }
+    }],
+    attributes: {
+      exclude: [
+        'deadline',
+        'urgencyLevel',
+        'UserId',
+        'DepartmentId',
+        'createdAt',
+        'updatedAt'
+      ]
+    }});
   },
 
   updateTask: (query: any, updateValue: any) => {

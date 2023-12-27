@@ -12,14 +12,6 @@ export const configs = {
         ADMIN: 'admin',
         USER: 'user'
     },
-    department: {
-        LOGISTIC: 'logistic',
-        FINANCE: 'finance',
-        DESIGN: 'design',
-        FRONT_DEV: 'front_dev',
-        BACK_DEV: 'back_dev',
-        UNASSIGNED: 'unassigned'
-    },
     hod: {
         YES: 'yes',
         NO: 'no',

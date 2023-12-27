@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
 import { departmentCrud } from "../models/department.js";
+import { userCrud } from "../models/user.js";
+import { superUserCrud } from "../models/super.user.js";
+import { user } from "../middlewares/user.middleware.js";
 
 export const departmentController = {
   addDepartment: (req: Request, res: Response) => {
@@ -17,13 +20,26 @@ export const departmentController = {
         });
       });
   },
-  getAllDept: (req: Request, res: Response) => {
-    departmentCrud.findAllDept(req.query)
-      .then((dept) => {
-        return res.status(200).json({
-          status: true,
-          data: dept,
-        });
+  getAllDept: (req: any, res: Response) => {
+    const {
+      user: { userId }
+    } = req;
+
+    user._user_id(userId)
+      .then((id) => {
+        departmentCrud.findAllDept({ SuperUserId: id })
+          .then((dept) => {
+            return res.status(200).json({
+              status: true,
+              data: dept,
+            });
+          })
+          .catch((err) => {
+            return res.status(500).json({
+              status: false,
+              error: err,
+            });
+          });
       })
       .catch((err) => {
         return res.status(500).json({
@@ -32,10 +48,12 @@ export const departmentController = {
         });
       });
   },
+
   getDept: (req: Request, res: Response) => {
     const {
       params: { deptId }
     } = req;
+
     departmentCrud.findDept({ id: deptId })
       .then((dept) => {
         return res.status(200).json({
@@ -50,6 +68,7 @@ export const departmentController = {
         });
       })
   },
+
   updateDept: (req: Request, res: Response) => {
     const {
       params: { deptId },

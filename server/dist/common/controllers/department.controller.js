@@ -1,4 +1,5 @@
 import { departmentCrud } from "../models/department.js";
+import { user } from "../middlewares/user.middleware.js";
 export const departmentController = {
     addDepartment: (req, res) => {
         const payload = req.body;
@@ -16,11 +17,21 @@ export const departmentController = {
         });
     },
     getAllDept: (req, res) => {
-        departmentCrud.findAllDept(req.query)
-            .then((dept) => {
-            return res.status(200).json({
-                status: true,
-                data: dept,
+        const { user: { userId } } = req;
+        user._user_id(userId)
+            .then((id) => {
+            departmentCrud.findAllDept({ SuperUserId: id })
+                .then((dept) => {
+                return res.status(200).json({
+                    status: true,
+                    data: dept,
+                });
+            })
+                .catch((err) => {
+                return res.status(500).json({
+                    status: false,
+                    error: err,
+                });
             });
         })
             .catch((err) => {
