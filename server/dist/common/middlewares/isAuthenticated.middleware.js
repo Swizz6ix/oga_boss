@@ -23,7 +23,7 @@ export const authenticated = {
             });
         }
         const _token = authHeader.split(' ')[1];
-        // return error if bearer header is provided, but token is nor provided
+        // return error if bearer header is provided, but token is not provided
         if (!_token) {
             return res.status(401).json({
                 status: false,

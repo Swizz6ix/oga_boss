@@ -8,6 +8,9 @@ import { Association, CreationOptional,
   NonAttribute,
 } from 'sequelize';
 import { User } from './user.js';
+import { configs } from '../../config.js';
+import { Department } from './department.js';
+import { Task } from './task.js';
 
 
 const superUserModel = {
@@ -36,6 +39,10 @@ const superUserModel = {
     allowNull: false,
     unique: true,
   },
+  role: {
+    type: DataTypes.STRING(128),
+    defaultValue: configs.roles.ADMIN,
+  },
   firstName: {
     type: DataTypes.STRING(128),
     allowNull: false,
@@ -53,13 +60,22 @@ export class SuperUser extends Model<InferAttributes<SuperUser>,
     declare email: string;
     declare password: string;
     declare username: string;
+    declare role?: string;
     declare firstName: string;
     declare lastName: string;
     declare getUsers: HasManyGetAssociationsMixin<User>;
+    declare getDepartments: HasManyGetAssociationsMixin<Department>;
+    declare getTasks: HasManyGetAssociationsMixin<Task>;
     declare countUsers: HasManyCountAssociationsMixin;
+    declare countDepartments: HasManyCountAssociationsMixin;
+    declare countTasks: HasManyCountAssociationsMixin;
     declare Users?: NonAttribute<User[]>;
+    declare Departments?: NonAttribute<Department[]>;
+    declare Tasks?: NonAttribute<Task[]>;
     declare static associations: {
       Users: Association<SuperUser, User>;
+      Departments: Association<SuperUser, Department>;
+      Tasks: Association<SuperUser, Task>;
     };
   }
 

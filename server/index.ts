@@ -56,8 +56,12 @@ genRoomCrud.initialize(sequelize);
 // Creating Model Association
 SuperUser.hasMany(User, { foreignKey: { allowNull: false }});
 User.belongsTo(SuperUser);
+
 User.hasMany(Task, { foreignKey: { allowNull: false }});
 Task.belongsTo(User);
+
+SuperUser.hasMany(Task, { foreignKey: { allowNull: false }});
+Task.belongsTo(SuperUser);
 
 Department.hasMany(User, { foreignKey: { allowNull: false }});
 User.belongsTo(Department);
@@ -65,7 +69,7 @@ User.belongsTo(Department);
 SuperUser.hasMany(Department, { foreignKey: { allowNull: false }});
 Department.belongsTo(SuperUser);
 
-User.hasMany(GenRoom, { foreignKey: { allowNull: false }});
+User.hasMany(GenRoom, { foreignKey: { allowNull: true }});
 GenRoom.belongsTo(User);
 
 SuperUser.hasMany(GenRoom);
@@ -73,6 +77,12 @@ GenRoom.belongsTo(SuperUser);
 
 User.hasMany(DailyRpt, { foreignKey: { allowNull: false }});
 DailyRpt.belongsTo(User);
+
+SuperUser.hasMany(DailyRpt, { foreignKey: { allowNull: false }});
+DailyRpt.belongsTo(SuperUser);
+
+Department.hasMany(Task, { foreignKey: { allowNull: false }});
+Task.belongsTo(Department);
 
 // Authenticate the database credentials and connect to the database
 sequelize

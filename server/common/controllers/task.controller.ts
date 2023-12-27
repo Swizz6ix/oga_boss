@@ -1,5 +1,9 @@
 import { Request, Response } from 'express';
 import { taskCrud } from '../models/task.js';
+import { user } from '../middlewares/user.middleware.js';
+import { configs } from '../../config.js';
+
+const _role = configs.roles.ADMIN;
 
 export const taskController = {
   newTask: (req: Request, res: Response) => {
@@ -19,10 +23,22 @@ export const taskController = {
       });
   },
 
-  getTask: (req: Request, res: Response) => {
-    const { params: { taskId } } = req;
+  getTask: (req: any, res: Response) => {
+    const reqId = req.user.userId;
+    console.log('>>>', reqId)
+    const {
+      params: { taskId }
+    } = req;
+
     taskCrud.findTask({ id: taskId })
       .then((task) => {
+        console.log('dess', task?.UserId)
+        if (reqId !== task?.UserId) {
+          return res.status(500).json({
+            status: false,
+            error: `User ${reqId} does not have the required permission`,
+          });
+        }
         return res.status(200).json({
           status: true,
           data: task?.toJSON(),
@@ -36,13 +52,26 @@ export const taskController = {
       });
   },
 
-  getAllTasks: (req: Request, res: Response) => {
-    taskCrud.findAllTasks(req.query)
-      .then((tasks) => {
-        return res.status(200).json({
-          status: true,
-          data: tasks,
-        });
+  getAllTasks: (req: any, res: Response) => {
+    const {
+      user: { userId }
+    } = req;
+
+    user._user_id(userId)
+      .then((id) => {
+        taskCrud.findAllTasks({ SuperUserId: id })
+          .then((tasks) => {
+            return res.status(200).json({
+              status: true,
+              data: tasks,
+            });
+          })
+          .catch((err) => {
+            return res.status(500).json({
+              status: false,
+              error: err,
+            });
+          });
       })
       .catch((err) => {
         return res.status(500).json({
@@ -86,7 +115,10 @@ export const taskController = {
   },
 
   deleteTask: (req: Request, res: Response) => {
-    const { params: { taskId } } = req;
+    const {
+      params: { taskId }
+    } = req;
+
     taskCrud.deleteTask({ id: taskId })
       .then((numberOfTasksDeleted) => {
         return res.status(200).json({

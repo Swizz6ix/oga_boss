@@ -1,4 +1,4 @@
-import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model, NonAttribute } from 'sequelize';
+import { Association, Attributes, CreationOptional, DataTypes, ForeignKey, HasManyCountAssociationsMixin, HasManyGetAssociationsMixin, InferAttributes, InferCreationAttributes, Model, ModelAttributeColumnOptions, ModelStatic, NonAttribute } from 'sequelize';
 import { configs } from '../../config.js';
 import { Task } from './task.js';
 import { SuperUser } from './super.user.js';
@@ -29,20 +29,15 @@ const userModel = {
     allowNull: false,
     unique: true,
   },
-  // department: {
-  //   type: DataTypes.STRING(128),
-  //   allowNull: false,
-  //   defaultValue: configs.department.UNASSIGNED
-  // },
   hod: {
     type: DataTypes.STRING(128),
     allowNull: true,
-    defaultValue: configs.hod.NO
+    defaultValue: configs.hod.NO,
   },
   role: {
     type: DataTypes.STRING(128),
     allowNull: false,
-    defaultValue: configs.roles.USER
+    defaultValue: configs.roles.USER,
   },
   firstName: {
     type: DataTypes.STRING(128),
@@ -54,19 +49,35 @@ const userModel = {
   }
 };
 
+// function getAtrr<M extends Model>(model: ModelStatic<M>, attributeName: keyof Attributes<M>): ModelAttributeColumnOptions {
+//   model.getAttributes;
+// }
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>>
 {
   declare id: CreationOptional<number>;
   declare email: string;
   declare password: string;
   declare userName: string;
-  // declare department: string;
   declare hod: string | null;
   declare role: string;
   declare firstName: string;
   declare lastName: string;
+  declare getTasks: HasManyGetAssociationsMixin<Task>;
+  declare getDailyRpts: HasManyGetAssociationsMixin<DailyRpt>;
+  declare getGenRooms: HasManyGetAssociationsMixin<GenRoom>;
+  declare countTasks: HasManyCountAssociationsMixin;
+  declare countDailyRpts: HasManyCountAssociationsMixin;
+  declare countGenRooms: HasManyCountAssociationsMixin;
+  declare Tasks?: NonAttribute<Task[]>;
+  declare DailyRpts?: NonAttribute<DailyRpt[]>;
+  declare GenRooms?: NonAttribute<GenRoom[]>;
+  declare static association: {
+    Tasks: Association<User, Task>;
+    DailyRpts: Association<User, DailyRpt>;
+    GenRooms: Association<User, GenRoom>;
+  };
   declare SuperUserId: ForeignKey<SuperUser['id']>;
-  declare SuperUser?: NonAttribute<SuperUser>
+  declare SuperUser?: NonAttribute<SuperUser>;
 }
 
 export const userCrud = {
@@ -78,12 +89,66 @@ export const userCrud = {
   },
 
   findUser: (query: any) => {
-    return User.findOne({ where: query, include: [Department, Task, DailyRpt, GenRoom] });
+    return User.findOne({
+      where: query,
+      include: [{
+        model: SuperUser,
+        attributes: {
+          exclude: [
+            'password',
+            'username',
+            'createdAt',
+            'updatedAt',
+            'role',
+          ],
+        },
+      },
+      {
+        model: Department,
+        attributes: {
+          exclude: [
+            'SuperUserId',
+            'createdAt',
+            'updatedAt',
+          ],
+        },
+      },
+      {
+        model: Task,
+        attributes: {
+          exclude: [
+            'UserId',
+            'DepartmentId',
+          ],
+        },
+      },
+      {
+        model: DailyRpt,
+        attributes: {
+          exclude: ['UserId']
+        }
+      },
+      {
+        model: GenRoom,
+        attributes: {
+          exclude: [
+            'UserId',
+            'SuperUserId',
+          ],
+        },
+      }],
+    });
   },
 
   findAllUsers: (query: any) => {
-    return User.findAll({ where: query, include: [Department, Task, DailyRpt, GenRoom]
-      // include: [Task, SuperUser, Department ] 
+    return User.findAll({ where: query,
+      include: [
+        SuperUser,
+        Department,
+        Task,
+        DailyRpt,
+        GenRoom,
+      ],
     });
   },
 

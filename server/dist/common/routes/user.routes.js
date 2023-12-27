@@ -11,19 +11,17 @@ import { userLoginPayload } from '../schemas/user.login.payload.js';
 import { authenticated } from '../middlewares/isAuthenticated.middleware.js';
 const role = configs.roles.ADMIN;
 export const userRoutes = Router();
-userRoutes.get('/all', 
-// [authenticated.check, permission.has(role)], 
-userController.getAllUsers);
-userRoutes.get('/:userId', 
-// [authenticated.check, permission.has(role)], 
-userController.getUser);
-userRoutes.post('/signup', [schemaValidator.verify(userPayload),
-    // permission.has(role)
-], createUser);
+userRoutes.get('/all', [authenticated.check, permission.has(role)], userController.getAllUsers);
+userRoutes.get('/:userId', [authenticated.check], userController.getUser);
+userRoutes.get('/:userId/tasks', [authenticated.check], userController.getTasks);
+userRoutes.get('/:userId/countTasks', [authenticated.check], userController.getTasksCount);
+userRoutes.get('/:userId/reports', [authenticated.check], userController.getReports);
+userRoutes.get('/:userId/countReports', [authenticated.check], userController.getReportsCount);
+userRoutes.get('/:userId/chats', [authenticated.check], userController.getChats);
+userRoutes.get('/:userId/countChats', [authenticated.check], userController.getChatsCount);
+userRoutes.post('/signup', [authenticated.check, permission.has(role), schemaValidator.verify(userPayload)], createUser);
 userRoutes.post('/login', [schemaValidator.verify(userLoginPayload)], login);
-userRoutes.patch('/update/:userId', [permission.has(role), authenticated.check,
+userRoutes.patch('/update/:userId', [authenticated.check, permission.has(role),
     schemaValidator.verify(userUpdatePayload)], userController.updateUser);
-userRoutes.delete('/:userId', 
-// [authenticated.check, permission.has(role)], 
-userController.deleteUser);
+userRoutes.delete('/:userId', [authenticated.check, permission.has(role)], userController.deleteUser);
 //# sourceMappingURL=user.routes.js.map

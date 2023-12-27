@@ -6,7 +6,6 @@ interface Props {
   name: string,
   description: string,
   deadline: string,
-  department: string,
   urgencyLevel: string,
 }
 
@@ -22,10 +21,6 @@ export const taskPayload: JSONSchemaType<Props> = {
     deadline: {
       type: 'string',
     },
-    department: {
-      type: 'string',
-      enum: Object.values(configs.department)
-    },
     urgencyLevel: {
       type: 'string',
       enum: Object.values(configs.urgencyLevel)
@@ -35,7 +30,6 @@ export const taskPayload: JSONSchemaType<Props> = {
     'name',
     'description',
     'deadline',
-    'department',
   ],
   additionalProperties: true,
 };

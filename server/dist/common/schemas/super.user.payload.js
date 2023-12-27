@@ -1,3 +1,5 @@
+import { configs } from "../../config.js";
+const ADMIN = configs.roles.ADMIN;
 ;
 export const superUserPayload = {
     type: 'object',
@@ -23,6 +25,11 @@ export const superUserPayload = {
             type: 'string',
             nullable: false,
         },
+        role: {
+            type: 'string',
+            enum: Object.values(configs.roles),
+            default: ADMIN
+        },
         firstName: {
             type: 'string',
             nullable: false,
@@ -33,7 +40,6 @@ export const superUserPayload = {
         }
     },
     required: [
-        // 'id',
         'company',
         'email',
         'password',

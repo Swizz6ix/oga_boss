@@ -1,4 +1,5 @@
 import { dailyRptCrud } from "../models/daily.report.js";
+import { user } from "../middlewares/user.middleware.js";
 export const dailyReport = {
     addReport: (req, res) => {
         const payload = req.body;
@@ -33,11 +34,21 @@ export const dailyReport = {
         });
     },
     getAllReport: (req, res) => {
-        dailyRptCrud.findAllReport(req.query)
-            .then((reports) => {
-            return res.status(200).json({
-                status: true,
-                reports: reports,
+        const { user: { userId } } = req;
+        user._user_id(userId)
+            .then((id) => {
+            dailyRptCrud.findAllReport({ SuperUserId: id })
+                .then((reports) => {
+                return res.status(200).json({
+                    status: true,
+                    reports: reports,
+                });
+            })
+                .catch((err) => {
+                return res.status(500).json({
+                    status: false,
+                    error: err,
+                });
             });
         })
             .catch((err) => {

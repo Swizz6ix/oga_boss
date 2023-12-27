@@ -13,10 +13,6 @@ export const userPayload = {
         userName: {
             type: 'string',
         },
-        // department: {
-        //   type: 'string',
-        //   enum: Object.values(configs.department)
-        // },
         hod: {
             type: 'string',
             nullable: true,

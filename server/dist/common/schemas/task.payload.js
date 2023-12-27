@@ -11,10 +11,6 @@ export const taskPayload = {
         deadline: {
             type: 'string',
         },
-        department: {
-            type: 'string',
-            enum: Object.values(configs.department)
-        },
         urgencyLevel: {
             type: 'string',
             enum: Object.values(configs.urgencyLevel)
@@ -24,7 +20,6 @@ export const taskPayload = {
         'name',
         'description',
         'deadline',
-        'department',
     ],
     additionalProperties: true,
 };

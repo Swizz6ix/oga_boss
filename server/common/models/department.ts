@@ -7,6 +7,7 @@ import { Association, CreationOptional,
   Model, 
   NonAttribute} from "sequelize";
 import { User } from "./user.js";
+import { Task } from "./task.js";
 
 const departmentModel = {
   id: {
@@ -42,11 +43,79 @@ export const departmentCrud = {
     return Department.create(dept);
   },
   findDept: (query: any) => {
-    return Department.findOne({ where: query, include: { model: User } })
+    return Department.findOne({ where: query, include: [{
+      model: User,
+      attributes: {
+        exclude: [
+          'password',
+          'email',
+          'userName',
+          'SuperUserId',
+          'DepartmentId',
+          'createdAt',
+          'updatedAt'
+        ],
+      }
+    },
+    {
+      model: Task,
+      attributes: {
+        exclude: [
+          'UserId',
+          'DepartmentId',
+          'deadline',
+          'urgencyLevel',
+          'createdAt',
+          'updatedAt'
+        ]
+      }
+    }],
+    attributes: {
+      exclude: [
+        'SuperUserId',
+        'createdAt',
+        'updatedAt'
+      ]
+    }})
   },
+
   findAllDept: (query: any) => {
-    return Department.findAll({ where: query, include: { model: User } });
+    return Department.findAll({ where: query, include: [{
+      model: User,
+      attributes: {
+        exclude: [
+          'password',
+          'email',
+          'userName',
+          'SuperUserId',
+          'DepartmentId',
+          'createdAt',
+          'updatedAt'
+        ],
+      }
+    },
+    {
+      model: Task,
+      attributes: {
+        exclude: [
+          'UserId',
+          'DepartmentId',
+          'deadline',
+          'urgencyLevel',
+          'createdAt',
+          'updatedAt'
+        ]
+      }
+    }],
+    attributes: {
+      exclude: [
+        'SuperUserId',
+        'createdAt',
+        'updatedAt'
+      ]
+    }});
   },
+
   updateDept: (query: any, updateValue: any) => {
     return Department.update(updateValue, { where: query });
   },

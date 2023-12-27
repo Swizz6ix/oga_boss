@@ -1,5 +1,6 @@
 import { DataTypes, Model, } from 'sequelize';
 import { User } from './user.js';
+import { configs } from '../../config.js';
 const superUserModel = {
     id: {
         type: DataTypes.UUID,
@@ -25,6 +26,10 @@ const superUserModel = {
         type: DataTypes.STRING(128),
         allowNull: false,
         unique: true,
+    },
+    role: {
+        type: DataTypes.STRING(128),
+        defaultValue: configs.roles.ADMIN,
     },
     firstName: {
         type: DataTypes.STRING(128),

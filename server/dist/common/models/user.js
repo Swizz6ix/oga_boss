@@ -1,6 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import { configs } from '../../config.js';
 import { Task } from './task.js';
+import { SuperUser } from './super.user.js';
 import { Department } from './department.js';
 import { GenRoom } from './general.room.js';
 import { DailyRpt } from './daily.report.js';
@@ -26,20 +27,15 @@ const userModel = {
         allowNull: false,
         unique: true,
     },
-    // department: {
-    //   type: DataTypes.STRING(128),
-    //   allowNull: false,
-    //   defaultValue: configs.department.UNASSIGNED
-    // },
     hod: {
         type: DataTypes.STRING(128),
         allowNull: true,
-        defaultValue: configs.hod.NO
+        defaultValue: configs.hod.NO,
     },
     role: {
         type: DataTypes.STRING(128),
         allowNull: false,
-        defaultValue: configs.roles.USER
+        defaultValue: configs.roles.USER,
     },
     firstName: {
         type: DataTypes.STRING(128),
@@ -50,6 +46,9 @@ const userModel = {
         allowNull: false,
     }
 };
+// function getAtrr<M extends Model>(model: ModelStatic<M>, attributeName: keyof Attributes<M>): ModelAttributeColumnOptions {
+//   model.getAttributes;
+// }
 export class User extends Model {
 }
 export const userCrud = {
@@ -60,11 +59,65 @@ export const userCrud = {
         return User.create(user);
     },
     findUser: (query) => {
-        return User.findOne({ where: query, include: [Department, Task, DailyRpt, GenRoom] });
+        return User.findOne({
+            where: query,
+            include: [{
+                    model: SuperUser,
+                    attributes: {
+                        exclude: [
+                            'password',
+                            'username',
+                            'createdAt',
+                            'updatedAt',
+                            'role',
+                        ],
+                    },
+                },
+                {
+                    model: Department,
+                    attributes: {
+                        exclude: [
+                            'SuperUserId',
+                            'createdAt',
+                            'updatedAt',
+                        ],
+                    },
+                },
+                {
+                    model: Task,
+                    attributes: {
+                        exclude: [
+                            'UserId',
+                            'DepartmentId',
+                        ],
+                    },
+                },
+                {
+                    model: DailyRpt,
+                    attributes: {
+                        exclude: ['UserId']
+                    }
+                },
+                {
+                    model: GenRoom,
+                    attributes: {
+                        exclude: [
+                            'UserId',
+                            'SuperUserId',
+                        ],
+                    },
+                }],
+        });
     },
     findAllUsers: (query) => {
-        return User.findAll({ where: query, include: [Department, Task, DailyRpt, GenRoom]
-            // include: [Task, SuperUser, Department ] 
+        return User.findAll({ where: query,
+            include: [
+                SuperUser,
+                Department,
+                Task,
+                DailyRpt,
+                GenRoom,
+            ],
         });
     },
     updateUser: (query, updateValue) => {

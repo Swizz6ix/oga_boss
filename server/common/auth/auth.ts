@@ -3,10 +3,10 @@ import { createHash } from 'crypto';
 import { configs } from '../../config.js';
 
 // Generate an Access Token using username and userId
-export const token = (userName: string, userId: number | string) => {
+export const token = (username: string, userId: number | string) => {
   const { sign } = pkg
   return sign(
-    {userId, userName},
+    {userId, username},
     configs.jwtSecret,
     { expiresIn: configs.jwtExpirationSeconds}
   );
