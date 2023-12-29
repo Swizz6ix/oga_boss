@@ -3,13 +3,12 @@ import { configs } from "../../config.js";
 import { User } from "./user.js";
 import { Department } from "./department.js";
 const taskModel = {
-    id: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        autoIncrement: true,
-        unique: true,
+    taskId: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
     },
-    name: {
+    title: {
         type: DataTypes.STRING(128),
         allowNull: false,
     },
@@ -21,14 +20,14 @@ const taskModel = {
         type: DataTypes.STRING(128),
         allowNull: false,
     },
-    department: {
-        type: DataTypes.STRING(128),
-        allowNul: false,
-    },
     urgencyLevel: {
         type: DataTypes.STRING(128),
         allowNull: false,
         defaultValue: configs.urgencyLevel.NORMAL
+    },
+    progress: {
+        type: DataTypes.STRING(128),
+        defaultValue: configs.progressLevel.INPROGRESS,
     }
 };
 export class Task extends Model {
@@ -47,8 +46,9 @@ export const taskCrud = {
                         exclude: [
                             'password',
                             'email',
-                            'userName',
-                            'SuperUserId',
+                            'username',
+                            'role',
+                            'superuserId',
                             'createdAt',
                             'updatedAt',
                         ],
@@ -82,9 +82,10 @@ export const taskCrud = {
                         exclude: [
                             'password',
                             'email',
-                            'userName',
-                            'SuperUserId',
-                            'DepartmentId',
+                            'role',
+                            'username',
+                            'superuserId',
+                            'departmentId',
                             'createdAt',
                             'updatedAt',
                         ],

@@ -4,7 +4,6 @@ import { configs } from "../../config.js";
 const ADMIN = configs.roles.ADMIN;
 
 interface Props {
-  id: string,
   company: string,
   email: string,
   password: string,
@@ -17,10 +16,6 @@ interface Props {
 export const superUserPayload: JSONSchemaType<Props> = {
   type: 'object',
   properties: {
-    id: {
-      type: 'string',
-      nullable: false,
-    },
     company: {
       type: 'string',
       nullable: false,

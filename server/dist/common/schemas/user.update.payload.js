@@ -2,10 +2,6 @@ import { configs } from "../../config.js";
 export const userUpdatePayload = {
     type: 'object',
     properties: {
-        // department: {
-        //   type: 'string',
-        //   enum: Object.values(configs.department),
-        // },
         hod: {
             type: 'string',
             nullable: true,
@@ -18,8 +14,14 @@ export const userUpdatePayload = {
         password: {
             type: 'string',
         },
-        userName: {
+        username: {
             type: 'string',
+        },
+        position: {
+            type: 'string',
+        },
+        vacation: {
+            type: 'boolean',
         }
     },
     required: [],

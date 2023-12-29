@@ -1,7 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import { User } from "./user.js";
-const genRoomModel = {
-    id: {
+const chatRoomModel = {
+    messageId: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
@@ -11,13 +11,16 @@ const genRoomModel = {
         type: DataTypes.STRING(128),
         allowNull: false,
     },
+    messageFrom: {
+        type: DataTypes.STRING(128),
+    }
 };
 export class GenRoom extends Model {
 }
 ;
 export const genRoomCrud = {
     initialize: (sequelize) => {
-        GenRoom.init(genRoomModel, { tableName: 'general_room', sequelize });
+        GenRoom.init(chatRoomModel, { tableName: 'chat_room', sequelize });
     },
     postMessage: (message) => {
         return GenRoom.create(message);

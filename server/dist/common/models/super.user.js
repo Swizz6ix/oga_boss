@@ -1,12 +1,10 @@
 import { DataTypes, Model, } from 'sequelize';
-import { User } from './user.js';
 import { configs } from '../../config.js';
 const superUserModel = {
-    id: {
+    superuserId: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
-        allowNull: false,
     },
     company: {
         type: DataTypes.STRING(128),
@@ -50,7 +48,9 @@ export const superUserCrud = {
         return SuperUser.create(superUser);
     },
     findUser: (query) => {
-        return SuperUser.findOne({ where: query, include: { model: User } });
+        return SuperUser.findOne({ where: query,
+            // include: { model: User } 
+        });
     },
     updateUser: (query, updateValue) => {
         return SuperUser.update(updateValue, { where: query });

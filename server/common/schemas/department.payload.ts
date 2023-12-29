@@ -1,17 +1,17 @@
 import { JSONSchemaType } from "ajv";
 
 interface Props {
-  name: string,
+  department: string,
 };
 
 export const departmentPayload: JSONSchemaType<Props> = {
   type: 'object',
   properties: {
-    name: {
+    department: {
       type: 'string',
       nullable: false,
     },
   },
-  required: ['name'],
-  // additionalProperties: false,
+  required: ['department'],
+  additionalProperties: true,
 }

@@ -2,14 +2,14 @@ import { JSONSchemaType } from "ajv";
 
 
 interface Props {
-  userName: string,
+  username: string,
   password: string,
 };
 
 export const userLoginPayload: JSONSchemaType<Props> = {
   type: 'object',
   properties: {
-    userName: {
+    username: {
       type: 'string',
     },
     password: {
@@ -17,7 +17,7 @@ export const userLoginPayload: JSONSchemaType<Props> = {
     }
   },
   required: [
-    'userName',
+    'username',
     'password',
   ],
   additionalProperties: false,

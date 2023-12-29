@@ -2,16 +2,17 @@ import { JSONSchemaType } from "ajv";
 import { configs } from "../../config.js";
 
 interface Props {
-  name: string,
+  title: string,
   description: string,
   deadline: string,
   urgencyLevel: string,
+  progress: string,
 }
 
 export const taskUpdatePayload: JSONSchemaType<Props> = {
   type: 'object',
   properties: {
-    name: {
+    title: {
       type: 'string',
     },
     description: {
@@ -22,9 +23,16 @@ export const taskUpdatePayload: JSONSchemaType<Props> = {
     },
     urgencyLevel: {
       type: 'string',
-      enum: Object.values(configs.urgencyLevel)
+      enum: Object.values(configs.urgencyLevel),
     },
+    progress: {
+      type: 'string',
+      enum: Object.values(configs.progressLevel),
+      default: configs.progressLevel.INPROGRESS,
+    }
   },
-  required: ['name'],
+  required: [
+    'title',
+  ],
   additionalProperties: false,
 };

@@ -3,14 +3,13 @@ import { configs } from '../../config.js';
 import { Task } from './task.js';
 import { SuperUser } from './super.user.js';
 import { Department } from './department.js';
-import { GenRoom } from './general.room.js';
+import { ChatRoom } from './chat.room.js';
 import { DailyRpt } from './daily.report.js';
 // The user's schema
 const userModel = {
-    id: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        autoIncrement: true,
-        unique: true,
+    userId: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
     },
     email: {
@@ -22,7 +21,7 @@ const userModel = {
         type: DataTypes.STRING(128),
         allowNUll: false,
     },
-    userName: {
+    username: {
         type: DataTypes.STRING(128),
         allowNull: false,
         unique: true,
@@ -37,6 +36,14 @@ const userModel = {
         allowNull: false,
         defaultValue: configs.roles.USER,
     },
+    vacation: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: configs.vacation.FALSE,
+    },
+    position: {
+        type: DataTypes.STRING(128),
+        allowNull: false,
+    },
     firstName: {
         type: DataTypes.STRING(128),
         allowNull: false,
@@ -46,9 +53,6 @@ const userModel = {
         allowNull: false,
     }
 };
-// function getAtrr<M extends Model>(model: ModelStatic<M>, attributeName: keyof Attributes<M>): ModelAttributeColumnOptions {
-//   model.getAttributes;
-// }
 export class User extends Model {
 }
 export const userCrud = {
@@ -99,7 +103,7 @@ export const userCrud = {
                     }
                 },
                 {
-                    model: GenRoom,
+                    model: ChatRoom,
                     attributes: {
                         exclude: [
                             'UserId',
@@ -116,7 +120,7 @@ export const userCrud = {
                 Department,
                 Task,
                 DailyRpt,
-                GenRoom,
+                ChatRoom,
             ],
         });
     },

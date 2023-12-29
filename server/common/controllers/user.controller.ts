@@ -15,7 +15,7 @@ export const userController = {
 
     user.userIdentify(reqId, _role, userId)
       .then((params) => {
-        userCrud.findUser({ id: params })
+        userCrud.findUser({ userId: params })
           .then((user) => {
             return res.status(200).json({
               status: true,
@@ -44,7 +44,7 @@ export const userController = {
 
     user._user_id(userId)
       .then((id) => {
-        userCrud.findAllUsers({ SuperUserId: id })
+        userCrud.findAllUsers({ superuserId: id })
           .then((users) => {
             return res.status(200).json({
               status: true,
@@ -74,7 +74,7 @@ export const userController = {
 
     user.userIdentify(reqId, _role, userId)
       .then((params) => {
-        userCrud.findUser({ id: params })
+        userCrud.findUser({ userId: params })
           .then((user) => {
             user?.getTasks()
               .then((tasks) => {
@@ -113,7 +113,7 @@ export const userController = {
 
     user.userIdentify(reqId, _role, userId)
       .then((params) => {
-        userCrud.findUser({ id: params })
+        userCrud.findUser({ userId: params })
           .then((user) => {
             user?.countTasks()
               .then((tasks) => {
@@ -146,7 +146,7 @@ export const userController = {
 
     user.userIdentify(reqId, _role, userId)
       .then((params) => {
-        userCrud.findUser({ id: params })
+        userCrud.findUser({ userId: params })
           .then((user) => {
             user?.getDailyRpts()
               .then((reports) => {
@@ -179,7 +179,7 @@ export const userController = {
 
     user.userIdentify(reqId, _role, userId)
       .then((params) => {
-        userCrud.findUser({ id: params })
+        userCrud.findUser({ userId: params })
           .then((user) => {
             user?.countDailyRpts()
               .then((reports) => {
@@ -218,9 +218,9 @@ export const userController = {
 
     user.userIdentify(reqId, _role, userId)
       .then((params) => {
-        userCrud.findUser({ id: params })
+        userCrud.findUser({ userId: params })
           .then((user) => {
-            user?.getGenRooms()
+            user?.getChatRooms()
               .then((chats) => {
                 return res.status(200).json({
                   status: true,
@@ -257,9 +257,9 @@ export const userController = {
 
     user.userIdentify(reqId, _role, userId)
       .then((params) => {
-        userCrud.findUser({ id: params })
+        userCrud.findUser({ userId: params })
           .then((user) => {
-            user?.countGenRooms()
+            user?.countChatRooms()
               .then((chats) => {
                 return res.status(200).json({
                   status: true,
@@ -303,9 +303,9 @@ export const userController = {
         },
       });
     }
-    userCrud.updateUser({ id: userId }, payload)
+    userCrud.updateUser({ userId: userId }, payload)
       .then(() => {
-        return userCrud.findUser({ id: userId });
+        return userCrud.findUser({ userId: userId });
       })
       .then((user) => {
         return res.status(200).json({
@@ -326,7 +326,7 @@ export const userController = {
       params: { userId }
     } = req;
 
-    userCrud.deleteUser({ id: userId })
+    userCrud.deleteUser({ userId: userId })
       .then((numberOfUsersDeleted) => {
         return res.status(200).json({
           status: true,

@@ -6,7 +6,7 @@ import { CreationOptional,
 import { User } from './user.js';
 
 const dailyRptModel = {
-  id: {
+  reportId: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
     primaryKey: true,
@@ -20,7 +20,7 @@ const dailyRptModel = {
 
 export class DailyRpt extends Model<InferAttributes<DailyRpt>,
   InferCreationAttributes<DailyRpt>> {
-    declare id: CreationOptional<string>;
+    declare reportId: CreationOptional<string>;
     declare report: string;
   };
 

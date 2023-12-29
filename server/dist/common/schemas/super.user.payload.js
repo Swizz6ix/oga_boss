@@ -4,10 +4,6 @@ const ADMIN = configs.roles.ADMIN;
 export const superUserPayload = {
     type: 'object',
     properties: {
-        id: {
-            type: 'string',
-            nullable: false,
-        },
         company: {
             type: 'string',
             nullable: false,

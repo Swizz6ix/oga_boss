@@ -2,12 +2,12 @@
 export const departmentPayload = {
     type: 'object',
     properties: {
-        name: {
+        department: {
             type: 'string',
             nullable: false,
         },
     },
-    required: ['name'],
-    // additionalProperties: false,
+    required: ['department'],
+    additionalProperties: true,
 };
 //# sourceMappingURL=department.payload.js.map

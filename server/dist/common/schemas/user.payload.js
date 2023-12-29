@@ -10,7 +10,7 @@ export const userPayload = {
             type: 'string',
             nullable: false,
         },
-        userName: {
+        username: {
             type: 'string',
         },
         hod: {
@@ -20,7 +20,17 @@ export const userPayload = {
         },
         role: {
             type: 'string',
-            enum: Object.values(configs.roles)
+            enum: Object.values(configs.roles),
+            default: configs.roles.USER,
+        },
+        vacation: {
+            type: 'boolean',
+            enum: Object.values(configs.vacation),
+            default: configs.vacation.FALSE,
+        },
+        position: {
+            type: 'string',
+            nullable: false,
         },
         firstName: {
             type: 'string',
@@ -32,10 +42,11 @@ export const userPayload = {
     required: [
         'email',
         'password',
-        'userName',
+        'position',
+        'username',
         'firstName',
         'lastName',
     ],
-    // additionalProperties: false,
+    additionalProperties: true,
 };
 //# sourceMappingURL=user.payload.js.map

@@ -3,16 +3,17 @@ import { configs } from "../../config.js";
 
 
 interface Props {
-  name: string,
+  title: string,
   description: string,
   deadline: string,
   urgencyLevel: string,
+  progress: string,
 }
 
 export const taskPayload: JSONSchemaType<Props> = {
   type: 'object',
   properties: {
-    name: {
+    title: {
       type: 'string',
     },
     description: {
@@ -25,9 +26,14 @@ export const taskPayload: JSONSchemaType<Props> = {
       type: 'string',
       enum: Object.values(configs.urgencyLevel)
     },
+    progress: {
+      type: 'string',
+      enum: Object.values(configs.progressLevel),
+      default: configs.progressLevel.INPROGRESS,
+    }
   },
   required: [
-    'name',
+    'title',
     'description',
     'deadline',
   ],
