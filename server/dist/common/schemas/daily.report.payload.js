@@ -8,6 +8,6 @@ export const dailyReportPayload = {
         }
     },
     required: ['report'],
-    // additionalProperties: false,
+    additionalProperties: true,
 };
 //# sourceMappingURL=daily.report.payload.js.map

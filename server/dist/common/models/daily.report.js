@@ -1,7 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import { User } from './user.js';
 const dailyRptModel = {
-    id: {
+    reportId: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,

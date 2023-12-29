@@ -13,5 +13,5 @@ export const dailyReportPayload: JSONSchemaType<Props> = {
     }
   },
   required: ['report'],
-  // additionalProperties: false,
+  additionalProperties: true,
 };

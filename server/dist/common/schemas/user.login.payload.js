@@ -2,7 +2,7 @@
 export const userLoginPayload = {
     type: 'object',
     properties: {
-        userName: {
+        username: {
             type: 'string',
         },
         password: {
@@ -10,7 +10,7 @@ export const userLoginPayload = {
         }
     },
     required: [
-        'userName',
+        'username',
         'password',
     ],
     additionalProperties: false,

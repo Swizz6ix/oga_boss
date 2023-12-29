@@ -14,11 +14,10 @@ import { Task } from './task.js';
 
 
 const superUserModel = {
-  id: {
+  superuserId: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
     primaryKey: true,
-    allowNull: false,
   },
   company: {
     type: DataTypes.STRING(128),
@@ -55,7 +54,7 @@ const superUserModel = {
 
 export class SuperUser extends Model<InferAttributes<SuperUser>,      
   InferCreationAttributes<SuperUser>> {
-    declare id: CreationOptional<string>;
+    declare superuserId: CreationOptional<string>;
     declare company: string;
     declare email: string;
     declare password: string;
@@ -87,7 +86,9 @@ export const superUserCrud = {
     return SuperUser.create(superUser);
   },
   findUser: (query: any) => {
-    return SuperUser.findOne({ where: query, include: { model: User } });
+    return SuperUser.findOne({ where: query, 
+      // include: { model: User } 
+    });
   },
   updateUser: (query: any, updateValue: any) => {
     return SuperUser.update(updateValue, { where: query });

@@ -10,13 +10,13 @@ export const permission = {
         user: { userId },
       } = req;
 
-      superUserCrud.findUser({ id: userId })
+      superUserCrud.findUser({ superuserId: userId })
         .then((user) => {
           const supRole = user?.role
           // if user does not exist return forbidden error
           if (!user) {
             try {
-              userCrud.findUser({ id: userId })
+              userCrud.findUser({ userId: userId })
                 .then((user) => {
                   if (!user) {
                     return res.status(403).json({

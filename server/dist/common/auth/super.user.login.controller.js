@@ -24,7 +24,7 @@ export const login = (req, res) => {
             });
         }
         // Generate an Access Token for the user
-        const _token = token(user.username, user.id);
+        const _token = token(user.username, user.superuserId);
         return res.status(200).json({
             status: true,
             data: {

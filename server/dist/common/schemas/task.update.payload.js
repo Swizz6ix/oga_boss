@@ -2,7 +2,7 @@ import { configs } from "../../config.js";
 export const taskUpdatePayload = {
     type: 'object',
     properties: {
-        name: {
+        title: {
             type: 'string',
         },
         description: {
@@ -13,10 +13,17 @@ export const taskUpdatePayload = {
         },
         urgencyLevel: {
             type: 'string',
-            enum: Object.values(configs.urgencyLevel)
+            enum: Object.values(configs.urgencyLevel),
         },
+        progress: {
+            type: 'string',
+            enum: Object.values(configs.progressLevel),
+            default: configs.progressLevel.INPROGRESS,
+        }
     },
-    required: ['name'],
+    required: [
+        'title',
+    ],
     additionalProperties: false,
 };
 //# sourceMappingURL=task.update.payload.js.map

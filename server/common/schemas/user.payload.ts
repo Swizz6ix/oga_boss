@@ -4,9 +4,11 @@ import { configs } from "../../config.js";
 interface Props {
   email: string,
   password: string,
-  userName: string,
+  username: string,
   hod?: string,
   role: string,
+  vacation: boolean,
+  position: string,
   firstName: string,
   lastName: string,
 }
@@ -22,7 +24,7 @@ export const userPayload: JSONSchemaType<Props> = {
       type: 'string',
       nullable: false,
     },
-    userName: {
+    username: {
       type: 'string',
     },
     hod: {
@@ -32,7 +34,17 @@ export const userPayload: JSONSchemaType<Props> = {
     },
     role: {
       type: 'string',
-      enum: Object.values(configs.roles)
+      enum: Object.values(configs.roles),
+      default: configs.roles.USER,
+    },
+    vacation: {
+      type: 'boolean',
+      enum: Object.values(configs.vacation),
+      default: configs.vacation.FALSE,
+    },
+    position: {
+      type: 'string',
+      nullable: false,
     },
     firstName: {
       type: 'string',
@@ -44,9 +56,10 @@ export const userPayload: JSONSchemaType<Props> = {
   required: [
     'email',
     'password',
-    'userName',
+    'position',
+    'username',
     'firstName',
     'lastName',
   ],
-  // additionalProperties: false,
+  additionalProperties: true,
 };

@@ -12,7 +12,7 @@ export const createUser = (req, res) => {
     userCrud.createUser(Object.assign(payload, { password: securedPassword, role }))
         .then((user) => {
         // Generate token for the user
-        const _token = token(payload.userName, user.id);
+        const _token = token(payload.username, user.userId);
         return res.status(201).json({
             user: user.toJSON(),
             token: _token,

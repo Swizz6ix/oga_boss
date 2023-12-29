@@ -1,4 +1,3 @@
-import { NextFunction, Request, Response } from "express";
 import { superUserCrud } from "../models/super.user.js";
 import { userCrud } from "../models/user.js";
 
@@ -6,17 +5,17 @@ export const user = {
   _user_id: async (reqId: string) => {
     let _userId;
     try {
-      const _user = await userCrud.findUser({ id: reqId });
+      const _user = await userCrud.findUser({ userId: reqId });
       if (!_user) {
         try {
-          const _superUser = await superUserCrud.findUser({ id: reqId });
-          if (_superUser) return _userId = _superUser.id
+          const _superUser = await superUserCrud.findUser({ superuserId: reqId });
+          if (_superUser) return _userId = _superUser.superuserId
         }
         catch(err) {
           return String(err);
         }
       }
-      _userId = _user?.SuperUserId;
+      _userId = _user?.superuserId;
       return _userId;
     }
     catch(err) {
@@ -25,20 +24,18 @@ export const user = {
   },
 
   userIdentify: async (reqId: any, userRole: any, params: any) => {
-    console.log('re', typeof(reqId), typeof(params))
     let userId;
-    if (reqId.toString() !== params.toString()) {
-      console.log('>>>params', typeof(params), typeof(reqId))
+    if (reqId !== params) {
       try {
-        const superUser = await superUserCrud.findUser({ id: reqId });
+        const superUser = await superUserCrud.findUser({ superuserId: reqId });
         if (!superUser) {
           try {
-            const user = await userCrud.findUser({ id: reqId });
+            const user = await userCrud.findUser({ userId: reqId });
             if (!user) {
               return Error('User does not exist');
             }
             if (user.role === userRole) {
-              userId = user.id;
+              userId = user.userId;
               return userId;
             }
             return console.error(`User ${user.firstName} do not have the required permission!`);

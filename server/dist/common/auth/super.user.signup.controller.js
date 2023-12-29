@@ -12,7 +12,7 @@ export const signup = (req, res) => {
     superUserCrud.register(Object.assign(payload, { password: securedPassword, role }))
         .then((user) => {
         // Generate token for user
-        const _token = token(payload.username, user.id);
+        const _token = token(payload.username, user.superuserId);
         return res.status(201).json({
             user: user.toJSON(),
             token: _token,

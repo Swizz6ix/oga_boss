@@ -6,15 +6,24 @@ export const configs = {
         db_password: process.env.DB_PASSWORD,
         db_user: process.env.DB_USER,
         port: process.env.PORT,
-        dialect: process.env.DIALECT
+        dialect: process.env.DIALECT,
     },
     roles: {
         ADMIN: 'admin',
-        USER: 'user'
+        USER: 'user',
     },
     hod: {
         YES: 'yes',
         NO: 'no',
+    },
+    vacation: {
+        TRUE: true,
+        FALSE: false,
+    },
+    progressLevel: {
+        INPROGRESS: 'inprogress',
+        COMPLETED: 'completed',
+        UNCOMPLETED: 'not_completed',
     },
     urgencyLevel: {
         NORMAL: 'normal',
@@ -22,6 +31,6 @@ export const configs = {
         PRIORITY: 'priority'
     },
     jwtSecret: '!!CryptoCat@!!',
-    jwtExpirationSeconds: 60 * 60
+    jwtExpirationSeconds: 60 * 60,
 };
 //# sourceMappingURL=config.js.map

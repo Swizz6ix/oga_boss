@@ -13,18 +13,18 @@ export const user = {
     _user_id: (reqId) => __awaiter(void 0, void 0, void 0, function* () {
         let _userId;
         try {
-            const _user = yield userCrud.findUser({ id: reqId });
+            const _user = yield userCrud.findUser({ userId: reqId });
             if (!_user) {
                 try {
-                    const _superUser = yield superUserCrud.findUser({ id: reqId });
+                    const _superUser = yield superUserCrud.findUser({ superuserId: reqId });
                     if (_superUser)
-                        return _userId = _superUser.id;
+                        return _userId = _superUser.superuserId;
                 }
                 catch (err) {
                     return String(err);
                 }
             }
-            _userId = _user === null || _user === void 0 ? void 0 : _user.SuperUserId;
+            _userId = _user === null || _user === void 0 ? void 0 : _user.superuserId;
             return _userId;
         }
         catch (err) {
@@ -32,20 +32,18 @@ export const user = {
         }
     }),
     userIdentify: (reqId, userRole, params) => __awaiter(void 0, void 0, void 0, function* () {
-        console.log('re', typeof (reqId), typeof (params));
         let userId;
-        if (reqId.toString() !== params.toString()) {
-            console.log('>>>params', typeof (params), typeof (reqId));
+        if (reqId !== params) {
             try {
-                const superUser = yield superUserCrud.findUser({ id: reqId });
+                const superUser = yield superUserCrud.findUser({ superuserId: reqId });
                 if (!superUser) {
                     try {
-                        const user = yield userCrud.findUser({ id: reqId });
+                        const user = yield userCrud.findUser({ userId: reqId });
                         if (!user) {
                             return Error('User does not exist');
                         }
                         if (user.role === userRole) {
-                            userId = user.id;
+                            userId = user.userId;
                             return userId;
                         }
                         return console.error(`User ${user.firstName} do not have the required permission!`);

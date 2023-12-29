@@ -9,7 +9,7 @@ export const superUserController = {
                 error: `This endpoint is above the pay grad of user ${reqId}`
             });
         }
-        superUserCrud.findUser({ id: userId })
+        superUserCrud.findUser({ superuserId: userId })
             .then((user) => {
             return res.status(200).json({
                 status: true,
@@ -25,7 +25,7 @@ export const superUserController = {
     },
     getUsers: (req, res) => {
         const { params: { userId } } = req;
-        superUserCrud.findUser({ id: userId })
+        superUserCrud.findUser({ superuserId: userId })
             .then((user) => {
             user === null || user === void 0 ? void 0 : user.getUsers().then((users) => {
                 return res.status(200).json({
@@ -48,7 +48,7 @@ export const superUserController = {
     },
     getUsersCount: (req, res) => {
         const { params: { userId } } = req;
-        superUserCrud.findUser({ id: userId })
+        superUserCrud.findUser({ superuserId: userId })
             .then((user) => {
             user === null || user === void 0 ? void 0 : user.countUsers().then((users) => {
                 return res.status(200).json({
@@ -71,7 +71,7 @@ export const superUserController = {
     },
     getDepartments: (req, res) => {
         const { params: { userId } } = req;
-        superUserCrud.findUser({ id: userId })
+        superUserCrud.findUser({ superuserId: userId })
             .then((user) => {
             user === null || user === void 0 ? void 0 : user.getDepartments().then((dept) => {
                 return res.status(200).json({
@@ -94,7 +94,7 @@ export const superUserController = {
     },
     getDepartMentsCount: (req, res) => {
         const { params: { userId } } = req;
-        superUserCrud.findUser({ id: userId })
+        superUserCrud.findUser({ superuserId: userId })
             .then((user) => {
             user === null || user === void 0 ? void 0 : user.countDepartments().then((departments) => {
                 return res.status(200).json({
@@ -117,7 +117,7 @@ export const superUserController = {
     },
     getTasks: (req, res) => {
         const { params: { userId } } = req;
-        superUserCrud.findUser({ id: userId })
+        superUserCrud.findUser({ superuserId: userId })
             .then((user) => {
             user === null || user === void 0 ? void 0 : user.getTasks().then((tasks) => {
                 return res.status(200).json({
@@ -140,7 +140,7 @@ export const superUserController = {
     },
     getTasksCount: (req, res) => {
         const { params: { userId } } = req;
-        superUserCrud.findUser({ id: userId })
+        superUserCrud.findUser({ superuserId: userId })
             .then((user) => {
             user === null || user === void 0 ? void 0 : user.countTasks().then((tasks) => {
                 return res.status(200).json({
@@ -179,9 +179,9 @@ export const superUserController = {
                 },
             });
         }
-        superUserCrud.updateUser({ id: userId }, payload)
+        superUserCrud.updateUser({ superuserId: userId }, payload)
             .then(() => {
-            return superUserCrud.findUser({ id: userId });
+            return superUserCrud.findUser({ superuserId: userId });
         })
             .then((user) => {
             return res.status(200).json({
@@ -198,14 +198,14 @@ export const superUserController = {
     },
     deleteUser: (req, res) => {
         const reqId = req.user.userId;
-        const { params: { id: userId } } = req;
+        const { params: { userId } } = req;
         if (reqId !== userId) {
             return res.status(500).json({
                 status: false,
                 error: `This endpoint is above the pay grad of user ${reqId}`
             });
         }
-        superUserCrud.deleteUser({ id: userId })
+        superUserCrud.deleteUser({ superuserId: userId })
             .then((numberOfUsersDeleted) => {
             return res.status(200).json({
                 status: true,

@@ -8,7 +8,7 @@ export const userController = {
         const { params: { userId } } = req;
         user.userIdentify(reqId, _role, userId)
             .then((params) => {
-            userCrud.findUser({ id: params })
+            userCrud.findUser({ userId: params })
                 .then((user) => {
                 return res.status(200).json({
                     status: true,
@@ -33,7 +33,7 @@ export const userController = {
         const { user: { userId } } = req;
         user._user_id(userId)
             .then((id) => {
-            userCrud.findAllUsers({ SuperUserId: id })
+            userCrud.findAllUsers({ superuserId: id })
                 .then((users) => {
                 return res.status(200).json({
                     status: true,
@@ -59,7 +59,7 @@ export const userController = {
         const { params: { userId } } = req;
         user.userIdentify(reqId, _role, userId)
             .then((params) => {
-            userCrud.findUser({ id: params })
+            userCrud.findUser({ userId: params })
                 .then((user) => {
                 user === null || user === void 0 ? void 0 : user.getTasks().then((tasks) => {
                     return res.status(200).json({
@@ -92,7 +92,7 @@ export const userController = {
         const { params: { userId } } = req;
         user.userIdentify(reqId, _role, userId)
             .then((params) => {
-            userCrud.findUser({ id: params })
+            userCrud.findUser({ userId: params })
                 .then((user) => {
                 user === null || user === void 0 ? void 0 : user.countTasks().then((tasks) => {
                     return res.status(200).json({
@@ -119,7 +119,7 @@ export const userController = {
         const { params: { userId } } = req;
         user.userIdentify(reqId, _role, userId)
             .then((params) => {
-            userCrud.findUser({ id: params })
+            userCrud.findUser({ userId: params })
                 .then((user) => {
                 user === null || user === void 0 ? void 0 : user.getDailyRpts().then((reports) => {
                     return res.status(200).json({
@@ -146,7 +146,7 @@ export const userController = {
         const { params: { userId } } = req;
         user.userIdentify(reqId, _role, userId)
             .then((params) => {
-            userCrud.findUser({ id: params })
+            userCrud.findUser({ userId: params })
                 .then((user) => {
                 user === null || user === void 0 ? void 0 : user.countDailyRpts().then((reports) => {
                     return res.status(200).json({
@@ -179,9 +179,9 @@ export const userController = {
         const { params: { userId }, } = req;
         user.userIdentify(reqId, _role, userId)
             .then((params) => {
-            userCrud.findUser({ id: params })
+            userCrud.findUser({ userId: params })
                 .then((user) => {
-                user === null || user === void 0 ? void 0 : user.getGenRooms().then((chats) => {
+                user === null || user === void 0 ? void 0 : user.getChatRooms().then((chats) => {
                     return res.status(200).json({
                         status: true,
                         chats: chats,
@@ -212,9 +212,9 @@ export const userController = {
         const { params: { userId }, } = req;
         user.userIdentify(reqId, _role, userId)
             .then((params) => {
-            userCrud.findUser({ id: params })
+            userCrud.findUser({ userId: params })
                 .then((user) => {
-                user === null || user === void 0 ? void 0 : user.countGenRooms().then((chats) => {
+                user === null || user === void 0 ? void 0 : user.countChatRooms().then((chats) => {
                     return res.status(200).json({
                         status: true,
                         totalNumberOfChats: chats,
@@ -251,9 +251,9 @@ export const userController = {
                 },
             });
         }
-        userCrud.updateUser({ id: userId }, payload)
+        userCrud.updateUser({ userId: userId }, payload)
             .then(() => {
-            return userCrud.findUser({ id: userId });
+            return userCrud.findUser({ userId: userId });
         })
             .then((user) => {
             return res.status(200).json({
@@ -270,7 +270,7 @@ export const userController = {
     },
     deleteUser: (req, res) => {
         const { params: { userId } } = req;
-        userCrud.deleteUser({ id: userId })
+        userCrud.deleteUser({ userId: userId })
             .then((numberOfUsersDeleted) => {
             return res.status(200).json({
                 status: true,

@@ -4,14 +4,13 @@ import { User } from "./user.js";
 import { Department } from "./department.js";
 
 const taskModel = {
-  id: {
-    type: DataTypes.INTEGER.UNSIGNED,
-    autoIncrement: true,
-    unique: true,
+  taskId: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
     primaryKey: true,
   },
 
-  name: {
+  title: {
     type: DataTypes.STRING(128),
     allowNull: false,
   },
@@ -26,26 +25,26 @@ const taskModel = {
     allowNull: false,
   },
 
-  department: {
-    type: DataTypes.STRING(128),
-    allowNul: false,
-  },
-
   urgencyLevel: {
     type: DataTypes.STRING(128),
     allowNull: false,
     defaultValue: configs.urgencyLevel.NORMAL
+  },
+  
+  progress: {
+    type: DataTypes.STRING(128),
+    defaultValue: configs.progressLevel.INPROGRESS,
   }
 }
 
 export class Task extends Model<InferAttributes<Task>, InferCreationAttributes<Task>> {
-  declare id: CreationOptional<number>;
-  declare name: string;
+  declare taskId: CreationOptional<number>;
+  declare title: string;
   declare description: string;
   declare deadline: Date;
-  declare department: string;
   declare urgencyLevel: string;
-  declare UserId: ForeignKey<User['id']>;
+  declare progress: string;
+  declare userId: ForeignKey<User['userId']>;
   declare User?: NonAttribute<User>;
 }
 
@@ -65,8 +64,9 @@ export const taskCrud = {
         exclude: [
           'password',
           'email',
-          'userName',
-          'SuperUserId',
+          'username',
+          'role',
+          'superuserId',
           'createdAt',
           'updatedAt',
         ],
@@ -101,9 +101,10 @@ export const taskCrud = {
         exclude: [
           'password',
           'email',
-          'userName',
-          'SuperUserId',
-          'DepartmentId',
+          'role',
+          'username',
+          'superuserId',
+          'departmentId',
           'createdAt',
           'updatedAt',
         ],

@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { genRoomCrud } from "../models/general.room.js";
+import { chatRoomCrud } from "../models/chat.room.js";
 
-export const genRoomController = {
+export const chatRoomController = {
   addChat: (req: Request, res: Response) => {
     const payload = req.body;
-    genRoomCrud.postMessage(Object.assign(payload))
+    chatRoomCrud.postMessage(Object.assign(payload))
       .then((msg) => {
         return res.status(201).json({
           status: true,
@@ -22,7 +22,7 @@ export const genRoomController = {
     const {
       params: { msgId }
     } = req;
-    genRoomCrud.getMessage({ id: msgId })
+    chatRoomCrud.getMessage({ id: msgId })
       .then((msg) => {
         return res.status(200).json({
           status: true,
@@ -37,7 +37,7 @@ export const genRoomController = {
       });
   },
   getAllMsg: (req: Request, res: Response) => {
-    genRoomCrud.getAllMessages(req.query)
+    chatRoomCrud.getAllMessages(req.query)
     .then((msg) => {
       return res.status(200).json({
         status: true,
@@ -55,7 +55,7 @@ export const genRoomController = {
     const {
       params: { msgId }
     } = req;
-    genRoomCrud.deleteMessage({ id: msgId })
+    chatRoomCrud.deleteMessage({ id: msgId })
       .then((numberOfMsgDeleted) => {
         return res.status(200).json({
           status: true,

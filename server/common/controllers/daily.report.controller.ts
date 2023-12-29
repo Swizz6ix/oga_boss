@@ -23,7 +23,7 @@ export const dailyReport = {
     const {
       params: { reportId }
     } = req;
-    dailyRptCrud.findReport({ id: reportId })
+    dailyRptCrud.findReport({ reportId: reportId })
       .then((report) => {
         return res.status(200).json({
           status: true,
@@ -45,7 +45,7 @@ export const dailyReport = {
 
     user._user_id(userId)
       .then((id) => {
-        dailyRptCrud.findAllReport({ SuperUserId: id })
+        dailyRptCrud.findAllReport({ superuserId: id })
           .then((reports) => {
             return res.status(200).json({
               status: true,
@@ -71,7 +71,7 @@ export const dailyReport = {
     const {
       params: { reportId }
     } = req;
-    dailyRptCrud.deleteReport({ id: reportId })
+    dailyRptCrud.deleteReport({ reportId: reportId })
       .then((numberOfReportsDeleted) => {
         return res.status(200).json({
           status: true,

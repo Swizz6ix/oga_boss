@@ -1,4 +1,4 @@
-import { genRoomCrud } from "../models/general.room.js";
+import { genRoomCrud } from "../models/chat.room.js";
 export const genRoomController = {
     addChat: (req, res) => {
         const payload = req.body;

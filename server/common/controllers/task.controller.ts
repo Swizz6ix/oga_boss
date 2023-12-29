@@ -25,15 +25,13 @@ export const taskController = {
 
   getTask: (req: any, res: Response) => {
     const reqId = req.user.userId;
-    console.log('>>>', reqId)
     const {
       params: { taskId }
     } = req;
 
-    taskCrud.findTask({ id: taskId })
+    taskCrud.findTask({ taskId: taskId })
       .then((task) => {
-        console.log('dess', task?.UserId)
-        if (reqId !== task?.UserId) {
+        if (reqId !== task?.userId) {
           return res.status(500).json({
             status: false,
             error: `User ${reqId} does not have the required permission`,
@@ -59,7 +57,7 @@ export const taskController = {
 
     user._user_id(userId)
       .then((id) => {
-        taskCrud.findAllTasks({ SuperUserId: id })
+        taskCrud.findAllTasks({ superuserId: id })
           .then((tasks) => {
             return res.status(200).json({
               status: true,
@@ -96,9 +94,9 @@ export const taskController = {
         },
       });
     }
-    taskCrud.updateTask({ id: taskId }, payload)
+    taskCrud.updateTask({ taskId: taskId }, payload)
       .then(() => {
-        return taskCrud.findTask({ id: taskId });
+        return taskCrud.findTask({ taskId: taskId });
       })
       .then((task) => {
         return res.status(200).json({
@@ -119,7 +117,7 @@ export const taskController = {
       params: { taskId }
     } = req;
 
-    taskCrud.deleteTask({ id: taskId })
+    taskCrud.deleteTask({ taskId: taskId })
       .then((numberOfTasksDeleted) => {
         return res.status(200).json({
           status: true,

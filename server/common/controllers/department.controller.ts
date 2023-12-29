@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
 import { departmentCrud } from "../models/department.js";
-import { userCrud } from "../models/user.js";
-import { superUserCrud } from "../models/super.user.js";
 import { user } from "../middlewares/user.middleware.js";
 
 export const departmentController = {
@@ -27,7 +25,7 @@ export const departmentController = {
 
     user._user_id(userId)
       .then((id) => {
-        departmentCrud.findAllDept({ SuperUserId: id })
+        departmentCrud.findAllDept({ superuserId: id })
           .then((dept) => {
             return res.status(200).json({
               status: true,
@@ -54,7 +52,7 @@ export const departmentController = {
       params: { deptId }
     } = req;
 
-    departmentCrud.findDept({ id: deptId })
+    departmentCrud.findDept({ departmentId: deptId })
       .then((dept) => {
         return res.status(200).json({
           status: true,
@@ -84,9 +82,9 @@ export const departmentController = {
         }
       })
     }
-    departmentCrud.updateDept({ id: deptId }, payload)
+    departmentCrud.updateDept({ departmentId: deptId }, payload)
       .then(() => {
-        return departmentCrud.findDept({ id: deptId });
+        return departmentCrud.findDept({ departmentId: deptId });
       })
       .then((dept) => {
         return res.status(200).json({
@@ -106,7 +104,7 @@ export const departmentController = {
     const {
       params: { deptId }
     } = req;
-    departmentCrud.deleteDept({ id: deptId })
+    departmentCrud.deleteDept({ departmentId: deptId })
       .then((numberOfDepartmentDeleted) => {
         return res.status(200).json({
           status: true,

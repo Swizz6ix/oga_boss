@@ -10,15 +10,24 @@ export const configs = {
       db_password: process.env.DB_PASSWORD as string,
       db_user: process.env.DB_USER as string,
       port: process.env.PORT,
-      dialect: process.env.DIALECT as Dialect
+      dialect: process.env.DIALECT as Dialect,
     },
     roles: {
       ADMIN: 'admin',
-      USER: 'user'
+      USER: 'user',
     },
     hod: {
       YES: 'yes',
       NO: 'no',
+    },
+    vacation: {
+      TRUE: true,
+      FALSE: false,
+    },
+    progressLevel: {
+      INPROGRESS: 'inprogress',
+      COMPLETED: 'completed',
+      UNCOMPLETED: 'not_completed',
     },
     urgencyLevel: {
       NORMAL: 'normal',
@@ -26,5 +35,5 @@ export const configs = {
       PRIORITY: 'priority'
     },
     jwtSecret: '!!CryptoCat@!!',
-    jwtExpirationSeconds: 60 * 60
+    jwtExpirationSeconds: 60 * 60,
 }

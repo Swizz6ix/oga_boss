@@ -20,7 +20,7 @@ export const departmentController = {
         const { user: { userId } } = req;
         user._user_id(userId)
             .then((id) => {
-            departmentCrud.findAllDept({ SuperUserId: id })
+            departmentCrud.findAllDept({ superuserId: id })
                 .then((dept) => {
                 return res.status(200).json({
                     status: true,
@@ -43,7 +43,7 @@ export const departmentController = {
     },
     getDept: (req, res) => {
         const { params: { deptId } } = req;
-        departmentCrud.findDept({ id: deptId })
+        departmentCrud.findDept({ departmentId: deptId })
             .then((dept) => {
             return res.status(200).json({
                 status: true,
@@ -68,9 +68,9 @@ export const departmentController = {
                 }
             });
         }
-        departmentCrud.updateDept({ id: deptId }, payload)
+        departmentCrud.updateDept({ departmentId: deptId }, payload)
             .then(() => {
-            return departmentCrud.findDept({ id: deptId });
+            return departmentCrud.findDept({ departmentId: deptId });
         })
             .then((dept) => {
             return res.status(200).json({
@@ -87,7 +87,7 @@ export const departmentController = {
     },
     deleteDept: (req, res) => {
         const { params: { deptId } } = req;
-        departmentCrud.deleteDept({ id: deptId })
+        departmentCrud.deleteDept({ departmentId: deptId })
             .then((numberOfDepartmentDeleted) => {
             return res.status(200).json({
                 status: true,

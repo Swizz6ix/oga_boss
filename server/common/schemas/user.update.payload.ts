@@ -6,16 +6,14 @@ interface Props {
   hod?: string,
   role: string,
   password: string,
-  userName: string,
+  username: string,
+  position: string,
+  vacation: boolean,
 }
 
 export const userUpdatePayload: JSONSchemaType<Props> = {
   type: 'object',
   properties: {
-    // department: {
-    //   type: 'string',
-    //   enum: Object.values(configs.department),
-    // },
     hod: {
       type: 'string',
       nullable: true,
@@ -28,8 +26,14 @@ export const userUpdatePayload: JSONSchemaType<Props> = {
     password: {
       type: 'string',
     },
-    userName: {
+    username: {
       type: 'string',
+    },
+    position: {
+      type: 'string',
+    },
+    vacation: {
+      type: 'boolean',
     }
   },
   required: [],

@@ -2,6 +2,7 @@ import { JSONSchemaType } from "ajv";
 
 interface Props {
   message: string,
+  messageFrom: string,
 };
 
 export const genRoomPayload: JSONSchemaType<Props> = {
@@ -11,7 +12,10 @@ export const genRoomPayload: JSONSchemaType<Props> = {
       type: 'string',
       nullable: false,
     },
+    messageFrom: {
+      type: 'string',
+    }
   },
   required: ['message'],
-  // additionalProperties: false,
+  additionalProperties: false,
 }

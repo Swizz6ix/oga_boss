@@ -14,7 +14,7 @@ export const superUserController = {
         error: `This endpoint is above the pay grad of user ${reqId}`
       })
     }
-    superUserCrud.findUser({ id: userId })
+    superUserCrud.findUser({ superuserId: userId })
       .then((user) => {
         return res.status(200).json({
           status: true,
@@ -34,7 +34,7 @@ export const superUserController = {
       params: { userId }
     } = req;
 
-    superUserCrud.findUser({ id: userId })
+    superUserCrud.findUser({ superuserId: userId })
       .then((user) => {
         user?.getUsers()
           .then((users) => {
@@ -63,7 +63,7 @@ export const superUserController = {
       params: { userId }
     } = req;
 
-    superUserCrud.findUser({ id: userId })
+    superUserCrud.findUser({ superuserId: userId })
       .then((user) => {
         user?.countUsers()
           .then((users) => {
@@ -92,7 +92,7 @@ export const superUserController = {
       params: { userId }
     } = req;
 
-    superUserCrud.findUser({ id: userId })
+    superUserCrud.findUser({ superuserId: userId })
       .then((user) => {
         user?.getDepartments()
           .then((dept) => {
@@ -121,7 +121,7 @@ export const superUserController = {
       params: { userId }
     } = req;
 
-    superUserCrud.findUser({ id: userId })
+    superUserCrud.findUser({ superuserId: userId })
       .then((user) => {
         user?.countDepartments()
           .then((departments) => {
@@ -150,7 +150,7 @@ export const superUserController = {
       params: { userId }
     } = req;
 
-    superUserCrud.findUser({ id: userId })
+    superUserCrud.findUser({ superuserId: userId })
       .then((user) => {
         user?.getTasks()
           .then((tasks) => {
@@ -179,7 +179,7 @@ export const superUserController = {
       params: { userId }
     } = req;
 
-    superUserCrud.findUser({ id: userId })
+    superUserCrud.findUser({ superuserId: userId })
       .then((user) => {
         user?.countTasks()
           .then((tasks) => {
@@ -226,9 +226,9 @@ export const superUserController = {
         },
       });
     }
-    superUserCrud.updateUser({ id: userId }, payload)
+    superUserCrud.updateUser({ superuserId: userId }, payload)
       .then(() => {
-        return superUserCrud.findUser({ id: userId });
+        return superUserCrud.findUser({ superuserId: userId });
       })
       .then((user) => {
         return res.status(200).json({
@@ -246,7 +246,7 @@ export const superUserController = {
   deleteUser: (req: any, res: Response) => {
     const reqId = req.user.userId;
     const {
-      params: { id: userId }
+      params: { userId }
     } = req;
 
     if (reqId !== userId) {
@@ -256,7 +256,7 @@ export const superUserController = {
       })
     }
     
-    superUserCrud.deleteUser({ id: userId })
+    superUserCrud.deleteUser({ superuserId: userId })
       .then((numberOfUsersDeleted) => {
         return res.status(200).json({
           status: true,
