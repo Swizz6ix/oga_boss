@@ -6,11 +6,11 @@ import { authenticated } from '../middlewares/isAuthenticated.middleware.js';
 
 export const chatRoomRoutes = Router();
 
-chatRoomRoutes.get('/all', [authenticated.check], chatRoomController.getAllMsg);
+chatRoomRoutes.get('/all', [authenticated.authSession], chatRoomController.getAllMsg);
 
-chatRoomRoutes.get('/:chatId', [authenticated.check], chatRoomController.getMsg);
+chatRoomRoutes.get('/:chatId', [authenticated.authSession], chatRoomController.getMsg);
 
 chatRoomRoutes.post('/chat',
-  [authenticated.check, schemaValidator.verify(genRoomPayload)], chatRoomController.addChat);
+  [authenticated.authSession, schemaValidator.verify(genRoomPayload)], chatRoomController.addChat);
 
-chatRoomRoutes.delete('/:chatId', [authenticated.check], chatRoomController.deleteMsg);
+chatRoomRoutes.delete('/:chatId', [authenticated.authSession], chatRoomController.deleteMsg);

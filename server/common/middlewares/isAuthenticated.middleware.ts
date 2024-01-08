@@ -1,54 +1,26 @@
-import { NextFunction, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import pkg from "jsonwebtoken";
 import { configs } from "../../config.js";
 
 export const authenticated = {
-  check: (req: any, res: Response, next: NextFunction) => {
-    const authHeader = req.headers['authorization'];
-
-    // return error if no auth headers are provided
-    if (!authHeader) {
+  authSession: (req: Request, res: Response, next: NextFunction) => {
+    if (!req.session.token) {
       return res.status(401).json({
         status: false,
-        error: {
-          message: 'Auth headers not provided in the request',
-        },
-      });
+        error: `Pls login a valid user`,
+      })
     }
-
-    // return error if bearer header is not provided
-    if (!authHeader.startsWith('Bearer')) {
-      console.log("err", authHeader)
-      return res.status(401).json({
-        status: false,
-        error: {
-          message: 'Invalid auth mechanism',
-        },
-      });
-    }
-
-    const _token = authHeader.split(' ')[1];
-
-    // return error if bearer header is provided, but token is not provided
-    if (!_token) {
-      return res.status(401).json({
-        status: false,
-        error: {
-          message: 'Bearer token missing in the authorization headers',
-        },
-      });
-    }
-
+    const _token = req.session.token ?? "" // returns the right side if value is null or undefined
     const { verify } = pkg;
     verify(_token, configs.jwtSecret, (err: any, user: any) => {
       if (err) {
         return res.status(403).json({
           status: false,
-          error: 'Invalid access token provided, please login again.'
+          error: 'User cannot be verified, pls login again',
         })
       }
-      req.user = user; // Save the user oject for further use
-      next();
-    });
-  },
+      req.user = user;
+    })
+    next();
+  }
 };

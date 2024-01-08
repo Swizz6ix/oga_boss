@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { superUserController } from '../controllers/super.user.controller.js';
 import { signup } from '../auth/super.user.signup.controller.js';
-import { login } from '../auth/super.user.login.controller.js';
+import { superAuth } from '../auth/super.user.login.controller.js';
 import { schemaValidator } from '../middlewares/schema.validation.middleware.js';
 import { superUserPayload } from '../schemas/super.user.payload.js';
 import { superUserUpdate } from '../schemas/super.user.update.payload.js';
@@ -14,33 +14,33 @@ export const superUserRoutes = Router();
 const role = configs.roles.ADMIN;
 
 superUserRoutes.get('/:userId',
-  [authenticated.check, permission.has(role)], superUserController.getUser);
+  [authenticated.authSession, permission.has(role)], superUserController.getUser);
 
 superUserRoutes.get('/:userId/users',
-  [authenticated.check, permission.has(role)], superUserController.getUsers);
+  [authenticated.authSession, permission.has(role)], superUserController.getUsers);
 
 superUserRoutes.get('/:userId/departments', 
-  [authenticated.check, permission.has(role)], superUserController.getDepartments);
+  [authenticated.authSession, permission.has(role)], superUserController.getDepartments);
 
 superUserRoutes.get('/:userId/totalDepartments',
-  [authenticated.check, permission.has(role)], superUserController.getDepartMentsCount);
+  [authenticated.authSession, permission.has(role)], superUserController.getDepartMentsCount);
 
 superUserRoutes.get('/:userId/tasks',
-  [authenticated.check, permission.has(role)], superUserController.getTasks);
+  [authenticated.authSession, permission.has(role)], superUserController.getTasks);
 
 superUserRoutes.get('/:userId/totalTasks',
-  [authenticated.check, permission.has(role)], superUserController.getTasksCount);
+  [authenticated.authSession, permission.has(role)], superUserController.getTasksCount);
 
 superUserRoutes.get('/:userId/totalUsers',
-  [authenticated.check, permission.has(role)], superUserController.getUsersCount);
+  [authenticated.authSession, permission.has(role)], superUserController.getUsersCount);
 
 superUserRoutes.post('/signup', [schemaValidator.verify(superUserPayload)], signup);
 
-superUserRoutes.post('/login', [schemaValidator.verify(superUserLogin)], login);
+superUserRoutes.post('/login', [schemaValidator.verify(superUserLogin)], superAuth.login);
 
 superUserRoutes.patch('/update/:userId',
-  [authenticated.check, permission.has(role),
+  [authenticated.authSession, permission.has(role),
     schemaValidator.verify(superUserUpdate)], superUserController.updateUser);
 
 superUserRoutes.delete('/:userId',
-  [authenticated.check, permission.has(role)], superUserController.deleteUser);
+  [authenticated.authSession, permission.has(role)], superUserController.deleteUser);

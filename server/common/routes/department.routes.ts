@@ -9,17 +9,17 @@ import { configs } from '../../config.js';
 const role = configs.roles.ADMIN;
 export const departmentRoutes = Router();
 
-departmentRoutes.get('/all', [authenticated.check], departmentController.getAllDept);
+departmentRoutes.get('/all', [authenticated.authSession], departmentController.getAllDept);
 
-departmentRoutes.get('/:deptId', [authenticated.check], departmentController.getDept);
+departmentRoutes.get('/:deptId', [authenticated.authSession], departmentController.getDept);
 
 departmentRoutes.post('/add',
-  [authenticated.check, permission.has(role),
+  [authenticated.authSession, permission.has(role),
     schemaValidator.verify(departmentPayload)], departmentController.addDepartment);
 
 departmentRoutes.patch('/update/:deptId',
-  [authenticated.check, permission.has(role),
+  [authenticated.authSession, permission.has(role),
     schemaValidator.verify(departmentPayload)], departmentController.updateDept);
 
 departmentRoutes.delete('/:deptId',
-[authenticated.check, permission.has(role)], departmentController.deleteDept);
+[authenticated.authSession, permission.has(role)], departmentController.deleteDept);

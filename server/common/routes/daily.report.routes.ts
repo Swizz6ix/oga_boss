@@ -10,13 +10,13 @@ export const dailyReportRoutes = Router();
 const role = configs.roles.ADMIN;
 
 dailyReportRoutes.get('/all',
-[authenticated.check, permission.has(role)], dailyReport.getAllReport);
+[authenticated.authSession, permission.has(role)], dailyReport.getAllReport);
 
 dailyReportRoutes.get('/:reportId',
-[authenticated.check, permission.has(role)], dailyReport.getReport);
+[authenticated.authSession, permission.has(role)], dailyReport.getReport);
 
 dailyReportRoutes.post('/add',
-  [authenticated.check, schemaValidator.verify(dailyReportPayload)], dailyReport.addReport);
+  [authenticated.authSession, schemaValidator.verify(dailyReportPayload)], dailyReport.addReport);
 
 dailyReportRoutes.delete('/:reportId',
-  [authenticated.check, permission.has(role)], dailyReport.deleteReport);
+  [authenticated.authSession, permission.has(role)], dailyReport.deleteReport);

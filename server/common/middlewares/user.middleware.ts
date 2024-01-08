@@ -32,7 +32,7 @@ export const user = {
           try {
             const user = await userCrud.findUser({ userId: reqId });
             if (!user) {
-              return Error('User does not exist');
+              return console.error('User does not exist');
             }
             if (user.role === userRole) {
               userId = user.userId;
