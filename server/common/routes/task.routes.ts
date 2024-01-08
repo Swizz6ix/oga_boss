@@ -11,18 +11,18 @@ const role = configs.roles.ADMIN;
 export const taskRoutes = Router();
 
 taskRoutes.get('/all',
-  [authenticated.check], taskController.getAllTasks);
+  [authenticated.authSession], taskController.getAllTasks);
 
 taskRoutes.get('/:taskId',
-  [authenticated.check], taskController.getTask);
+  [authenticated.authSession], taskController.getTask);
 
 taskRoutes.post('/createTask', 
-  [authenticated.check, permission.has(role), 
+  [authenticated.authSession, permission.has(role), 
     schemaValidator.verify(taskPayload)], taskController.newTask);
 
 taskRoutes.patch('/update/:taskId',
-  [authenticated.check, permission.has(role),
+  [authenticated.authSession, permission.has(role),
     schemaValidator.verify(taskUpdatePayload)], taskController.updateTask);
 
 taskRoutes.delete('/:taskId',
-  [authenticated.check, permission.has(role)], taskController.deleteTask);
+  [authenticated.authSession, permission.has(role)], taskController.deleteTask);

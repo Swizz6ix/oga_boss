@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import { User, userCrud } from '../models/user.js';
+import { userCrud } from '../models/user.js';
 import { user } from '../middlewares/user.middleware.js';
-import { permission } from '../middlewares/check.permission.middleware.js';
 import { configs } from '../../config.js';
 
 const _role = configs.roles.ADMIN;
@@ -38,7 +37,7 @@ export const userController = {
   },
 
   getAllUsers: (req: any, res: Response) => {
-    const { 
+    const {
       user: { userId }
     } = req;
 

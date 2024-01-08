@@ -1,21 +1,30 @@
 import { configs } from '../../config.js';
 import { userCrud } from '../models/user.js';
-import { encryptPassword, token } from './auth.js';
-export const createUser = (req, res) => {
+import { auth } from './auth.js';
+export const createUser = (req, res, next) => {
     const payload = req.body;
     const user = configs.roles.USER;
     let role = payload.role;
-    let securedPassword = encryptPassword(payload.password);
+    let securedPassword = auth.encryptPassword(payload.password);
     if (!role) {
         role = user;
     }
     userCrud.createUser(Object.assign(payload, { password: securedPassword, role }))
         .then((user) => {
         // Generate token for the user
-        const _token = token(payload.username, user.userId);
-        return res.status(201).json({
-            user: user.toJSON(),
-            token: _token,
+        const _token = auth.token(payload.username, user.userId);
+        req.session.regenerate((err) => {
+            if (err)
+                return next(err);
+            req.session.token = _token;
+            req.session.save((err) => {
+                if (err)
+                    return next(err);
+                return res.status(201).json({
+                    status: true,
+                    user: user.toJSON(),
+                });
+            });
         });
     })
         .catch((err) => {

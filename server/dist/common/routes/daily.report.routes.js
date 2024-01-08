@@ -7,8 +7,8 @@ import { permission } from '../middlewares/check.permission.middleware.js';
 import { configs } from '../../config.js';
 export const dailyReportRoutes = Router();
 const role = configs.roles.ADMIN;
-dailyReportRoutes.get('/all', [authenticated.check, permission.has(role)], dailyReport.getAllReport);
-dailyReportRoutes.get('/:reportId', [authenticated.check, permission.has(role)], dailyReport.getReport);
-dailyReportRoutes.post('/add', [authenticated.check, schemaValidator.verify(dailyReportPayload)], dailyReport.addReport);
-dailyReportRoutes.delete('/:reportId', [authenticated.check, permission.has(role)], dailyReport.deleteReport);
+dailyReportRoutes.get('/all', [authenticated.authSession, permission.has(role)], dailyReport.getAllReport);
+dailyReportRoutes.get('/:reportId', [authenticated.authSession, permission.has(role)], dailyReport.getReport);
+dailyReportRoutes.post('/add', [authenticated.authSession, schemaValidator.verify(dailyReportPayload)], dailyReport.addReport);
+dailyReportRoutes.delete('/:reportId', [authenticated.authSession, permission.has(role)], dailyReport.deleteReport);
 //# sourceMappingURL=daily.report.routes.js.map
