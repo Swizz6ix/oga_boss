@@ -7,3 +7,11 @@ declare module 'express-session' {
     token: string | null ;
   }
 }
+
+declare global {
+  namespace Express {
+    interface Request {
+      user: User
+    }
+  }
+}

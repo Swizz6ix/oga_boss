@@ -1,11 +1,11 @@
-import { NextFunction, Response } from 'express';
+import { NextFunction, Response, Request } from 'express';
 import { superUserCrud } from '../models/super.user.js';
 import { userCrud } from '../models/user.js';
-
+import { authLogger } from '../../engine/logging.js';
 
 export const permission = {
   has: (role: string) => {
-    return (req: any, res: Response, next: NextFunction) => {
+    return (req: Request, res: Response, next: NextFunction) => {
       const {
         user: { userId },
       } = req;
@@ -19,21 +19,26 @@ export const permission = {
               userCrud.findUser({ userId: userId })
                 .then((user) => {
                   if (!user) {
+                    authLogger.warn(`User ${userId} is  not a valid user.`);
                     return res.status(403).json({
                       status: false,
-                      error: 'Invalid access token provided, please login again now'
+                      error: 'Invalid access credentials, please login again'
                     });
                   }
+                  // Throw forbidden error, if user does not posses the required role
                   const userRole = user.role;
                   if (userRole !== role) {
+                    authLogger.warn(`User: ${user.userId} must be an ${role} to access endpoint`);
                     return res.status(403).json({
                       status: false,
-                      error: `You need to be a ${role} to access this endpoint.`
+                      error: `You need to be an ${role} to access this endpoint.`
                     });
-                  }
+                  };
+                  authLogger.info(`User: ${user.userId} accessed the endpoint as an ${role}`);
                   next();
                 })
             } catch (error) {
+              authLogger.error(new Error('An uncaught error'));
               res.status(403).json({
                 status: false,
                 error: error,
@@ -42,19 +47,22 @@ export const permission = {
           } else {
           // Throw forbidden error, if user does not posses the required role
           if (supRole !== role) {
+            authLogger.warn(`User: ${user.superuserId} must be an ${role} to access endpoint`);
             return res.status(403).json({
               status: false,
               error: `You need to be a ${role} to access this endpoint.`
             });
-          }
+          };
+          authLogger.info(`User: ${user.superuserId} accessed the endpoint as an ${role}`);
           next();
         }
         })
         .catch((err) => {
+          authLogger.error(new Error('An uncaught error'));
           return res.status(400).json({
             status: false,
             error: err,
-          })
+          });
         });
     };
   },

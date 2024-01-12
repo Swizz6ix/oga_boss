@@ -1,6 +1,7 @@
 import { auth } from "./auth.js";
 import { superUserCrud } from "../models/super.user.js";
 import { configs } from "../../config.js";
+import { adminLogger } from "../../engine/logging.js";
 export const signup = (req, res, next) => {
     const payload = req.body;
     const admin = configs.roles.ADMIN;
@@ -14,12 +15,19 @@ export const signup = (req, res, next) => {
         // Generate token for user
         const _token = auth.token(payload.username, user.superuserId);
         req.session.regenerate((err) => {
-            if (err)
+            if (err) {
+                adminLogger.error(new Error(err));
                 return next(err);
+            }
+            ;
             req.session.token = _token;
             req.session.save((err) => {
-                if (err)
+                if (err) {
+                    adminLogger.error(new Error(err));
                     return next(err);
+                }
+                ;
+                adminLogger.alert(`Superuser ${user.superuserId} has just been created.`);
                 return res.status(201).json({
                     status: true,
                     user: user.toJSON(),
@@ -28,6 +36,7 @@ export const signup = (req, res, next) => {
         });
     })
         .catch((err) => {
+        adminLogger.error(new Error(err));
         return res.status(500).json({
             status: false,
             error: err,

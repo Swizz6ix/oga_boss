@@ -7,6 +7,7 @@ import { Department, departmentCrud } from "../common/models/department.js";
 import { DailyRpt, dailyRptCrud } from "../common/models/daily.report.js";
 import { ChatRoom, chatRoomCrud } from "../common/models/chat.room.js";
 import { expressApp } from "../index.js";
+import { engineLogger } from "./logging.js";
 // Define database authentication
 export const connectDb = new Db((configs.db_connections.db_name), (configs.db_connections.db_user), (configs.db_connections.db_password), { dialect: configs.db_connections.dialect });
 export const engine = {
@@ -142,8 +143,10 @@ export const engine = {
             .authenticate()
             .then(() => {
             console.log('Connection has been established successfully');
+            engineLogger.info(`data connection established successfully`);
         })
             .catch((err) => {
+            engineLogger.error(new Error(`Unable to connect to the database ${err}`));
             console.log(`Unable to connect to the database: ${err}`);
         });
         // Sync the database and create tables if it does not exist
@@ -151,9 +154,11 @@ export const engine = {
             .sync()
             .then(() => {
             expressApp();
+            engineLogger.info('database Initialized');
             console.log('database Initialized');
         })
             .catch((err) => {
+            engineLogger.error(new Error(`Sequelize Initialization threw an error: ${err}`));
             console.log(`Sequelize Initialization threw an error: ${err}`);
         });
     },
