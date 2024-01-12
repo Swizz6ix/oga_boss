@@ -30,7 +30,18 @@ export const configs = {
         HIGH: 'high',
         PRIORITY: 'priority'
     },
-    jwtSecret: '!!CryptoCat@!!',
+    jwtSecret: process.env.JWTSECRET,
     jwtExpirationSeconds: 60 * 60,
+    sessionExpire: new Date((Date.now() + 60 * 60 * 1000) + 1),
+    maxAge: 3600000,
+    logLevel: {
+        error: 0,
+        warn: 1,
+        info: 2,
+        http: 3,
+        alert: 4,
+        debug: 5,
+        notice: 6,
+    }
 };
 //# sourceMappingURL=config.js.map

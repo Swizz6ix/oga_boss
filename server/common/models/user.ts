@@ -58,7 +58,7 @@ const userModel = {
 
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>>
 {
-  declare userId: CreationOptional<number>;
+  declare userId: CreationOptional<string>;
   declare email: string;
   declare password: string;
   declare username: string;

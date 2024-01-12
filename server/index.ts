@@ -2,7 +2,6 @@ import express, { Express, Request, Response } from 'express';
 import session from 'express-session';
 import  cors  from 'cors';
 import cookieParser from 'cookie-parser';
-import passport from 'passport';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { configs } from './config.js';
@@ -16,9 +15,10 @@ import { engine } from './engine/db.js';
 import { redisStore } from './engine/redis.js';
 import { authenticated } from './common/middlewares/isAuthenticated.middleware.js';
 import { userAuth } from './common/auth/user.login.controller.js';
+import { engineLogger, morganMiddleware } from './engine/logging.js';
 
 const port = configs.db_connections.port;
-const expire = new Date(Date.now() + 60 * 60 * 100)
+const expire = configs.sessionExpire;
 const app: Express = express();
 const server = createServer(app);
 export const io = new Server(server);
@@ -27,7 +27,7 @@ const sessionMiddleware = session({
   secret: process.env.SESSION_SECRET as string,
   name: process.env.SESSION_NAME as string,
   cookie: {
-    maxAge: 60 * 60 * 100,
+    maxAge: configs.maxAge,
     httpOnly: true,
     signed: true,
     expires: expire
@@ -36,18 +36,15 @@ const sessionMiddleware = session({
   resave: false,
 });
 
-console.log(sessionMiddleware)
-
 // Initialize Express app
 export const expressApp = () => {
   app.disable('x-powered-by'); // disabled to reduce fingerprinting
   app.use(cors());
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+  app.use(morganMiddleware);
   app.use(cookieParser());
   app.use(sessionMiddleware);
-  app.use(passport.initialize());
-  app.use(passport.session());
   app.use('/user', userRoutes);
   app.use('/task', taskRoutes);
   app.use('/superuser', superUserRoutes);
@@ -61,6 +58,7 @@ export const expressApp = () => {
   io.engine.use(sessionMiddleware);
   server.listen(port, () => {
     console.log(`[SERVER]: Server is up and running at http://localhost:${port}`);
+    engineLogger.info(`[SERVER]: Server is up and running at http://localhost:${port}`);
   });
 }
 
