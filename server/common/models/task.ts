@@ -2,6 +2,7 @@ import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreation
 import { configs } from "../../config.js";
 import { User } from "./user.js";
 import { Department } from "./department.js";
+import { SuperUser } from "./super.user.js";
 
 const taskModel = {
   taskId: {
@@ -45,7 +46,9 @@ export class Task extends Model<InferAttributes<Task>, InferCreationAttributes<T
   declare urgencyLevel: string;
   declare progress: string;
   declare userId: ForeignKey<User['userId']>;
+  declare superuserId: ForeignKey<SuperUser['superuserId']>;
   declare User?: NonAttribute<User>;
+  declare SuperUser?: NonAttribute<SuperUser>;
 }
 
 export const taskCrud = {

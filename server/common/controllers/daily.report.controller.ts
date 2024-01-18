@@ -1,23 +1,25 @@
 import { Request, Response } from "express";
 import { dailyRptCrud } from "../models/daily.report.js";
 import { user } from "../middlewares/user.middleware.js";
-import { controllerLogger } from "../../engine/logging.js";
+import { logging } from "../../engine/logging.js";
 
 export const dailyReport = {
-  addReport: (req: Request, res: Response) => {
+  addReport: async (req: Request, res: Response) => {
+    const superuserId = await user._user_id(req.user.userId);
+    const log = logging.userLogs(String(superuserId));
     const payload = req.body;
     dailyRptCrud.newReport(Object.assign(payload))
       .then((report) => {
-        controllerLogger.info(
-          `Report ${report.reportId} was just created by user ${req.user.userId}`
-        );
+          log.info(
+            `Report ${report.reportId} was just created by user ${req.user.userId}`);
+
         return res.status(201).json({
           status: true,
           dept: report.toJSON(),
         });
       })
       .catch((err) => {
-        controllerLogger.error(new Error(err));
+            log.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,
@@ -25,20 +27,22 @@ export const dailyReport = {
       });
   },
 
-  getReport: (req: Request, res: Response) => {
+  getReport: async (req: Request, res: Response) => {
+    const superuserId = await user._user_id(req.user.userId);
+    const log = logging.userLogs(String(superuserId))
     const {
       params: { reportId }
     } = req;
     dailyRptCrud.findReport({ reportId: reportId })
       .then((report) => {
-        controllerLogger.info(`Report ${reportId} was retrieved by user ${req.user.userId}`);
+            log.info(`Report ${reportId} was retrieved by user ${req.user.userId}`)
         return res.status(200).json({
           status: true,
           data: report?.toJSON(),
         });
       })
       .catch((err) => {
-        controllerLogger.error(new Error(err));
+        log.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,
@@ -46,31 +50,24 @@ export const dailyReport = {
       });
   },
 
-  getAllReport: (req: Request, res: Response) => {
+  getAllReport: async (req: Request, res: Response) => {
     const {
       user: { userId }
     } = req;
 
-    user._user_id(userId)
-      .then((id) => {
-        dailyRptCrud.findAllReport({ superuserId: id })
-          .then((reports) => {
-            controllerLogger.info(`All reports retrieved by user ${req.user.userId}`)
-            return res.status(200).json({
-              status: true,
-              reports: reports,
-            });
-          })
-          .catch((err) => {
-            controllerLogger.error(new Error(err));
-            return res.status(500).json({
-              status: false,
-              error: err,
-            });
-          });
+    // Get all reports that exist only within a particular superuser
+    const superuserId = await user._user_id(userId);
+    const log = logging.userLogs(String(superuserId));
+    dailyRptCrud.findAllReport({ superuserId: superuserId })
+      .then((reports) => {
+        log.info(`All reports retrieved by user ${req.user.userId}`)
+        return res.status(200).json({
+          status: true,
+          reports: reports,
+        });
       })
       .catch((err) => {
-        controllerLogger.error(new Error(err));
+        log.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,
@@ -78,20 +75,22 @@ export const dailyReport = {
       });
   },
 
-  deleteReport: (req: Request, res: Response) => {
+  deleteReport: async (req: Request, res: Response) => {
     const {
       params: { reportId }
     } = req;
+    const report = await dailyRptCrud.findReport({ reportId: reportId });
+    const log = logging.userLogs(String(report?.superuserId));
     dailyRptCrud.deleteReport({ reportId: reportId })
       .then((numberOfReportsDeleted) => {
-        controllerLogger.warn(`Report: ${reportId} was deleted by user ${req.user.userId}`);
+        log.warn(`Report: ${reportId} was deleted by user ${req.user.userId}`);
         return res.status(200).json({
           status: true,
           data: { numberOfEntriesDeleted: numberOfReportsDeleted },
         });
       })
       .catch((err) => {
-        controllerLogger.error(new Error(err));
+        log.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,

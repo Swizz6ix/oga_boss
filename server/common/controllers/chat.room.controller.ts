@@ -1,20 +1,20 @@
 import { Request, Response } from "express";
 import { chatRoomCrud } from "../models/chat.room.js";
-import { controllerLogger } from "../../engine/logging.js";
+import { logging } from "../../engine/logging.js";
 
 export const chatRoomController = {
   addChat: (req: Request, res: Response) => {
     const payload = req.body;
     chatRoomCrud.postMessage(Object.assign(payload))
       .then((msg) => {
-        controllerLogger.info(`User ${req.user.userId} just posted a chat ${msg.messageId}`);
+        logging.controllerLogger.info(`User ${req.user.userId} just posted a chat ${msg.messageId}`);
         return res.status(201).json({
           status: true,
           msg: msg.toJSON(), 
         });
       })
       .catch((err) => {
-        controllerLogger.error(new Error(err));
+        logging.controllerLogger.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,
@@ -28,14 +28,14 @@ export const chatRoomController = {
     } = req;
     chatRoomCrud.getMessage({ id: msgId })
       .then((msg) => {
-        controllerLogger.info(`msg ${msgId} retrieved by user ${req.user.userId}`);
+        logging.controllerLogger.info(`msg ${msgId} retrieved by user ${req.user.userId}`);
         return res.status(200).json({
           status: true,
           msg: msg?.toJSON(),
         });
       })
       .catch((err) => {
-        controllerLogger.error(new Error(err));
+        logging.controllerLogger.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,
@@ -46,14 +46,14 @@ export const chatRoomController = {
   getAllMsg: (req: Request, res: Response) => {
     chatRoomCrud.getAllMessages(req.query)
     .then((msg) => {
-      controllerLogger.info(`All messages retrieved by user ${req.user.userId}`);
+      logging.controllerLogger.info(`All messages retrieved by user ${req.user.userId}`);
       return res.status(200).json({
         status: true,
         data: msg,
       });
     })
     .catch((err) => {
-      controllerLogger.error(new Error(err));
+      logging.controllerLogger.error(new Error(err));
       return res.status(500).json({
         status: false,
         error: err,
@@ -67,14 +67,14 @@ export const chatRoomController = {
     } = req;
     chatRoomCrud.deleteMessage({ id: msgId })
       .then((numberOfMsgDeleted) => {
-        controllerLogger.warn(`msg ${msgId} was deleted by user ${req.user.userId}`);
+        logging.controllerLogger.warn(`msg ${msgId} was deleted by user ${req.user.userId}`);
         return res.status(200).json({
           status: true,
           msg: { numberOfEntriesDeleted: numberOfMsgDeleted },
         });
       })
       .catch((err) => {
-        controllerLogger.error(new Error(err));
+        logging.controllerLogger.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,

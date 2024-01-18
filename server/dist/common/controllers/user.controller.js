@@ -1,7 +1,16 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 import { userCrud } from '../models/user.js';
 import { user } from '../middlewares/user.middleware.js';
 import { configs } from '../../config.js';
-import { controllerLogger } from '../../engine/logging.js';
+import { logging } from '../../engine/logging.js';
 const _role = configs.roles.ADMIN;
 export const userController = {
     getUser: (req, res) => {
@@ -11,14 +20,15 @@ export const userController = {
             .then((params) => {
             userCrud.findUser({ userId: params })
                 .then((user) => {
-                controllerLogger.info(`User: ${user === null || user === void 0 ? void 0 : user.userId} found by ${reqId}.`);
+                const log = logging.userLogs(String(user === null || user === void 0 ? void 0 : user.superuserId));
+                log.info(`User: ${user === null || user === void 0 ? void 0 : user.userId} retrieved by ${reqId}.`);
                 return res.status(200).json({
                     status: true,
                     data: user === null || user === void 0 ? void 0 : user.toJSON(),
                 });
             })
                 .catch((err) => {
-                controllerLogger.error(new Error(err));
+                logging.controllerLogger.error(new Error(err));
                 return res.status(500).json({
                     status: false,
                     error: err,
@@ -26,7 +36,7 @@ export const userController = {
             });
         })
             .catch((err) => {
-            controllerLogger.error(new Error(err));
+            logging.controllerLogger.error(new Error(err));
             return res.status(500).json({
                 status: false,
                 error: err,
@@ -37,16 +47,17 @@ export const userController = {
         const { user: { userId } } = req;
         user._user_id(userId)
             .then((id) => {
+            const log = logging.userLogs(String(id));
             userCrud.findAllUsers({ superuserId: id })
                 .then((users) => {
-                controllerLogger.info(`All users in server ${id} found by ${userId}`);
+                log.info(`All users in server ${id} retrieved by ${userId}`);
                 return res.status(200).json({
                     status: true,
                     data: users,
                 });
             })
                 .catch((err) => {
-                controllerLogger.error(new Error(err));
+                log.error(new Error(err));
                 return res.status(500).json({
                     status: false,
                     error: err,
@@ -54,7 +65,7 @@ export const userController = {
             });
         })
             .catch((err) => {
-            controllerLogger.error(new Error(err));
+            logging.controllerLogger.error(new Error(err));
             return res.status(500).json({
                 status: false,
                 error: err,
@@ -68,14 +79,15 @@ export const userController = {
             .then((params) => {
             userCrud.findUser({ userId: params })
                 .then((user) => {
+                const log = logging.userLogs(String(user === null || user === void 0 ? void 0 : user.superuserId));
                 user === null || user === void 0 ? void 0 : user.getTasks().then((tasks) => {
-                    controllerLogger.info(`All tasks accessed by ${reqId}`);
+                    log.info(`All tasks accessed by ${reqId}`);
                     return res.status(200).json({
                         status: true,
                         tasks: tasks,
                     });
                 }).catch((err) => {
-                    controllerLogger.error(new Error(err));
+                    log.error(new Error(err));
                     return res.status(500).json({
                         status: false,
                         error: err,
@@ -83,7 +95,7 @@ export const userController = {
                 });
             })
                 .catch((err) => {
-                controllerLogger.error(new Error(err));
+                logging.controllerLogger.error(new Error(err));
                 return res.status(500).json({
                     status: false,
                     error: err,
@@ -91,7 +103,7 @@ export const userController = {
             });
         })
             .catch((err) => {
-            controllerLogger.error(new Error(err));
+            logging.controllerLogger.error(new Error(err));
             return res.status(500).json({
                 status: false,
                 error: err,
@@ -105,14 +117,15 @@ export const userController = {
             .then((params) => {
             userCrud.findUser({ userId: params })
                 .then((user) => {
+                const log = logging.userLogs(String(user === null || user === void 0 ? void 0 : user.superuserId));
                 user === null || user === void 0 ? void 0 : user.countTasks().then((tasks) => {
-                    controllerLogger.info(`Total number of all tasks accessed by ${reqId}`);
+                    log.info(`Total number of all tasks accessed by ${reqId}`);
                     return res.status(200).json({
                         status: true,
                         totalNumberOfTasks: tasks,
                     });
                 }).catch((err) => {
-                    controllerLogger.error(new Error(err));
+                    log.error(new Error(err));
                     return res.status(500).json({
                         status: false,
                         error: err,
@@ -120,7 +133,7 @@ export const userController = {
                 });
             })
                 .catch((err) => {
-                controllerLogger.error(new Error(err));
+                logging.controllerLogger.error(new Error(err));
                 return res.status(500).json({
                     status: false,
                     error: err,
@@ -128,7 +141,7 @@ export const userController = {
             });
         })
             .catch((err) => {
-            controllerLogger.error(new Error(err));
+            logging.controllerLogger.error(new Error(err));
             return res.status(500).json({
                 status: false,
                 error: err,
@@ -142,14 +155,15 @@ export const userController = {
             .then((params) => {
             userCrud.findUser({ userId: params })
                 .then((user) => {
+                const log = logging.userLogs(String(user === null || user === void 0 ? void 0 : user.superuserId));
                 user === null || user === void 0 ? void 0 : user.getDailyRpts().then((reports) => {
-                    controllerLogger.info(`All daily reports accessed by ${reqId}`);
+                    log.info(`All daily reports accessed by ${reqId}`);
                     return res.status(200).json({
                         status: true,
                         reports: reports,
                     });
                 }).catch((err) => {
-                    controllerLogger.error(new Error(err));
+                    log.error(new Error(err));
                     return res.status(500).json({
                         status: false,
                         error: err,
@@ -157,7 +171,7 @@ export const userController = {
                 });
             })
                 .catch((err) => {
-                controllerLogger.error(new Error(err));
+                logging.controllerLogger.error(new Error(err));
                 return res.status(500).json({
                     status: false,
                     error: err,
@@ -165,7 +179,7 @@ export const userController = {
             });
         })
             .catch((err) => {
-            controllerLogger.error(new Error(err));
+            logging.controllerLogger.error(new Error(err));
             return res.status(500).json({
                 status: false,
                 error: err,
@@ -179,14 +193,15 @@ export const userController = {
             .then((params) => {
             userCrud.findUser({ userId: params })
                 .then((user) => {
+                const log = logging.userLogs(String(user === null || user === void 0 ? void 0 : user.superuserId));
                 user === null || user === void 0 ? void 0 : user.countDailyRpts().then((reports) => {
-                    controllerLogger.info(`total number of reports accessed by ${reqId}`);
+                    log.info(`total number of reports accessed by ${reqId}`);
                     return res.status(200).json({
                         status: true,
                         totalNumberOfReports: reports,
                     });
                 }).catch((err) => {
-                    controllerLogger.error(new Error(err));
+                    log.error(new Error(err));
                     return res.status(500).json({
                         status: false,
                         error: err,
@@ -194,7 +209,7 @@ export const userController = {
                 });
             })
                 .catch((err) => {
-                controllerLogger.error(new Error(err));
+                logging.controllerLogger.error(new Error(err));
                 return res.status(500).json({
                     status: false,
                     error: err,
@@ -202,7 +217,7 @@ export const userController = {
             });
         })
             .catch((err) => {
-            controllerLogger.error(new Error(err));
+            logging.controllerLogger.error(new Error(err));
             return res.status(500).json({
                 status: false,
                 error: err,
@@ -216,14 +231,15 @@ export const userController = {
             .then((params) => {
             userCrud.findUser({ userId: params })
                 .then((user) => {
+                const log = logging.userLogs(String(user === null || user === void 0 ? void 0 : user.superuserId));
                 user === null || user === void 0 ? void 0 : user.getChatRooms().then((chats) => {
-                    controllerLogger.info(`all chats accessed by ${reqId}`);
+                    log.info(`all chats accessed by ${reqId}`);
                     return res.status(200).json({
                         status: true,
                         chats: chats,
                     });
                 }).catch((err) => {
-                    controllerLogger.error(new Error(err));
+                    log.error(new Error(err));
                     return res.status(500).json({
                         status: false,
                         error: err,
@@ -231,7 +247,7 @@ export const userController = {
                 });
             })
                 .catch((err) => {
-                controllerLogger.error(new Error(err));
+                logging.controllerLogger.error(new Error(err));
                 return res.status(500).json({
                     status: false,
                     error: err,
@@ -239,7 +255,7 @@ export const userController = {
             });
         })
             .catch((err) => {
-            controllerLogger.error(new Error(err));
+            logging.controllerLogger.error(new Error(err));
             return res.status(500).json({
                 status: false,
                 error: err,
@@ -253,14 +269,15 @@ export const userController = {
             .then((params) => {
             userCrud.findUser({ userId: params })
                 .then((user) => {
+                const log = logging.userLogs(String(user === null || user === void 0 ? void 0 : user.superuserId));
                 user === null || user === void 0 ? void 0 : user.countChatRooms().then((chats) => {
-                    controllerLogger.info(`Total number of chats accessed by ${reqId}`);
+                    log.info(`Total number of chats accessed by ${reqId}`);
                     return res.status(200).json({
                         status: true,
                         totalNumberOfChats: chats,
                     });
                 }).catch((err) => {
-                    controllerLogger.error(new Error(err));
+                    log.error(new Error(err));
                     return res.status(500).json({
                         status: false,
                         error: err,
@@ -268,7 +285,7 @@ export const userController = {
                 });
             })
                 .catch((err) => {
-                controllerLogger.error(new Error(err));
+                logging.controllerLogger.error(new Error(err));
                 return res.status(500).json({
                     status: false,
                     error: err,
@@ -276,18 +293,20 @@ export const userController = {
             });
         })
             .catch((err) => {
-            controllerLogger.error(new Error(err));
+            logging.controllerLogger.error(new Error(err));
             return res.status(500).json({
                 status: false,
                 error: err,
             });
         });
     },
-    updateUser: (req, res) => {
+    updateUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { params: { userId }, body: payload } = req;
+        const _user = yield userCrud.findUser({ userId: userId });
+        const log = logging.userLogs(String(_user === null || _user === void 0 ? void 0 : _user.superuserId));
         // if the payload does not have any keys, return an error
         if (!Object.keys(payload).length) {
-            controllerLogger.error(new Error('No update provided'));
+            log.error(new Error('No update provided'));
             return res.status(400).json({
                 status: false,
                 error: {
@@ -300,37 +319,39 @@ export const userController = {
             return userCrud.findUser({ userId: userId });
         })
             .then((user) => {
-            controllerLogger.info(`update on User ${user === null || user === void 0 ? void 0 : user.userId} performed by ${req.user.userId}`);
+            log.info(`update on User ${user === null || user === void 0 ? void 0 : user.userId} performed by ${req.user.userId}`);
             return res.status(200).json({
                 status: true,
                 data: user === null || user === void 0 ? void 0 : user.toJSON()
             });
         })
             .catch((err) => {
-            controllerLogger.error(new Error(err));
+            log.error(new Error(err));
             return res.status(500).json({
                 status: false,
                 error: err,
             });
         });
-    },
-    deleteUser: (req, res) => {
+    }),
+    deleteUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { params: { userId } } = req;
+        const _user = yield userCrud.findUser({ userId: userId });
+        const log = logging.userLogs(String(_user === null || _user === void 0 ? void 0 : _user.superuserId));
         userCrud.deleteUser({ userId: userId })
             .then((numberOfUsersDeleted) => {
-            controllerLogger.warn(`User: ${userId} deleted by ${req.user.userId}`);
+            log.warn(`User: ${userId} deleted by ${req.user.userId}`);
             return res.status(200).json({
                 status: true,
                 data: { numberOfEntriesDeleted: numberOfUsersDeleted },
             });
         })
             .catch((err) => {
-            controllerLogger.error(new Error(err));
+            log.error(new Error(err));
             return res.status(500).json({
                 status: false,
                 error: err,
             });
         });
-    }
+    })
 };
 //# sourceMappingURL=user.controller.js.map
