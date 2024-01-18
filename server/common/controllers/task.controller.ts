@@ -1,23 +1,22 @@
 import { Request, Response } from 'express';
 import { taskCrud } from '../models/task.js';
 import { user } from '../middlewares/user.middleware.js';
-import { controllerLogger } from '../../engine/logging.js';
+import { logging } from '../../engine/logging.js';
 
 export const taskController = {
   newTask: (req: Request, res: Response) => {
     const payload = req.body;
     taskCrud.createTask(Object.assign(payload))
       .then((task) => {
-        controllerLogger.info(
-          `Task: ${task.taskId} has just been created by User: ${req.user.userId}`
-        );
+        const log = logging.userLogs(String(task.superuserId));
+        log.info(`Task: ${task.taskId} has just been created by User: ${req.user.userId}`);
         return res.status(201).json({
           status: true,
           task: task.toJSON(),
         });
       })
       .catch((err) => {
-        controllerLogger.error(new Error(err));
+        logging.controllerLogger.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,
@@ -25,7 +24,7 @@ export const taskController = {
       });
   },
 
-  getTask: (req: any, res: Response) => {
+  getTask: (req: Request, res: Response) => {
     const reqId = req.user.userId;
     const {
       params: { taskId }
@@ -33,8 +32,9 @@ export const taskController = {
 
     taskCrud.findTask({ taskId: taskId })
       .then((task) => {
+        const log = logging.userLogs(String(task?.superuserId));
         if (reqId !== task?.userId) {
-          controllerLogger.warn(
+          log.warn(
             `User ${reqId} tried to access an unauthorized task ${task?.taskId}`
           );
           return res.status(500).json({
@@ -42,14 +42,14 @@ export const taskController = {
             error: `User ${reqId} does not have the required permission`,
           });
         }
-        controllerLogger.info(`Task: ${task?.taskId}, accessed by User ${reqId}`);
+        log.info(`Task: ${task?.taskId}, accessed by User ${reqId}`);
         return res.status(200).json({
           status: true,
           data: task?.toJSON(),
         });
       })
       .catch((err) => {
-        controllerLogger.error(new Error(err));
+        logging.controllerLogger.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,
@@ -64,16 +64,17 @@ export const taskController = {
 
     user._user_id(userId)
       .then((id) => {
+        const log = logging.userLogs(String(id));
         taskCrud.findAllTasks({ superuserId: id })
           .then((tasks) => {
-            controllerLogger.info(`All tasks in server ${id} accessed by User ${userId}`)
+            log.info(`All tasks in server ${id} accessed by User ${userId}`)
             return res.status(200).json({
               status: true,
               data: tasks,
             });
           })
           .catch((err) => {
-            controllerLogger.error(new Error(err));
+            log.error(new Error(err));
             return res.status(500).json({
               status: false,
               error: err,
@@ -81,7 +82,7 @@ export const taskController = {
           });
       })
       .catch((err) => {
-        controllerLogger.error(new Error(err));
+        logging.controllerLogger.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,
@@ -89,15 +90,18 @@ export const taskController = {
       });
   },
 
-  updateTask: (req: Request, res: Response) => {
+  updateTask: async (req: Request, res: Response) => {
     const {
       params: { taskId },
       body: payload
     } = req;
 
+    const task = await taskCrud.findTask({ taskId: taskId});
+    const log = logging.userLogs(String(task?.superuserId));
+
     // if the payload does not have any keys, return error
     if (!Object.keys(payload).length) {
-      controllerLogger.error(new Error('No update provided'));
+      log.error(new Error('No update provided'));
       return res.status(400).json({
         status: false,
         error: {
@@ -109,15 +113,15 @@ export const taskController = {
       .then(() => {
         return taskCrud.findTask({ taskId: taskId });
       })
-      .then((task) => {
-        controllerLogger.info(`Update on Task ${task?.taskId} performed by ${req.user.userId}`);
+      .then(async (task) => {
+        log.info(`Update on Task ${task?.taskId} performed by ${req.user.userId}`);
         return res.status(200).json({
           status: true,
           data: task?.toJSON(),
         });
       })
       .catch((err) => {
-        controllerLogger.error(new Error(err));
+        logging.controllerLogger.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,
@@ -125,25 +129,29 @@ export const taskController = {
       });
   },
 
-  deleteTask: (req: Request, res: Response) => {
+  deleteTask: async (req: Request, res: Response) => {
     const {
       params: { taskId }
     } = req;
 
+    const task = await taskCrud.findTask({ taskId: taskId })
+    const _superuserId = await user._user_id(String(task?.userId));
+    const log = logging.userLogs(String(_superuserId));
+
     taskCrud.deleteTask({ taskId: taskId })
       .then((numberOfTasksDeleted) => {
-        controllerLogger.warn(`Task: ${taskId} deleted by User ${req.user.userId}`);
+        log.warn(`Task: ${taskId} deleted by User ${req.user.userId}`);
         return res.status(200).json({
           status: true,
           data: { numberOfEntriesDeleted: numberOfTasksDeleted },
         });
       })
       .catch((err) => {
-        controllerLogger.error(new Error(err));
+        log.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,
         });
       });
-  }
+  },
 }

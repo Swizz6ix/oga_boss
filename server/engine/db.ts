@@ -7,7 +7,8 @@ import { Department, departmentCrud } from "../common/models/department.js";
 import { DailyRpt, dailyRptCrud } from "../common/models/daily.report.js";
 import { ChatRoom, chatRoomCrud } from "../common/models/chat.room.js";
 import { expressApp } from "../index.js";
-import { engineLogger } from "./logging.js";
+import { logging } from "./logging.js";
+import { loggerCrud } from "../common/models/logger.js";
 
 // Define database authentication
 export const connectDb = new Db(
@@ -25,6 +26,7 @@ export const engine = {
     departmentCrud.initialize(connectDb);
     dailyRptCrud.initialize(connectDb);
     chatRoomCrud.initialize(connectDb);
+    loggerCrud.initialize(connectDb);
 
     // Creating Model Association
     SuperUser.hasMany(User, {
@@ -161,10 +163,10 @@ export const engine = {
       .authenticate()
       .then(() => {
         console.log('Connection has been established successfully');
-        engineLogger.info(`data connection established successfully`);
+        logging.engineLogger.info(`data connection established successfully`);
       })
       .catch((err) => {
-        engineLogger.error(new Error(`Unable to connect to the database ${err}`));
+        logging.engineLogger.error(new Error(`Unable to connect to the database ${err}`));
         console.log(`Unable to connect to the database: ${err}`);
       });
 
@@ -173,11 +175,11 @@ export const engine = {
       .sync()
       .then(() => {
         expressApp();
-        engineLogger.info('database Initialized');
+        logging.engineLogger.info('database Initialized');
         console.log('database Initialized');
       })
       .catch((err) => {
-        engineLogger.error(new Error(`Sequelize Initialization threw an error: ${err}`))
+        logging.engineLogger.error(new Error(`Sequelize Initialization threw an error: ${err}`))
         console.log(`Sequelize Initialization threw an error: ${err}`);
       });
   },

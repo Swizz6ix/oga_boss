@@ -1,9 +1,12 @@
 import { CreationOptional,
   DataTypes,
+  ForeignKey,
   InferAttributes,
   InferCreationAttributes,
-  Model } from 'sequelize';
+  Model, 
+  NonAttribute} from 'sequelize';
 import { User } from './user.js';
+import { SuperUser } from './super.user.js';
 
 const dailyRptModel = {
   reportId: {
@@ -22,6 +25,9 @@ export class DailyRpt extends Model<InferAttributes<DailyRpt>,
   InferCreationAttributes<DailyRpt>> {
     declare reportId: CreationOptional<string>;
     declare report: string;
+    declare userId: ForeignKey<User['userId']>;
+    declare superuserId: ForeignKey<SuperUser['superuserId']>;
+    declare SupuerUser?: NonAttribute<SuperUser>;
   };
 
 export const dailyRptCrud = {

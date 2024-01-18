@@ -1,18 +1,26 @@
 import pkg from 'jsonwebtoken';
 import { createHash } from 'crypto';
 import { configs } from '../../config.js';
-import { authLogger } from '../../engine/logging.js';
+import { logging } from '../../engine/logging.js';
+import { user } from '../middlewares/user.middleware.js';
 // Generate an Access Token using username and userId
 export const auth = {
     token: (username, userId) => {
         const { sign } = pkg;
-        authLogger.alert(`session token created for user: ${userId}`);
+        const serverId = user._user_id(userId);
+        serverId.then((id) => {
+            const log = logging.userLogs(String(id));
+            log.alert(`session token created for user: ${userId}`);
+        })
+            .catch((err) => {
+            logging.authLogger.error(new Error(err));
+            return console.error(err);
+        });
         return sign({ userId, username }, configs.jwtSecret, { expiresIn: configs.jwtExpirationSeconds });
     },
     // Defines password encryption
     encryptPassword: (password) => {
         const hash = createHash('sha256');
-        authLogger.alert('password hashed');
         hash.update(password);
         return hash.digest('hex');
     },

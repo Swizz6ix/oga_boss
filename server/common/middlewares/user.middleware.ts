@@ -1,4 +1,4 @@
-import { authLogger } from "../../engine/logging.js";
+import { logging } from "../../engine/logging.js";
 import { superUserCrud } from "../models/super.user.js";
 import { userCrud } from "../models/user.js";
 
@@ -12,10 +12,10 @@ export const user = {
         try {
           const _superUser = await superUserCrud.findUser({ superuserId: reqId });
           if (_superUser) return _userId = _superUser.superuserId
-          authLogger.warn(new Error(`You can't access info from other server: ${reqId}`))
+          return logging.authLogger.warn(new Error(`An unknown User tried to access info in ${reqId} server`));
         }
         catch(err) {
-          authLogger.error(new Error('superuser server error'));
+          logging.authLogger.error(new Error('superuser server error'));
           return String(err);
         }
       }
@@ -23,7 +23,7 @@ export const user = {
       return _userId;
     }
     catch(err) {
-      authLogger.error(new Error('superuser server error'));
+      logging.authLogger.error(new Error('superuser server error'));
       return String(err)
     }
   },
@@ -38,15 +38,16 @@ export const user = {
           try {
             const user = await userCrud.findUser({ userId: reqId });
             if (!user) {
-              authLogger.warn(new Error(`Unknown user ${reqId}`));
+              logging.authLogger.warn(new Error(`Unknown user ${reqId}`));
               return console.error('User does not exist');
             }
             if (user.role === userRole) {
               userId = user.userId;
               return userId;
             }
-            authLogger.warn(new Error(`User ${user.userId} tried to access an unauthorized endpoint`));
-            return console.error(`User ${user.firstName} do not have the required permission!`);
+            const log = logging.userLogs(user.superuserId);
+            log.warn(new Error(`User ${user.userId} tried to access an unauthorized endpoint`));
+            return console.error(`User ${user.userId} do not have the required permission!`);
             } catch(error) {
               return String(error)
             };
@@ -54,7 +55,7 @@ export const user = {
           userId = params;
           return userId;
         } catch(error) {
-          authLogger.error(new Error('Unauthorized error'));
+          logging.authLogger.error(new Error('Unauthorized error'));
           return String(error);
         };
       };

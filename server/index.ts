@@ -1,5 +1,6 @@
 import express, { Express, Request, Response } from 'express';
 import session from 'express-session';
+import helmet from 'helmet';
 import  cors  from 'cors';
 import cookieParser from 'cookie-parser';
 import { createServer } from 'http';
@@ -15,7 +16,8 @@ import { engine } from './engine/db.js';
 import { redisStore } from './engine/redis.js';
 import { authenticated } from './common/middlewares/isAuthenticated.middleware.js';
 import { userAuth } from './common/auth/user.login.controller.js';
-import { engineLogger, morganMiddleware } from './engine/logging.js';
+import { logging, morganMiddleware } from './engine/logging.js';
+import { logRoutes } from './common/routes/log.routes.js';
 
 const port = configs.db_connections.port;
 const expire = configs.sessionExpire;
@@ -39,6 +41,7 @@ const sessionMiddleware = session({
 // Initialize Express app
 export const expressApp = () => {
   app.disable('x-powered-by'); // disabled to reduce fingerprinting
+  app.use(helmet());
   app.use(cors());
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
@@ -51,6 +54,7 @@ export const expressApp = () => {
   app.use('/department', departmentRoutes);
   app.use('/report', dailyReportRoutes);
   app.use('/room', chatRoomRoutes);
+  app.use('/logs', logRoutes);
   app.get('/logout', [authenticated.authSession], userAuth.logout);
   app.get('/', (req: Request, res: Response ) => {
     res.send('Hi!, welcome to OGA BOSS');
@@ -58,7 +62,7 @@ export const expressApp = () => {
   io.engine.use(sessionMiddleware);
   server.listen(port, () => {
     console.log(`[SERVER]: Server is up and running at http://localhost:${port}`);
-    engineLogger.info(`[SERVER]: Server is up and running at http://localhost:${port}`);
+    logging.engineLogger.info(`[SERVER]: Server is up and running at http://localhost:${port}`);
   });
 }
 

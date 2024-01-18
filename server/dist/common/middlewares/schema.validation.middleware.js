@@ -1,5 +1,6 @@
 import AJV from 'ajv';
-import { authLogger } from '../../engine/logging.js';
+import { logging } from '../../engine/logging.js';
+import { user } from './user.middleware.js';
 const AJV_OPTS = {
     allErrors: true,
 };
@@ -9,7 +10,7 @@ export const schemaValidator = {
      */
     verify: (schema) => {
         if (!schema) {
-            authLogger.warn(new Error('No schema provided'));
+            logging.authLogger.warn(new Error('No schema provided'));
             throw new Error('Schema not provided');
         }
         ;
@@ -20,7 +21,17 @@ export const schemaValidator = {
             const isValid = validate(body);
             if (isValid)
                 return next();
-            authLogger.warn(new Error(`Invalid Payload: ${ajv.errorsText(validate.errors)}`));
+            user._user_id(req.user.userId)
+                .then((id) => {
+                const log = logging.userLogs(String(id));
+                log.warn(new Error(`Invalid Payload: ${ajv.errorsText(validate.errors)}`));
+            })
+                .catch((err) => {
+                return res.status(400).json({
+                    status: false,
+                    error: err,
+                });
+            });
             return res.send({
                 status: false,
                 error: {
