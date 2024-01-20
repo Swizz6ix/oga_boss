@@ -8,15 +8,16 @@ import { configs } from '../../config.js';
 
 export const dailyReportRoutes = Router();
 const role = configs.roles.ADMIN;
+const access = configs.vacation.TRUE;
 
 dailyReportRoutes.get('/all',
-[authenticated.authSession, permission.has(role)], dailyReport.getAllReport);
+[authenticated.authSession, permission.has(role), permission.userActivity(access)], dailyReport.getAllReport);
 
 dailyReportRoutes.get('/:reportId',
-[authenticated.authSession, permission.has(role)], dailyReport.getReport);
+[authenticated.authSession, permission.userActivity(access)], dailyReport.getReport);
 
 dailyReportRoutes.post('/add',
-  [authenticated.authSession, schemaValidator.verify(dailyReportPayload)], dailyReport.addReport);
+  [authenticated.authSession, permission.userActivity(access), schemaValidator.verify(dailyReportPayload)], dailyReport.addReport);
 
 dailyReportRoutes.delete('/:reportId',
   [authenticated.authSession, permission.has(role)], dailyReport.deleteReport);

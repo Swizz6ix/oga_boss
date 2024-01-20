@@ -87,7 +87,7 @@ export const superUserCrud = {
   },
   findUser: (query: any) => {
     return SuperUser.findOne({ where: query, 
-      // include: { model: User } 
+      include: { model: User } 
     });
   },
   updateUser: (query: any, updateValue: any) => {

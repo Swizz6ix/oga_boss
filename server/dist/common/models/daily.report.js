@@ -8,7 +8,7 @@ const dailyRptModel = {
         allowNull: false,
     },
     report: {
-        type: DataTypes.STRING(128),
+        type: DataTypes.STRING(2048),
         allowNull: false,
     },
 };
@@ -23,10 +23,41 @@ export const dailyRptCrud = {
         return DailyRpt.create(report);
     },
     findReport: (query) => {
-        return DailyRpt.findOne({ where: query, include: { model: User } });
+        return DailyRpt.findOne({ where: query, include: [{
+                    model: User,
+                    attributes: {
+                        exclude: [
+                            'password',
+                            'role',
+                            'hod',
+                            'vacation',
+                            'createdAt',
+                            'updatedAt'
+                        ]
+                    }
+                }] });
     },
     findAllReport: (query) => {
-        return DailyRpt.findAll({ where: query, include: { model: User } });
+        return DailyRpt.findAll({ where: query, include: [{
+                    model: User,
+                    attributes: {
+                        exclude: [
+                            'username',
+                            'password',
+                            'role',
+                            'hod',
+                            'vacation',
+                            'createdAt',
+                            'updatedAt'
+                        ]
+                    }
+                }],
+            attributes: {
+                exclude: [
+                    'createdAt',
+                    'updatedAt'
+                ]
+            } });
     },
     updateReport: (query, updateValue) => {
         return DailyRpt.update(updateValue, { where: query });

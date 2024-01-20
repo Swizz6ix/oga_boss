@@ -1,0 +1,2 @@
+{"id":"12345","level":"alert","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 just logged in.","service":"superuser-service","timestamp":"2024-01-19 12:13:39.290 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 5d298057-5818-4461-944f-6531af9f56b9","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-19 12:13:39.305 AM"}

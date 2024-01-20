@@ -29,7 +29,6 @@ const userModel = {
     hod: {
         type: DataTypes.STRING(128),
         allowNull: true,
-        defaultValue: configs.hod.NO,
     },
     role: {
         type: DataTypes.STRING(128),
@@ -38,7 +37,7 @@ const userModel = {
     },
     vacation: {
         type: DataTypes.BOOLEAN,
-        defaultValue: configs.vacation.FALSE,
+        defaultValue: configs.vacation.TRUE,
     },
     position: {
         type: DataTypes.STRING(128),
@@ -81,47 +80,79 @@ export const userCrud = {
                     model: Department,
                     attributes: {
                         exclude: [
-                            'SuperUserId',
                             'createdAt',
                             'updatedAt',
                         ],
                     },
                 },
+                { model: Task },
+                { model: DailyRpt },
+                { model: ChatRoom }
+            ],
+            attributes: {
+                exclude: [
+                    'createdAt',
+                    'updatedAt'
+                ]
+            }
+        });
+    },
+    findAllUsers: (query) => {
+        return User.findAll({ where: query,
+            include: [
+                {
+                    model: SuperUser,
+                    attributes: {
+                        exclude: [
+                            'createdAt',
+                            'updatedAt'
+                        ]
+                    }
+                },
+                {
+                    model: Department,
+                    attributes: {
+                        exclude: [
+                            'createdAt',
+                            'updatedAt'
+                        ]
+                    }
+                },
                 {
                     model: Task,
                     attributes: {
                         exclude: [
-                            'UserId',
-                            'DepartmentId',
-                        ],
-                    },
+                            'createdAt',
+                            'updatedAt'
+                        ]
+                    }
                 },
                 {
                     model: DailyRpt,
                     attributes: {
-                        exclude: ['UserId']
+                        exclude: [
+                            'createdAt',
+                            'updatedAt'
+                        ]
                     }
                 },
                 {
                     model: ChatRoom,
                     attributes: {
                         exclude: [
-                            'UserId',
-                            'SuperUserId',
-                        ],
-                    },
-                }],
-        });
-    },
-    findAllUsers: (query) => {
-        return User.findAll({ where: query,
-            include: [
-                SuperUser,
-                Department,
-                Task,
-                DailyRpt,
-                ChatRoom,
+                            'createdAt',
+                            'updatedAt'
+                        ]
+                    }
+                },
             ],
+            attributes: {
+                exclude: [
+                    'password',
+                    'createdAt',
+                    'updatedAt'
+                ]
+            }
         });
     },
     updateUser: (query, updateValue) => {

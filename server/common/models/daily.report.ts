@@ -16,7 +16,7 @@ const dailyRptModel = {
     allowNull: false,
   },
   report: {
-    type: DataTypes.STRING(128),
+    type: DataTypes.STRING(2048),
     allowNull: false,
   },
 };
@@ -27,7 +27,7 @@ export class DailyRpt extends Model<InferAttributes<DailyRpt>,
     declare report: string;
     declare userId: ForeignKey<User['userId']>;
     declare superuserId: ForeignKey<SuperUser['superuserId']>;
-    declare SupuerUser?: NonAttribute<SuperUser>;
+    declare SuperUser?: NonAttribute<SuperUser>;
   };
 
 export const dailyRptCrud = {
@@ -38,10 +38,41 @@ export const dailyRptCrud = {
     return DailyRpt.create(report);
   },
   findReport: (query: any) => {
-    return DailyRpt.findOne({ where: query, include: { model: User } });
+    return DailyRpt.findOne({ where: query, include: [{
+      model: User,
+      attributes: {
+        exclude: [
+          'password',
+          'role',
+          'hod',
+          'vacation',
+          'createdAt',
+          'updatedAt'
+        ]
+      }
+    }]});
   },
   findAllReport: (query: any) => {
-    return DailyRpt.findAll({ where: query, include: { model: User } });
+    return DailyRpt.findAll({ where: query, include: [{
+      model: User,
+      attributes: {
+        exclude: [
+          'username',
+          'password',
+          'role',
+          'hod',
+          'vacation',
+          'createdAt',
+          'updatedAt'
+        ]
+      }
+    }],
+    attributes: {
+      exclude: [
+        'createdAt',
+        'updatedAt'
+      ]
+    }});
   },
   updateReport: (query: any, updateValue: any) => {
     return DailyRpt.update(updateValue, { where: query });

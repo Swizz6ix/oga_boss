@@ -1,0 +1,2 @@
+{"id":"12345","level":"error","message":"\tUser 8da27594-1e9b-4983-a709-10d51b58caf4 tried to access User a4c5182f-7801-4a95-90e8-d2c3c68c5ad6 report entry f57249d3-9125-4444-9ca0-411d1820ab5f","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-19 12:05:08.395 PM"}
+{"id":"12345","level":"error","message":"\tUser 5d298057-5818-4461-944f-6531af9f56b9 tried to access User a4c5182f-7801-4a95-90e8-d2c3c68c5ad6 report entry f57249d3-9125-4444-9ca0-411d1820ab5f","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-19 12:06:13.117 PM"}

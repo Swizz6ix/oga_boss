@@ -40,7 +40,7 @@ export const userPayload: JSONSchemaType<Props> = {
     vacation: {
       type: 'boolean',
       enum: Object.values(configs.vacation),
-      default: configs.vacation.FALSE,
+      default: configs.vacation.TRUE,
     },
     position: {
       type: 'string',

@@ -13,11 +13,11 @@ const taskModel = {
         allowNull: false,
     },
     description: {
-        type: DataTypes.STRING(128),
+        type: DataTypes.STRING(1024),
         allowNull: false,
     },
     deadline: {
-        type: DataTypes.STRING(128),
+        type: DataTypes.DATE,
         allowNull: false,
     },
     urgencyLevel: {
@@ -44,11 +44,11 @@ export const taskCrud = {
                     model: User,
                     attributes: {
                         exclude: [
-                            'password',
-                            'email',
                             'username',
+                            'password',
                             'role',
-                            'superuserId',
+                            'hod',
+                            'vacation',
                             'createdAt',
                             'updatedAt',
                         ],
@@ -58,7 +58,6 @@ export const taskCrud = {
                     model: Department,
                     attributes: {
                         exclude: [
-                            'SuperUserId',
                             'createdAt',
                             'updatedAt',
                         ],
@@ -68,8 +67,6 @@ export const taskCrud = {
                 exclude: [
                     'deadline',
                     'urgencyLevel',
-                    'UserId',
-                    'DepartmentId',
                     'createdAt',
                     'updatedAt'
                 ]
@@ -80,12 +77,11 @@ export const taskCrud = {
                     model: User,
                     attributes: {
                         exclude: [
-                            'password',
-                            'email',
-                            'role',
                             'username',
-                            'superuserId',
-                            'departmentId',
+                            'password',
+                            'vacation',
+                            'role',
+                            'hod',
                             'createdAt',
                             'updatedAt',
                         ],
@@ -95,7 +91,6 @@ export const taskCrud = {
                     model: Department,
                     attributes: {
                         exclude: [
-                            'SuperUserId',
                             'createdAt',
                             'updatedAt',
                         ],
@@ -105,8 +100,6 @@ export const taskCrud = {
                 exclude: [
                     'deadline',
                     'urgencyLevel',
-                    'UserId',
-                    'DepartmentId',
                     'createdAt',
                     'updatedAt'
                 ]

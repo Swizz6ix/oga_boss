@@ -1,0 +1,2 @@
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/all\",\"status\":200,\"content_length\":\"6777\",\"response_time\":298.451}","timestamp":"2024-01-20 07:02:48.250 PM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/all\",\"status\":200,\"content_length\":\"6672\",\"response_time\":128.351}","timestamp":"2024-01-20 07:03:13.617 PM"}

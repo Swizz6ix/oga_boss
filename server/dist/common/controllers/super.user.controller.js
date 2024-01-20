@@ -14,13 +14,12 @@ export const superUserController = {
     getUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const reqId = req.user.userId;
         const { params: { userId } } = req;
-        const _superuserId = yield user._user_id(String(userId));
-        const log = logging.userLogs(String(_superuserId));
+        const log = logging.userLogs(userId);
         if (reqId !== userId) {
             log.warn(`User: ${reqId} tried to access endpoint associated with User ${userId}`);
             return res.status(500).json({
                 status: false,
-                error: `This endpoint is above the pay grad of user ${reqId}`
+                error: `User ${reqId} does not have the required permission to perform this operation.`,
             });
         }
         superUserCrud.findUser({ superuserId: userId })
@@ -39,11 +38,20 @@ export const superUserController = {
             });
         });
     }),
-    getUsers: (req, res) => {
+    getUsers: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const reqId = req.user.userId;
         const { params: { userId } } = req;
+        const _superuserId = yield user._user_id(reqId);
+        const log = logging.userLogs(userId);
+        if (_superuserId !== userId) {
+            log.warn(`User: ${reqId} tried to retrieve all Users in ${userId}`);
+            return res.status(500).json({
+                status: false,
+                error: `User ${reqId} does not have the required permission to perform this operation.`,
+            });
+        }
         superUserCrud.findUser({ superuserId: userId })
             .then((user) => {
-            const log = logging.userLogs(String(user === null || user === void 0 ? void 0 : user.superuserId));
             user === null || user === void 0 ? void 0 : user.getUsers().then((users) => {
                 log.info(`All users in the server ${user.superuserId} retrieved by User ${req.user.userId}`);
                 return res.status(200).json({
@@ -59,18 +67,27 @@ export const superUserController = {
             });
         })
             .catch((err) => {
-            logging.controllerLogger.error(new Error(err));
+            log.error(new Error(err));
             return res.status(500).json({
                 status: false,
                 error: err,
             });
         });
-    },
-    getUsersCount: (req, res) => {
+    }),
+    getUsersCount: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const reqId = req.user.userId;
         const { params: { userId } } = req;
+        const _superuserId = yield user._user_id(reqId);
+        const log = logging.userLogs(userId);
+        if (_superuserId !== userId) {
+            log.warn(`User: ${reqId} tried to retrieve all Users in ${userId}`);
+            return res.status(500).json({
+                status: false,
+                error: `User ${reqId} does not have the required permission to perform this operation.`,
+            });
+        }
         superUserCrud.findUser({ superuserId: userId })
             .then((user) => {
-            const log = logging.userLogs(String(user === null || user === void 0 ? void 0 : user.superuserId));
             user === null || user === void 0 ? void 0 : user.countUsers().then((users) => {
                 log.info(`Total number of users in server ${user.superuserId} retrieved by ${req.user.userId}`);
                 return res.status(200).json({
@@ -86,18 +103,27 @@ export const superUserController = {
             });
         })
             .catch((err) => {
-            logging.controllerLogger.error(new Error(err));
+            log.error(new Error(err));
             return res.status(500).json({
                 status: false,
                 error: err,
             });
         });
-    },
-    getDepartments: (req, res) => {
+    }),
+    getDepartments: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const reqId = req.user.userId;
         const { params: { userId } } = req;
+        const _superuserId = yield user._user_id(reqId);
+        const log = logging.userLogs(userId);
+        if (_superuserId !== userId) {
+            log.warn(`User: ${reqId} tried to retrieve all Users in ${userId}`);
+            return res.status(500).json({
+                status: false,
+                error: `User ${reqId} does not have the required permission to perform this operation.`,
+            });
+        }
         superUserCrud.findUser({ superuserId: userId })
             .then((user) => {
-            const log = logging.userLogs(String(user === null || user === void 0 ? void 0 : user.superuserId));
             user === null || user === void 0 ? void 0 : user.getDepartments().then((dept) => {
                 log.info(`All departments in server ${user.superuserId} retrieved by user ${req.user.userId}`);
                 return res.status(200).json({
@@ -113,19 +139,27 @@ export const superUserController = {
             });
         })
             .catch((err) => {
-            logging.controllerLogger.error(new Error(err));
+            log.error(new Error(err));
             return res.status(500).json({
                 status: false,
                 error: err,
             });
         });
-    },
-    getDepartMentsCount: (req, res) => {
+    }),
+    getDepartMentsCount: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const reqId = req.user.userId;
         const { params: { userId } } = req;
+        const _superuserId = yield user._user_id(reqId);
+        const log = logging.userLogs(userId);
+        if (_superuserId !== userId) {
+            log.warn(`User: ${reqId} tried to retrieve all Users in ${userId}`);
+            return res.status(500).json({
+                status: false,
+                error: `User ${reqId} does not have the required permission to perform this operation.`,
+            });
+        }
         superUserCrud.findUser({ superuserId: userId })
             .then((user) => {
-            const log = logging.userLogs(String(user === null || user === void 0 ? void 0 : user.superuserId));
             user === null || user === void 0 ? void 0 : user.countDepartments().then((departments) => {
                 log.info(`Total number of Departments in server ${user.superuserId} retrieved by ${reqId}`);
                 return res.status(200).json({
@@ -141,18 +175,27 @@ export const superUserController = {
             });
         })
             .catch((err) => {
-            logging.controllerLogger.error(new Error(err));
+            log.error(new Error(err));
             return res.status(500).json({
                 status: false,
                 error: err,
             });
         });
-    },
-    getTasks: (req, res) => {
+    }),
+    getTasks: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const reqId = req.user.userId;
         const { params: { userId } } = req;
+        const _superuserId = yield user._user_id(reqId);
+        const log = logging.userLogs(userId);
+        if (_superuserId !== userId) {
+            log.warn(`User: ${reqId} tried to retrieve all Users in ${userId}`);
+            return res.status(500).json({
+                status: false,
+                error: `User ${reqId} does not have the required permission to perform this operation.`,
+            });
+        }
         superUserCrud.findUser({ superuserId: userId })
             .then((user) => {
-            const log = logging.userLogs(String(user === null || user === void 0 ? void 0 : user.superuserId));
             user === null || user === void 0 ? void 0 : user.getTasks().then((tasks) => {
                 log.info(`All tasks in server ${user.superuserId} retrieved by User ${req.user.userId}`);
                 return res.status(200).json({
@@ -168,18 +211,27 @@ export const superUserController = {
             });
         })
             .catch((err) => {
-            logging.controllerLogger.error(new Error(err));
+            log.error(new Error(err));
             return res.status(500).json({
                 status: false,
                 error: err,
             });
         });
-    },
-    getTasksCount: (req, res) => {
+    }),
+    getTasksCount: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const reqId = req.user.userId;
         const { params: { userId } } = req;
+        const _superuserId = yield user._user_id(reqId);
+        const log = logging.userLogs(userId);
+        if (_superuserId !== userId) {
+            log.warn(`User: ${reqId} tried to retrieve all Users in ${userId}`);
+            return res.status(500).json({
+                status: false,
+                error: `User ${reqId} does not have the required permission to perform this operation.`,
+            });
+        }
         superUserCrud.findUser({ superuserId: userId })
             .then((user) => {
-            const log = logging.userLogs(String(user === null || user === void 0 ? void 0 : user.superuserId));
             user === null || user === void 0 ? void 0 : user.countTasks().then((tasks) => {
                 log.info(`Total number of tasks in server ${user.superuserId} retrieved by ${req.user.userId}`);
                 return res.status(200).json({
@@ -195,23 +247,23 @@ export const superUserController = {
             });
         })
             .catch((err) => {
-            logging.controllerLogger.error(new Error(err));
+            log.error(new Error(err));
             return res.status(500).json({
                 status: false,
                 error: err,
             });
         });
-    },
+    }),
     updateUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const reqId = req.user.userId;
         const { params: { userId }, body: payload, } = req;
         const _user = yield superUserCrud.findUser({ superuserId: userId });
         const log = logging.userLogs(String(_user === null || _user === void 0 ? void 0 : _user.superuserId));
         if (reqId !== userId) {
-            log.warn(`User ${reqId} tried to access endpoint associated with User: ${userId}`);
+            log.warn(`User ${reqId} tried to perform an update operation on User ${userId}.`);
             return res.status(500).json({
                 status: false,
-                error: `This endpoint is above the pay grad of user ${reqId}`
+                error: `User ${reqId} does not have the required permission to perform this operation.`,
             });
         }
         // If the payload doesn't have any keys, return error

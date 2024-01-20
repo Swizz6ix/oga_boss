@@ -1,0 +1,12 @@
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/logs/all\",\"status\":200,\"content_length\":\"946137\",\"response_time\":389.424}","timestamp":"2024-01-19 09:01:00.801 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/logout\",\"status\":200,\"content_length\":\"60\",\"response_time\":49.136}","timestamp":"2024-01-19 09:01:33.764 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"POST\",\"url\":\"/superuser/login\",\"status\":200,\"content_length\":\"351\",\"response_time\":206.612}","timestamp":"2024-01-19 09:01:38.727 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/department/026354a1-dbff-4023-b16b-d9297678d82d\",\"status\":500,\"content_length\":\"132\",\"response_time\":138.468}","timestamp":"2024-01-19 09:01:49.267 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/logout\",\"status\":200,\"content_length\":\"60\",\"response_time\":32.913}","timestamp":"2024-01-19 09:02:03.765 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"POST\",\"url\":\"/user/login\",\"status\":200,\"content_length\":\"844\",\"response_time\":90.942}","timestamp":"2024-01-19 09:02:11.443 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/department/026354a1-dbff-4023-b16b-d9297678d82d\",\"status\":200,\"content_length\":\"233\",\"response_time\":34.061}","timestamp":"2024-01-19 09:02:21.362 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"POST\",\"url\":\"/user/login\",\"status\":200,\"content_length\":\"838\",\"response_time\":102.673}","timestamp":"2024-01-19 09:03:02.023 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"POST\",\"url\":\"/user/signup\",\"status\":201,\"content_length\":\"509\",\"response_time\":244.611}","timestamp":"2024-01-19 09:04:31.542 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"POST\",\"url\":\"/user/login\",\"status\":400,\"content_length\":\"74\",\"response_time\":93.927}","timestamp":"2024-01-19 09:05:06.243 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"POST\",\"url\":\"/user/login\",\"status\":200,\"content_length\":\"846\",\"response_time\":80.938}","timestamp":"2024-01-19 09:05:41.164 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/department/026354a1-dbff-4023-b16b-d9297678d82d\",\"status\":500,\"content_length\":\"132\",\"response_time\":43.141}","timestamp":"2024-01-19 09:05:50.934 AM"}

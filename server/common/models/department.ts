@@ -22,12 +22,17 @@ const departmentModel = {
     allowNull: false,
     unique: true,
   },
+  description: {
+    type: DataTypes.STRING(1024),
+    allowNull: false
+  }
 };
 
 export class Department extends Model<InferAttributes<Department>,
   InferCreationAttributes<Department>> {
     declare departmentId: CreationOptional<string>;
     declare department: string;
+    declare description: string;
     declare getUsers: HasManyGetAssociationsMixin<User>;
     declare countUsers: HasManyCountAssociationsMixin;
     declare Users?: NonAttribute<User[]>;
@@ -47,79 +52,74 @@ export const departmentCrud = {
   },
   findDept: (query: any) => {
     return Department.findOne({ where: query, 
-    //   include: [{
-    //   model: User,
-    //   attributes: {
-    //     exclude: [
-    //       'password',
-    //       'email',
-    //       'userName',
-    //       'SuperUserId',
-    //       'DepartmentId',
-    //       'createdAt',
-    //       'updatedAt'
-    //     ],
-    //   }
-    // },
-    // {
-    //   model: Task,
-    //   attributes: {
-    //     exclude: [
-    //       'UserId',
-    //       'DepartmentId',
-    //       'deadline',
-    //       'urgencyLevel',
-    //       'createdAt',
-    //       'updatedAt'
-    //     ]
-    //   }
-    // }],
-    // attributes: {
-    //   exclude: [
-    //     'SuperUserId',
-    //     'createdAt',
-    //     'updatedAt'
-    //   ]
-    // }
+      include: [{
+      model: User,
+      attributes: {
+        exclude: [
+          'role',
+          'hod',
+          'vacation',
+          'password',
+          'email',
+          'userName',
+          'createdAt',
+          'updatedAt'
+        ],
+      }
+    },
+    {
+      model: Task,
+      attributes: {
+        exclude: [
+          'deadline',
+          'urgencyLevel',
+          'createdAt',
+          'updatedAt'
+        ]
+      }
+    }],
+    attributes: {
+      exclude: [
+        'createdAt',
+        'updatedAt'
+      ]
+    }
   })
   },
 
   findAllDept: (query: any) => {
     return Department.findAll({ where: query,
-    //   include: [{
-    //   model: User,
-    //   attributes: {
-    //     exclude: [
-    //       'password',
-    //       'email',
-    //       'userName',
-    //       'SuperUserId',
-    //       'DepartmentId',
-    //       'createdAt',
-    //       'updatedAt'
-    //     ],
-    //   }
-    // },
-    // {
-    //   model: Task,
-    //   attributes: {
-    //     exclude: [
-    //       'UserId',
-    //       'DepartmentId',
-    //       'deadline',
-    //       'urgencyLevel',
-    //       'createdAt',
-    //       'updatedAt'
-    //     ]
-    //   }
-    // }],
-    // attributes: {
-    //   exclude: [
-    //     'SuperUserId',
-    //     'createdAt',
-    //     'updatedAt'
-    //   ]
-    // }
+      include: [{
+      model: User,
+      attributes: {
+        exclude: [
+          'hod',
+          'role',
+          'vacation',
+          'password',
+          'userName',
+          'createdAt',
+          'updatedAt'
+        ],
+      }
+    },
+    {
+      model: Task,
+      attributes: {
+        exclude: [
+          'deadline',
+          'urgencyLevel',
+          'createdAt',
+          'updatedAt'
+        ]
+      }
+    }],
+    attributes: {
+      exclude: [
+        'createdAt',
+        'updatedAt'
+      ]
+    }
   });
   },
 

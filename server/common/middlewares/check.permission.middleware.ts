@@ -2,6 +2,7 @@ import { NextFunction, Response, Request } from 'express';
 import { superUserCrud } from '../models/super.user.js';
 import { userCrud } from '../models/user.js';
 import { logging } from '../../engine/logging.js';
+import { user as _user } from './user.middleware.js';
 
 export const permission = {
   has: (role: string) => {
@@ -37,7 +38,7 @@ export const permission = {
                     );
                     return res.status(403).json({
                       status: false,
-                      error: `You need to be an ${role} to access this endpoint.`
+                      error: `You do not have the required permission to perform this operation.`
                     });
                   };
                   log.info(
@@ -60,7 +61,7 @@ export const permission = {
             );
             return res.status(403).json({
               status: false,
-              error: `You need to be a ${role} to access this endpoint.`
+              error: `You do not have the required permission to perform this operation.`
             });
           };
           log.info(
@@ -78,4 +79,31 @@ export const permission = {
         });
     };
   },
+  userActivity: (access: boolean) => {
+    return async (req: Request, res: Response, next: NextFunction) => {
+      const{
+        user: { userId }
+      } = req
+      const _superuserId = await _user._user_id(userId);
+      const log = logging.userLogs(String(_superuserId));
+      try {
+        const user = await userCrud.findUser({ userId: userId });
+        if (user?.vacation === access) {
+          log.warn(`User ${userId} tried to access url: ${req.originalUrl}`);
+          return res.status(500).json({
+            status: false,
+            error: `User ${userId} cannot access information, contact an admin.`
+          })
+        }
+        next();
+      }
+      catch (err) {
+        log.error(new Error(`server error`));
+        return res.status(500).json({
+          status: false,
+          error: err,
+        })
+      };
+    };
+  }
 }
