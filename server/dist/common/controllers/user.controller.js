@@ -380,6 +380,13 @@ export const userController = {
                 error: `User ${reqId} don't have the required permission to perform this operation.`,
             });
         }
+        if (reqId === userId) {
+            log.warn(`User ${reqId} tried to update his own information`);
+            return res.status(500).json({
+                status: false,
+                error: `User ${reqId} don't have the required permission to perform this operation.`,
+            });
+        }
         // if the payload does not have any keys, return an error
         if (!Object.keys(payload).length) {
             log.error(new Error('No update provided'));

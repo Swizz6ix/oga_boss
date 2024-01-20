@@ -12,6 +12,10 @@ const departmentModel = {
         allowNull: false,
         unique: true,
     },
+    description: {
+        type: DataTypes.STRING(1024),
+        allowNull: false
+    }
 };
 export class Department extends Model {
 }
@@ -29,11 +33,12 @@ export const departmentCrud = {
                     model: User,
                     attributes: {
                         exclude: [
+                            'role',
+                            'hod',
+                            'vacation',
                             'password',
                             'email',
                             'userName',
-                            'SuperUserId',
-                            'DepartmentId',
                             'createdAt',
                             'updatedAt'
                         ],
@@ -43,8 +48,6 @@ export const departmentCrud = {
                     model: Task,
                     attributes: {
                         exclude: [
-                            'UserId',
-                            'DepartmentId',
                             'deadline',
                             'urgencyLevel',
                             'createdAt',
@@ -54,7 +57,6 @@ export const departmentCrud = {
                 }],
             attributes: {
                 exclude: [
-                    'SuperUserId',
                     'createdAt',
                     'updatedAt'
                 ]
@@ -67,11 +69,11 @@ export const departmentCrud = {
                     model: User,
                     attributes: {
                         exclude: [
+                            'hod',
+                            'role',
+                            'vacation',
                             'password',
-                            'email',
                             'userName',
-                            'SuperUserId',
-                            'DepartmentId',
                             'createdAt',
                             'updatedAt'
                         ],
@@ -81,8 +83,6 @@ export const departmentCrud = {
                     model: Task,
                     attributes: {
                         exclude: [
-                            'UserId',
-                            'DepartmentId',
                             'deadline',
                             'urgencyLevel',
                             'createdAt',
@@ -92,7 +92,6 @@ export const departmentCrud = {
                 }],
             attributes: {
                 exclude: [
-                    'SuperUserId',
                     'createdAt',
                     'updatedAt'
                 ]

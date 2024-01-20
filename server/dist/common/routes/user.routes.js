@@ -21,10 +21,7 @@ userRoutes.get('/:userId/reports', [authenticated.authSession, permission.userAc
 userRoutes.get('/:userId/countReports', [authenticated.authSession, permission.userActivity(access)], userController.getReportsCount);
 userRoutes.get('/:userId/chats', [authenticated.authSession, permission.userActivity(access)], userController.getChats);
 userRoutes.get('/:userId/countChats', [authenticated.authSession, permission.userActivity(access)], userController.getChatsCount);
-userRoutes.post('/signup', [
-    // authenticated.check, permission.has(role), 
-    schemaValidator.verify(userPayload)
-], createUser);
+userRoutes.post('/signup', [schemaValidator.verify(userPayload)], createUser);
 userRoutes.post('/login', [schemaValidator.verify(userLoginPayload)], userAuth.login);
 userRoutes.patch('/update/:userId', [authenticated.authSession, permission.has(role), permission.userActivity(access),
     schemaValidator.verify(userUpdatePayload)], userController.updateUser);

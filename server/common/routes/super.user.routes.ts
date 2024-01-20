@@ -12,27 +12,28 @@ import { configs } from '../../config.js';
 
 export const superUserRoutes = Router();
 const role = configs.roles.ADMIN;
+const access = configs.vacation.TRUE;
 
 superUserRoutes.get('/:userId',
   [authenticated.authSession, permission.has(role)], superUserController.getUser);
 
 superUserRoutes.get('/:userId/users',
-  [authenticated.authSession, permission.has(role)], superUserController.getUsers);
+  [authenticated.authSession, permission.has(role), permission.userActivity(access)], superUserController.getUsers);
 
 superUserRoutes.get('/:userId/departments', 
-  [authenticated.authSession, permission.has(role)], superUserController.getDepartments);
+  [authenticated.authSession, permission.has(role), permission.userActivity(access)], superUserController.getDepartments);
 
 superUserRoutes.get('/:userId/totalDepartments',
-  [authenticated.authSession, permission.has(role)], superUserController.getDepartMentsCount);
+  [authenticated.authSession, permission.has(role), permission.userActivity(access)], superUserController.getDepartMentsCount);
 
 superUserRoutes.get('/:userId/tasks',
-  [authenticated.authSession, permission.has(role)], superUserController.getTasks);
+  [authenticated.authSession, permission.has(role), permission.userActivity(access)], superUserController.getTasks);
 
 superUserRoutes.get('/:userId/totalTasks',
-  [authenticated.authSession, permission.has(role)], superUserController.getTasksCount);
+  [authenticated.authSession, permission.has(role), permission.userActivity(access)], superUserController.getTasksCount);
 
 superUserRoutes.get('/:userId/totalUsers',
-  [authenticated.authSession, permission.has(role)], superUserController.getUsersCount);
+  [authenticated.authSession, permission.has(role), permission.userActivity(access)], superUserController.getUsersCount);
 
 superUserRoutes.post('/signup', [schemaValidator.verify(superUserPayload)], signup);
 

@@ -13,7 +13,7 @@ const chatRoomModel = {
     primaryKey: true,
   },
   message: {
-    type: DataTypes.STRING(128),
+    type: DataTypes.STRING(2048),
     allowNull: false,
   },
   messageFrom: {

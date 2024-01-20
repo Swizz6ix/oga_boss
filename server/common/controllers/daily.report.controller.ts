@@ -57,9 +57,9 @@ export const dailyReport = {
 
   getReport: async (req: Request, res: Response) => {
     const reqId = req.user.userId;
-    const _user = await userCrud.findUser({ userId: reqId });
     const superuserId = await user._user_id(reqId);
-    const log = logging.userLogs(String(superuserId))
+    const log = logging.userLogs(String(superuserId));
+    const _user = await userCrud.findUser({ userId: reqId });
     const {
       params: { reportId }
     } = req;
@@ -74,12 +74,14 @@ export const dailyReport = {
             error: `User ${reqId} do not have the required permission to perform this operation`,
           })
         }
-        if ( reqId !== report?.userId && _user?.role !== role) {
-          log.error(`User ${reqId} tried read the report ${reportId} of User ${report.userId}`);
-          return res.status(500).json({
-            status: false,
-            error: `User ${reqId} does not have the required permission to perform this operation.`
-          })
+        if ( reqId !== superuserId) {
+          if (_user?.role !== role) {
+            log.error(`User ${reqId} tried read the report ${reportId} of User ${report.userId}`);
+            return res.status(500).json({
+              status: false,
+              error: `User ${reqId} does not have the required permission to perform this operation.`
+            })
+          }
         }
         log.info(`Report ${reportId} was retrieved by user ${req.user.userId}`)
         return res.status(200).json({

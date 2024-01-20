@@ -65,14 +65,15 @@ export const taskController = {
             });
         });
     }),
-    getTask: (req, res) => {
+    getTask: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const reqId = req.user.userId;
+        const _superuser = yield user._user_id(reqId);
         const { params: { taskId } } = req;
         taskCrud.findTask({ taskId: taskId })
             .then((task) => {
             const log = logging.userLogs(String(task === null || task === void 0 ? void 0 : task.superuserId));
             // Only user assigned to task has access to the task
-            if (reqId !== (task === null || task === void 0 ? void 0 : task.userId)) {
+            if (_superuser !== (task === null || task === void 0 ? void 0 : task.superuserId)) {
                 log.warn(`User ${reqId} tried to access an unauthorized task ${task === null || task === void 0 ? void 0 : task.taskId}`);
                 return res.status(500).json({
                     status: false,
@@ -92,7 +93,7 @@ export const taskController = {
                 error: err,
             });
         });
-    },
+    }),
     getAllTasks: (req, res) => {
         const { user: { userId } } = req;
         user._user_id(userId)

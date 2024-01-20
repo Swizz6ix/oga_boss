@@ -6,6 +6,10 @@ export const departmentPayload = {
             type: 'string',
             nullable: false,
         },
+        description: {
+            type: 'string',
+            nullable: false,
+        }
     },
     required: ['department'],
     additionalProperties: true,

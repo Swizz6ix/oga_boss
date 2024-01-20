@@ -14,9 +14,8 @@ export const superUserController = {
     getUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const reqId = req.user.userId;
         const { params: { userId } } = req;
-        const _superuserId = yield user._user_id(String(reqId));
         const log = logging.userLogs(userId);
-        if (_superuserId !== userId) {
+        if (reqId !== userId) {
             log.warn(`User: ${reqId} tried to access endpoint associated with User ${userId}`);
             return res.status(500).json({
                 status: false,

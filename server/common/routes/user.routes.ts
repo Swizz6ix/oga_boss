@@ -39,11 +39,7 @@ userRoutes.get('/:userId/chats',
 userRoutes.get('/:userId/countChats',
   [authenticated.authSession, permission.userActivity(access)], userController.getChatsCount);
 
-userRoutes.post('/signup',
-  [ 
-    // authenticated.check, permission.has(role), 
-    schemaValidator.verify(userPayload)
-  ], createUser);
+userRoutes.post('/signup', [schemaValidator.verify(userPayload)], createUser);
 
 userRoutes.post('/login',
   [schemaValidator.verify(userLoginPayload)], userAuth.login);

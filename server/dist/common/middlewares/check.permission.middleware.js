@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { superUserCrud } from '../models/super.user.js';
 import { userCrud } from '../models/user.js';
 import { logging } from '../../engine/logging.js';
+import { user as _user } from './user.middleware.js';
 export const permission = {
     has: (role) => {
         return (req, res, next) => {
@@ -37,7 +38,7 @@ export const permission = {
                                 log.warn(`User: ${user.userId} tried to access the endpoint ${req.originalUrl}`);
                                 return res.status(403).json({
                                     status: false,
-                                    error: `You need to be an ${role} to access this endpoint.`
+                                    error: `You do not have the required permission to perform this operation.`
                                 });
                             }
                             ;
@@ -59,7 +60,7 @@ export const permission = {
                         log.warn(`User: ${user.superuserId} tried to access the endpoint ${req.originalUrl}`);
                         return res.status(403).json({
                             status: false,
-                            error: `You need to be a ${role} to access this endpoint.`
+                            error: `You do not have the required permission to perform this operation.`
                         });
                     }
                     ;
@@ -79,14 +80,27 @@ export const permission = {
     userActivity: (access) => {
         return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
             const { user: { userId } } = req;
-            const user = yield userCrud.findUser({ userId: userId });
-            if ((user === null || user === void 0 ? void 0 : user.vacation) === access) {
+            const _superuserId = yield _user._user_id(userId);
+            const log = logging.userLogs(String(_superuserId));
+            try {
+                const user = yield userCrud.findUser({ userId: userId });
+                if ((user === null || user === void 0 ? void 0 : user.vacation) === access) {
+                    log.warn(`User ${userId} tried to access url: ${req.originalUrl}`);
+                    return res.status(500).json({
+                        status: false,
+                        error: `User ${userId} cannot access information, contact an admin.`
+                    });
+                }
+                next();
+            }
+            catch (err) {
+                log.error(new Error(`server error`));
                 return res.status(500).json({
                     status: false,
-                    error: `User ${userId} cannot access information, contact an admin.`
+                    error: err,
                 });
             }
-            next();
+            ;
         });
     }
 };

@@ -61,8 +61,9 @@ export const taskController = {
       });
   },
 
-  getTask: (req: Request, res: Response) => {
+  getTask: async (req: Request, res: Response) => {
     const reqId = req.user.userId;
+    const _superuser = await user._user_id(reqId);
     const {
       params: { taskId }
     } = req;
@@ -72,7 +73,7 @@ export const taskController = {
         const log = logging.userLogs(String(task?.superuserId));
 
         // Only user assigned to task has access to the task
-        if (reqId !== task?.userId) {
+        if (_superuser !== task?.superuserId) {
           log.warn(
             `User ${reqId} tried to access an unauthorized task ${task?.taskId}`
           );

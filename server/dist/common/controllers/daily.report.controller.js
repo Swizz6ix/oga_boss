@@ -58,9 +58,9 @@ export const dailyReport = {
     }),
     getReport: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const reqId = req.user.userId;
-        const _user = yield userCrud.findUser({ userId: reqId });
         const superuserId = yield user._user_id(reqId);
         const log = logging.userLogs(String(superuserId));
+        const _user = yield userCrud.findUser({ userId: reqId });
         const { params: { reportId } } = req;
         dailyRptCrud.findReport({ reportId: reportId })
             .then((report) => {
@@ -71,12 +71,14 @@ export const dailyReport = {
                     error: `User ${reqId} do not have the required permission to perform this operation`,
                 });
             }
-            if (reqId !== (report === null || report === void 0 ? void 0 : report.userId) && (_user === null || _user === void 0 ? void 0 : _user.role) !== role) {
-                log.error(`User ${reqId} tried read the report ${reportId} of User ${report.userId}`);
-                return res.status(500).json({
-                    status: false,
-                    error: `User ${reqId} does not have the required permission to perform this operation.`
-                });
+            if (reqId !== superuserId) {
+                if ((_user === null || _user === void 0 ? void 0 : _user.role) !== role) {
+                    log.error(`User ${reqId} tried read the report ${reportId} of User ${report.userId}`);
+                    return res.status(500).json({
+                        status: false,
+                        error: `User ${reqId} does not have the required permission to perform this operation.`
+                    });
+                }
             }
             log.info(`Report ${reportId} was retrieved by user ${req.user.userId}`);
             return res.status(200).json({
