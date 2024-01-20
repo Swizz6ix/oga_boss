@@ -1,4 +1,0 @@
-{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-18 10:51:32.537 PM"}
-{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-18 10:51:32.775 PM"}
-{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-18 10:51:32.855 PM"}
-{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-18 10:51:32.858 PM"}
