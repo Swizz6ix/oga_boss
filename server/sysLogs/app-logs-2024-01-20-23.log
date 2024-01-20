@@ -181,3 +181,7 @@
 {"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 11:29:00.696 PM"}
 {"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 11:29:00.785 PM"}
 {"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:3000","service":"engine-service","timestamp":"2024-01-20 11:29:00.788 PM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 11:29:12.799 PM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 11:29:12.992 PM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 11:29:13.118 PM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:3000","service":"engine-service","timestamp":"2024-01-20 11:29:13.122 PM"}
