@@ -27,7 +27,7 @@ export class DailyRpt extends Model<InferAttributes<DailyRpt>,
     declare report: string;
     declare userId: ForeignKey<User['userId']>;
     declare superuserId: ForeignKey<SuperUser['superuserId']>;
-    declare SupuerUser?: NonAttribute<SuperUser>;
+    declare SuperUser?: NonAttribute<SuperUser>;
   };
 
 export const dailyRptCrud = {

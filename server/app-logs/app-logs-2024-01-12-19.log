@@ -1,0 +1,5 @@
+{"level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-12 07:46:21.398 PM"}
+{"level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-12 07:46:21.477 PM"}
+{"level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-12 07:46:21.583 PM"}
+{"level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-12 07:46:21.695 PM"}
+{"level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-12 07:46:21.698 PM"}

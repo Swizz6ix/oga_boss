@@ -1,0 +1,68 @@
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:01:16.522 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-19 12:01:17.182 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-19 12:01:17.286 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-19 12:01:17.289 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:03:01.797 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:03:12.366 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-19 12:03:12.562 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-19 12:03:12.673 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-19 12:03:12.677 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:03:47.672 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-19 12:03:47.813 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-19 12:03:47.913 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-19 12:03:47.916 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:04:12.170 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-19 12:04:12.437 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-19 12:04:13.125 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-19 12:04:13.151 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:04:25.036 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-19 12:04:25.534 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:05:00.217 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-19 12:05:00.707 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-19 12:05:01.036 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-19 12:05:01.040 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:05:36.632 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-19 12:05:36.830 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-19 12:05:36.954 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-19 12:05:36.956 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:08:06.819 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-19 12:08:07.403 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-19 12:08:07.559 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-19 12:08:07.562 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:09:12.346 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:09:26.562 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:09:33.025 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:09:36.534 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-19 12:09:36.696 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-19 12:09:36.780 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-19 12:09:36.783 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:09:50.590 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-19 12:09:50.734 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-19 12:09:50.807 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-19 12:09:50.809 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:10:12.599 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-19 12:10:12.795 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-19 12:10:12.888 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-19 12:10:12.893 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:11:02.540 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-19 12:11:03.237 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-19 12:11:03.792 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-19 12:11:03.797 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:11:12.483 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-19 12:11:12.812 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-19 12:11:13.130 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-19 12:11:13.140 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:11:40.944 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-19 12:11:41.321 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-19 12:11:41.612 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-19 12:11:41.615 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:12:10.767 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-19 12:12:11.075 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-19 12:12:11.197 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-19 12:12:11.200 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-19 12:13:07.955 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-19 12:13:08.115 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-19 12:13:08.240 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-19 12:13:08.241 AM"}
+{"id":"12345","level":"info","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 accessed the endpoint /task/update/289a0615-2071-41aa-8b1d-849f7c41231e as an admin","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-19 12:13:54.453 AM"}
+{"id":"12345","level":"info","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 just got authenticated","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-19 12:13:54.561 AM"}

@@ -1,0 +1,100 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "sysLogs/.ae935b4faf4ef2d4423ab267fbf2a8db40504c7e-audit.json",
+    "files": [
+        {
+            "date": 1705614690328,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-18-22.log",
+            "hash": "a8aca39a0aded63c49fa3862f907b97021c069b3385ed9c48ef40357eec7f416"
+        },
+        {
+            "date": 1705615216166,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-18-23.log",
+            "hash": "43df1b9622e3ce0d4d51dbad053682b0b6873567bb099499fc8ba2fbcb8f0f1a"
+        },
+        {
+            "date": 1705618862236,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-19-00.log",
+            "hash": "a19da0b8069b82a07724bb86f8e86f86074de5c19162fa33dc68b86cf333f53f"
+        },
+        {
+            "date": 1705644754281,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-19-07.log",
+            "hash": "757fd914f139c9e922539ef4c40eace52f18f4bdebe73eefd029b91d5bdd5eb5"
+        },
+        {
+            "date": 1705647601392,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-19-08.log",
+            "hash": "be903e7d75805df03990e2a5fa80bffce9c82a6fe0d229f55087df3b842bb718"
+        },
+        {
+            "date": 1705654554961,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-19-09.log",
+            "hash": "84cdf938375c7c08716011852bec8dd7a53a81d1a46f8a3e40f85a4b58948079"
+        },
+        {
+            "date": 1705654801578,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-19-10.log",
+            "hash": "5bda01ce3da5275560cdbc1b5fa0fba2d3bd9fe619a007b68d88a6860ed43618"
+        },
+        {
+            "date": 1705658465769,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-19-11.log",
+            "hash": "81ec2847c4610509d838f1d95b8289abadaa6d3745c2c97ae9c3d58b32e4953e"
+        },
+        {
+            "date": 1705662005452,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-19-12.log",
+            "hash": "3a711174bb1bdaf76d205070594db971aa5ecca6425866e5fd7731cb76d916ff"
+        },
+        {
+            "date": 1705673213857,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-19-15.log",
+            "hash": "d7b2d2e8a1209d7b5b426554c32c873d31af65accba9414f6b5d1c1363b4edf6"
+        },
+        {
+            "date": 1705676520363,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-19-16.log",
+            "hash": "a7e9a50de207d54eb8606ddd09f5dd5100b5e39de40d3b03fd67680c1ec76103"
+        },
+        {
+            "date": 1705692028331,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-19-20.log",
+            "hash": "329c82fdb653ffe0383bbb89f3ed25af50f11a433c481d8d69831ea784eed2bd"
+        },
+        {
+            "date": 1705694415741,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-19-21.log",
+            "hash": "972a05fb8ed6a08ce1d77ce7660161d8a6b39fb0ca85eb4c2c2a60d3dc234789"
+        },
+        {
+            "date": 1705698199863,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-19-22.log",
+            "hash": "e61aa1ce6504cb61776956bab628cf5fac02593d3fc481fa461efbcc335735ab"
+        },
+        {
+            "date": 1705701609858,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-19-23.log",
+            "hash": "da989dec41adc2d0e98b2946a161657a9364bd6040a7a6151dccdcb5e7b9bac3"
+        },
+        {
+            "date": 1705707169728,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-20-00.log",
+            "hash": "11fb634da46eb87a74b8379accb75707583bcf995643d4f6c37b02525bd00fe9"
+        },
+        {
+            "date": 1705711520827,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-20-01.log",
+            "hash": "03cb7b9075cabcbc663a207e61e2004651e10c24f30983cc5460a5a2ebf40e5d"
+        },
+        {
+            "date": 1705712407876,
+            "name": "sysLogs/app-rejectionError-logs-2024-01-20-02.log",
+            "hash": "4f7acdc51e3d047f02e7aa65c84f3b74bf2e5003334158c507861ba42a779ba2"
+        }
+    ],
+    "hashType": "sha256"
+}

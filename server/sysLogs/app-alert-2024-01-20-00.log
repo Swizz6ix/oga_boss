@@ -1,0 +1,18 @@
+{"id":"12345","level":"alert","message":"\tsession token created for user: 8da27594-1e9b-4983-a709-10d51b58caf4","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:35:19.706 AM"}
+{"id":"12345","level":"alert","message":"\tuser: 8da27594-1e9b-4983-a709-10d51b58caf4 just signed in","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:35:19.708 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 5d298057-5818-4461-944f-6531af9f56b9","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:35:29.135 AM"}
+{"id":"12345","level":"alert","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 just logged in.","service":"superuser-service","timestamp":"2024-01-20 12:35:29.157 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 37ab5c61-f772-49f2-9620-c7cbd20922bc","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:35:39.400 AM"}
+{"id":"12345","level":"alert","message":"\tuser: 37ab5c61-f772-49f2-9620-c7cbd20922bc just signed in","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:35:39.401 AM"}
+{"id":"12345","level":"alert","message":"\tUser: 6308a111-bbb2-4a9f-a421-2b1a3648316b just logged in.","service":"superuser-service","timestamp":"2024-01-20 12:35:48.665 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 6308a111-bbb2-4a9f-a421-2b1a3648316b","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:35:48.670 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 37ab5c61-f772-49f2-9620-c7cbd20922bc","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:36:06.386 AM"}
+{"id":"12345","level":"alert","message":"\tuser: 37ab5c61-f772-49f2-9620-c7cbd20922bc just signed in","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:36:06.389 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 8da27594-1e9b-4983-a709-10d51b58caf4","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:36:55.122 AM"}
+{"id":"12345","level":"alert","message":"\tuser: 8da27594-1e9b-4983-a709-10d51b58caf4 just signed in","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:36:55.123 AM"}
+{"id":"12345","level":"alert","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 just logged in.","service":"superuser-service","timestamp":"2024-01-20 12:38:06.980 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 5d298057-5818-4461-944f-6531af9f56b9","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:38:06.986 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 37ab5c61-f772-49f2-9620-c7cbd20922bc","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:40:21.830 AM"}
+{"id":"12345","level":"alert","message":"\tuser: 37ab5c61-f772-49f2-9620-c7cbd20922bc just signed in","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:40:21.832 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 5d298057-5818-4461-944f-6531af9f56b9","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:41:41.913 AM"}
+{"id":"12345","level":"alert","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 just logged in.","service":"superuser-service","timestamp":"2024-01-20 12:41:41.918 AM"}

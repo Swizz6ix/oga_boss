@@ -1,0 +1,5 @@
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/report/f57249d3-9125-4444-9ca0-411d1820ab5f\",\"status\":500,\"content_length\":\"130\",\"response_time\":166.776}","timestamp":"2024-01-19 12:05:08.436 PM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/report/f57249d3-9125-4444-9ca0-411d1820ab5f\",\"status\":403,\"content_length\":\"75\",\"response_time\":112.414}","timestamp":"2024-01-19 12:05:55.344 PM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/logout\",\"status\":200,\"content_length\":\"60\",\"response_time\":25.67}","timestamp":"2024-01-19 12:06:03.207 PM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"POST\",\"url\":\"/superuser/login\",\"status\":200,\"content_length\":\"351\",\"response_time\":497.226}","timestamp":"2024-01-19 12:06:08.318 PM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/report/f57249d3-9125-4444-9ca0-411d1820ab5f\",\"status\":500,\"content_length\":\"130\",\"response_time\":63.972}","timestamp":"2024-01-19 12:06:13.121 PM"}

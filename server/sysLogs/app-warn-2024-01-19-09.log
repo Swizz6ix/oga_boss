@@ -1,0 +1,2 @@
+{"id":"12345","level":"warn","message":"\tUser 5d298057-5818-4461-944f-6531af9f56b9 tried to access an unauthorized department 026354a1-dbff-4023-b16b-d9297678d82d","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-19 09:01:49.166 AM"}
+{"id":"12345","level":"warn","message":"\tUser 8da27594-1e9b-4983-a709-10d51b58caf4 tried to access an unauthorized department 026354a1-dbff-4023-b16b-d9297678d82d","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-19 09:05:50.930 AM"}

@@ -50,7 +50,7 @@ export const user = {
                             return console.error('User does not exist');
                         }
                         if (user.role === userRole) {
-                            userId = user.userId;
+                            userId = params;
                             return userId;
                         }
                         const log = logging.userLogs(user.superuserId);

@@ -1,0 +1,165 @@
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:32:52.359 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:32:52.552 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:32:52.635 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:32:52.638 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:34:17.906 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:34:18.053 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:34:18.122 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:34:18.124 AM"}
+{"id":"12345","level":"info","message":"\tUser: 37ab5c61-f772-49f2-9620-c7cbd20922bc just got authenticated","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:34:57.342 AM"}
+{"id":"12345","level":"info","message":"\tAll tasks accessed by 37ab5c61-f772-49f2-9620-c7cbd20922bc","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:34:57.395 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6/tasks\",\"status\":200,\"content_length\":\"448\",\"response_time\":147.177}","timestamp":"2024-01-20 12:34:57.412 AM"}
+{"id":"12345","level":"info","message":"\tUser: 37ab5c61-f772-49f2-9620-c7cbd20922bc just got authenticated","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:35:06.878 AM"}
+{"id":"12345","level":"info","message":"\tUser: a4c5182f-7801-4a95-90e8-d2c3c68c5ad6 retrieved by 37ab5c61-f772-49f2-9620-c7cbd20922bc.","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:35:06.916 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6\",\"status\":200,\"content_length\":\"1535\",\"response_time\":95.424}","timestamp":"2024-01-20 12:35:06.926 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 8da27594-1e9b-4983-a709-10d51b58caf4","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:35:19.706 AM"}
+{"id":"12345","level":"alert","message":"\tuser: 8da27594-1e9b-4983-a709-10d51b58caf4 just signed in","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:35:19.708 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"POST\",\"url\":\"/user/login\",\"status\":200,\"content_length\":\"1128\",\"response_time\":166.069}","timestamp":"2024-01-20 12:35:19.712 AM"}
+{"id":"12345","level":"info","message":"\tUser: 8da27594-1e9b-4983-a709-10d51b58caf4 just got authenticated","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:35:23.656 AM"}
+{"id":"12345","level":"warn","message":"\tUser 8da27594-1e9b-4983-a709-10d51b58caf4 tried to access an unauthorized endpoint","service":"5d298057-5818-4461-944f-6531af9f56b9","stack":"Error: User 8da27594-1e9b-4983-a709-10d51b58caf4 tried to access an unauthorized endpoint\n    at file:///mnt/c/Users/user/gmn/project/oga_boss/server/dist/common/middlewares/user.middleware.js:57:34\n    at Generator.next (<anonymous>)\n    at fulfilled (file:///mnt/c/Users/user/gmn/project/oga_boss/server/dist/common/middlewares/user.middleware.js:4:58)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-20 12:35:23.684 AM"}
+{"id":"12345","level":"error","message":"\tUser 8da27594-1e9b-4983-a709-10d51b58caf4 tried access /user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6.!! Error: WHERE parameter \"userId\" has invalid \"undefined\" value","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","stack":"Error: User 8da27594-1e9b-4983-a709-10d51b58caf4 tried access /user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6.!! Error: WHERE parameter \"userId\" has invalid \"undefined\" value\n    at file:///mnt/c/Users/user/gmn/project/oga_boss/server/dist/common/controllers/user.controller.js:41:27\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-20 12:35:23.690 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6\",\"status\":500,\"content_length\":\"27\",\"response_time\":55.92}","timestamp":"2024-01-20 12:35:23.696 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 5d298057-5818-4461-944f-6531af9f56b9","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:35:29.135 AM"}
+{"id":"12345","level":"alert","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 just logged in.","service":"superuser-service","timestamp":"2024-01-20 12:35:29.157 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"POST\",\"url\":\"/superuser/login\",\"status\":200,\"content_length\":\"351\",\"response_time\":109.824}","timestamp":"2024-01-20 12:35:29.195 AM"}
+{"id":"12345","level":"info","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 just got authenticated","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:35:31.587 AM"}
+{"id":"12345","level":"warn","message":"\tUser 5d298057-5818-4461-944f-6531af9f56b9 tried access User a4c5182f-7801-4a95-90e8-d2c3c68c5ad6 information on url: /user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:35:31.607 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6\",\"status\":500,\"content_length\":\"120\",\"response_time\":47.482}","timestamp":"2024-01-20 12:35:31.611 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 37ab5c61-f772-49f2-9620-c7cbd20922bc","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:35:39.400 AM"}
+{"id":"12345","level":"alert","message":"\tuser: 37ab5c61-f772-49f2-9620-c7cbd20922bc just signed in","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:35:39.401 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"POST\",\"url\":\"/user/login\",\"status\":200,\"content_length\":\"831\",\"response_time\":72.381}","timestamp":"2024-01-20 12:35:39.404 AM"}
+{"id":"12345","level":"info","message":"\tUser: 37ab5c61-f772-49f2-9620-c7cbd20922bc just got authenticated","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:35:41.588 AM"}
+{"id":"12345","level":"info","message":"\tUser: a4c5182f-7801-4a95-90e8-d2c3c68c5ad6 retrieved by 37ab5c61-f772-49f2-9620-c7cbd20922bc.","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:35:41.619 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6\",\"status\":200,\"content_length\":\"1535\",\"response_time\":46.801}","timestamp":"2024-01-20 12:35:41.622 AM"}
+{"id":"12345","level":"alert","message":"\tUser: 6308a111-bbb2-4a9f-a421-2b1a3648316b just logged in.","service":"superuser-service","timestamp":"2024-01-20 12:35:48.665 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 6308a111-bbb2-4a9f-a421-2b1a3648316b","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:35:48.670 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"POST\",\"url\":\"/superuser/login\",\"status\":200,\"content_length\":\"349\",\"response_time\":65.589}","timestamp":"2024-01-20 12:35:48.672 AM"}
+{"id":"12345","level":"info","message":"\tUser: 6308a111-bbb2-4a9f-a421-2b1a3648316b just got authenticated","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:35:53.739 AM"}
+{"id":"12345","level":"info","message":"\tUser: a4c5182f-7801-4a95-90e8-d2c3c68c5ad6 retrieved by 6308a111-bbb2-4a9f-a421-2b1a3648316b.","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:35:53.798 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6\",\"status\":200,\"content_length\":\"1535\",\"response_time\":107.397}","timestamp":"2024-01-20 12:35:53.810 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 37ab5c61-f772-49f2-9620-c7cbd20922bc","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:36:06.386 AM"}
+{"id":"12345","level":"alert","message":"\tuser: 37ab5c61-f772-49f2-9620-c7cbd20922bc just signed in","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:36:06.389 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"POST\",\"url\":\"/user/login\",\"status\":200,\"content_length\":\"831\",\"response_time\":81.899}","timestamp":"2024-01-20 12:36:06.392 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 8da27594-1e9b-4983-a709-10d51b58caf4","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:36:55.122 AM"}
+{"id":"12345","level":"alert","message":"\tuser: 8da27594-1e9b-4983-a709-10d51b58caf4 just signed in","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:36:55.123 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"POST\",\"url\":\"/user/login\",\"status\":200,\"content_length\":\"1128\",\"response_time\":69.512}","timestamp":"2024-01-20 12:36:55.126 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6/totalTasks\",\"status\":404,\"content_length\":191,\"response_time\":6.433}","timestamp":"2024-01-20 12:37:24.161 AM"}
+{"id":"12345","level":"info","message":"\tUser: 8da27594-1e9b-4983-a709-10d51b58caf4 just got authenticated","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:37:54.995 AM"}
+{"id":"12345","level":"warn","message":"\tUser 8da27594-1e9b-4983-a709-10d51b58caf4 tried to access an unauthorized endpoint","service":"5d298057-5818-4461-944f-6531af9f56b9","stack":"Error: User 8da27594-1e9b-4983-a709-10d51b58caf4 tried to access an unauthorized endpoint\n    at file:///mnt/c/Users/user/gmn/project/oga_boss/server/dist/common/middlewares/user.middleware.js:57:34\n    at Generator.next (<anonymous>)\n    at fulfilled (file:///mnt/c/Users/user/gmn/project/oga_boss/server/dist/common/middlewares/user.middleware.js:4:58)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-20 12:37:55.007 AM"}
+{"id":"12345","level":"error","message":"\tError: WHERE parameter \"userId\" has invalid \"undefined\" value","service":"server-service","stack":"Error: Error: WHERE parameter \"userId\" has invalid \"undefined\" value\n    at file:///mnt/c/Users/user/gmn/project/oga_boss/server/dist/common/controllers/user.controller.js:158:48\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-20 12:37:55.012 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6/countTasks\",\"status\":500,\"content_length\":\"27\",\"response_time\":58.483}","timestamp":"2024-01-20 12:37:55.015 AM"}
+{"id":"12345","level":"alert","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 just logged in.","service":"superuser-service","timestamp":"2024-01-20 12:38:06.980 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 5d298057-5818-4461-944f-6531af9f56b9","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:38:06.986 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"POST\",\"url\":\"/superuser/login\",\"status\":200,\"content_length\":\"351\",\"response_time\":55.827}","timestamp":"2024-01-20 12:38:06.987 AM"}
+{"id":"12345","level":"info","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 just got authenticated","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:38:10.340 AM"}
+{"id":"12345","level":"info","message":"\tTotal number of all tasks accessed by 5d298057-5818-4461-944f-6531af9f56b9","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:38:10.593 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6/countTasks\",\"status\":200,\"content_length\":\"38\",\"response_time\":279.012}","timestamp":"2024-01-20 12:38:10.599 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:38:45.780 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:38:45.907 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:38:45.993 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:38:45.998 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:39:07.557 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:39:07.739 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:39:07.818 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:39:07.820 AM"}
+{"id":"12345","level":"info","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 just got authenticated","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:39:11.409 AM"}
+{"id":"12345","level":"warn","message":"\tUser 5d298057-5818-4461-944f-6531af9f56b9 tried to access user a4c5182f-7801-4a95-90e8-d2c3c68c5ad6 tasks. Url: /user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6/countTasks ","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:39:11.423 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6/countTasks\",\"status\":500,\"content_length\":\"132\",\"response_time\":83.842}","timestamp":"2024-01-20 12:39:11.438 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 37ab5c61-f772-49f2-9620-c7cbd20922bc","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:40:21.830 AM"}
+{"id":"12345","level":"alert","message":"\tuser: 37ab5c61-f772-49f2-9620-c7cbd20922bc just signed in","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:40:21.832 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"POST\",\"url\":\"/user/login\",\"status\":200,\"content_length\":\"831\",\"response_time\":188.253}","timestamp":"2024-01-20 12:40:21.842 AM"}
+{"id":"12345","level":"info","message":"\tUser: 37ab5c61-f772-49f2-9620-c7cbd20922bc just got authenticated","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:40:27.956 AM"}
+{"id":"12345","level":"info","message":"\tTotal number of all tasks accessed by 37ab5c61-f772-49f2-9620-c7cbd20922bc","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:40:27.999 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6/countTasks\",\"status\":200,\"content_length\":\"38\",\"response_time\":63.024}","timestamp":"2024-01-20 12:40:28.002 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:41:20.265 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:41:20.404 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:41:20.540 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:41:20.542 AM"}
+{"id":"12345","level":"info","message":"\tUser: 37ab5c61-f772-49f2-9620-c7cbd20922bc just got authenticated","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:41:34.624 AM"}
+{"id":"12345","level":"info","message":"\tAll daily reports accessed by 37ab5c61-f772-49f2-9620-c7cbd20922bc","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:41:34.687 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6/reports\",\"status\":200,\"content_length\":\"308\",\"response_time\":186.505}","timestamp":"2024-01-20 12:41:34.705 AM"}
+{"id":"12345","level":"alert","message":"\tsession token created for user: 5d298057-5818-4461-944f-6531af9f56b9","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:41:41.913 AM"}
+{"id":"12345","level":"alert","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 just logged in.","service":"superuser-service","timestamp":"2024-01-20 12:41:41.918 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"POST\",\"url\":\"/superuser/login\",\"status\":200,\"content_length\":\"351\",\"response_time\":217.247}","timestamp":"2024-01-20 12:41:41.923 AM"}
+{"id":"12345","level":"info","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 just got authenticated","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:41:53.496 AM"}
+{"id":"12345","level":"warn","message":"\tUser 5d298057-5818-4461-944f-6531af9f56b9 tried to access user a4c5182f-7801-4a95-90e8-d2c3c68c5ad6 tasks. Url: /user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6/reports ","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:41:53.509 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6/reports\",\"status\":500,\"content_length\":\"132\",\"response_time\":70.493}","timestamp":"2024-01-20 12:41:53.516 AM"}
+{"id":"12345","level":"info","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 just got authenticated","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:45:42.413 AM"}
+{"id":"12345","level":"info","message":"\ttotal number of reports accessed by 5d298057-5818-4461-944f-6531af9f56b9","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:45:42.422 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6/countReports\",\"status\":200,\"content_length\":\"40\",\"response_time\":44.692}","timestamp":"2024-01-20 12:45:42.430 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:46:32.640 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:46:33.035 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:46:33.104 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:46:33.106 AM"}
+{"id":"12345","level":"info","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 just got authenticated","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:47:30.244 AM"}
+{"id":"12345","level":"info","message":"\tall chats accessed by 5d298057-5818-4461-944f-6531af9f56b9","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:47:30.261 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6/chats\",\"status\":200,\"content_length\":\"26\",\"response_time\":110.501}","timestamp":"2024-01-20 12:47:30.277 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:48:04.724 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:48:05.261 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:48:05.383 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:48:05.386 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:48:16.701 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:48:16.837 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:48:16.988 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:48:16.991 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:48:31.843 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:48:32.091 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:48:32.215 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:48:32.218 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:48:41.956 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:48:42.093 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:48:42.165 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:48:42.168 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:48:53.807 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:48:53.954 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:48:54.062 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:48:54.064 AM"}
+{"id":"12345","level":"info","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 just got authenticated","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:51:59.009 AM"}
+{"id":"12345","level":"info","message":"\tTotal number of chats accessed by 5d298057-5818-4461-944f-6531af9f56b9","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:51:59.024 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6/countChats\",\"status\":200,\"content_length\":\"38\",\"response_time\":121.727}","timestamp":"2024-01-20 12:51:59.039 AM"}
+{"id":"12345","level":"info","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 just got authenticated","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:52:44.145 AM"}
+{"id":"12345","level":"info","message":"\tTotal number of chats accessed by 5d298057-5818-4461-944f-6531af9f56b9","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:52:44.160 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6/countChats\",\"status\":200,\"content_length\":\"38\",\"response_time\":82.68}","timestamp":"2024-01-20 12:52:44.173 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:53:28.051 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:53:28.321 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:53:28.438 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:53:28.441 AM"}
+{"id":"12345","level":"info","message":"\tUser: 5d298057-5818-4461-944f-6531af9f56b9 just got authenticated","service":"5d298057-5818-4461-944f-6531af9f56b9","timestamp":"2024-01-20 12:53:28.681 AM"}
+{"id":"12345","level":"warn","message":"\tUser 5d298057-5818-4461-944f-6531af9f56b9 tried to access user a4c5182f-7801-4a95-90e8-d2c3c68c5ad6 tasks. Url: /user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6/countChats ","service":"6308a111-bbb2-4a9f-a421-2b1a3648316b","timestamp":"2024-01-20 12:53:28.695 AM"}
+{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/user/a4c5182f-7801-4a95-90e8-d2c3c68c5ad6/countChats\",\"status\":500,\"content_length\":\"132\",\"response_time\":108.506}","timestamp":"2024-01-20 12:53:28.710 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:55:16.395 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:55:16.586 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:55:16.732 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:55:16.735 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:55:48.517 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:55:48.656 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:55:48.739 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:55:48.745 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:55:55.072 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:55:55.212 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:55:55.296 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:55:55.298 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:56:38.810 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:56:38.980 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:56:39.121 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:56:39.123 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:56:48.800 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:56:49.169 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:56:49.606 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:56:49.610 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:56:55.004 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:56:55.133 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:56:55.203 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:56:55.205 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:57:16.653 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:57:17.137 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:57:17.425 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:57:17.430 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:57:26.609 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:57:27.101 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:57:27.197 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:57:27.199 AM"}
+{"id":"12345","level":"info","message":"\tConnection to redis server successful","service":"engine-service","timestamp":"2024-01-20 12:57:37.494 AM"}
+{"id":"12345","level":"info","message":"\tdata connection established successfully","service":"engine-service","timestamp":"2024-01-20 12:57:37.801 AM"}
+{"id":"12345","level":"info","message":"\tdatabase Initialized","service":"engine-service","timestamp":"2024-01-20 12:57:37.947 AM"}
+{"id":"12345","level":"info","message":"\t[SERVER]: Server is up and running at http://localhost:5000","service":"engine-service","timestamp":"2024-01-20 12:57:37.951 AM"}

@@ -1,23 +1,35 @@
-import { Request, Response } from 'express';
+import e, { Request, Response } from 'express';
 import { userCrud } from '../models/user.js';
 import { user } from '../middlewares/user.middleware.js';
 import { configs } from '../../config.js';
 import { logging } from '../../engine/logging.js';
+import { auth } from '../auth/auth.js';
 
 const _role = configs.roles.ADMIN;
 
 export const userController = {
-  getUser: (req: Request, res: Response) => {
+  getUser: async (req: Request, res: Response) => {
     const reqId = req.user.userId;
+    const _superuserId = await user._user_id(reqId);
     const {
       params: { userId }
     } = req;
+    const _user = await user._user_id(userId);
+    const log = logging.userLogs(String(_user));
 
     user.userIdentify(reqId, _role, userId)
       .then((params) => {
         userCrud.findUser({ userId: params })
           .then((user) => {
-            const log = logging.userLogs(String(user?.superuserId));
+            if (_superuserId !== user?.superuserId) {
+              log.warn(
+                `User ${reqId} tried access User ${userId} information on url: ${req.originalUrl}`,
+              )
+              return res.status(500).json({
+                status: false,
+                error: `User ${reqId} doesn't have the required permission for this info.`
+              });
+            }
             log.info(`User: ${user?.userId} retrieved by ${reqId}.`);
             return res.status(200).json({
               status: true,
@@ -25,7 +37,7 @@ export const userController = {
             });
           })
           .catch((err) => {
-            logging.controllerLogger.error(new Error(err));
+            log.error(new Error(`User ${reqId} tried access ${req.originalUrl}.!! ${err}`));
             return res.status(500).json({
               status: false,
               error: err,
@@ -33,7 +45,7 @@ export const userController = {
           });
       })
       .catch((err) => {
-        logging.controllerLogger.error(new Error(err));
+        log.error(new Error(`User ${reqId} tried access ${req.originalUrl}.!! ${err}`));
         return res.status(500).json({
           status: false,
           error: err,
@@ -74,17 +86,28 @@ export const userController = {
       });
   },
 
-  getTasks: (req: any, res: Response) => {
+  getTasks: async (req: Request, res: Response) => {
     const reqId = req.user.userId;
     const {
       params: { userId }
     } = req;
 
+    const _superuserId = await user._user_id(reqId);
+    const _superuserId_ = await user._user_id(userId);
+    const log = logging.userLogs(String(_superuserId_));
+
+    if (_superuserId !== _superuserId_) {
+      log.warn(`User ${reqId} tried to access user ${userId} tasks. Url: ${req.originalUrl} `)
+      return res.status(500).json({
+        status: false,
+        error: `User ${reqId} does not have the required permission to perform this operation`,
+      });
+    }
+
     user.userIdentify(reqId, _role, userId)
       .then((params) => {
         userCrud.findUser({ userId: params })
           .then((user) => {
-            const log = logging.userLogs(String(user?.superuserId));
             user?.getTasks()
               .then((tasks) => {
                 log.info(`All tasks accessed by ${reqId}`)
@@ -102,7 +125,7 @@ export const userController = {
               });
           })
           .catch((err) => {
-            logging.controllerLogger.error(new Error(err));
+            log.error(new Error(err));
             return res.status(500).json({
               status: false,
               error: err,
@@ -110,7 +133,7 @@ export const userController = {
           });
       })
       .catch((err) => {
-        logging.controllerLogger.error(new Error(err));
+        log.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,
@@ -118,17 +141,28 @@ export const userController = {
       })
   },
 
-  getTasksCount: (req: any, res: Response) => {
+  getTasksCount: async (req: Request, res: Response) => {
     const reqId = req.user.userId;
     const {
       params: { userId }
     } = req;
 
+    const _superuserId = await user._user_id(reqId);
+    const _superuserId_ = await user._user_id(userId);
+    const log = logging.userLogs(String(_superuserId_));
+
+    if (_superuserId !== _superuserId_) {
+      log.warn(`User ${reqId} tried to access user ${userId} tasks. Url: ${req.originalUrl} `)
+      return res.status(500).json({
+        status: false,
+        error: `User ${reqId} does not have the required permission to perform this operation`,
+      });
+    }
+
     user.userIdentify(reqId, _role, userId)
       .then((params) => {
         userCrud.findUser({ userId: params })
           .then((user) => {
-            const log = logging.userLogs(String(user?.superuserId));
             user?.countTasks()
               .then((tasks) => {
                 log.info(`Total number of all tasks accessed by ${reqId}`);
@@ -146,7 +180,7 @@ export const userController = {
               });
           })
           .catch((err) => {
-            logging.controllerLogger.error(new Error(err));
+            log.error(new Error(err));
             return res.status(500).json({
               status: false,
               error: err,
@@ -154,7 +188,7 @@ export const userController = {
           });
       })
       .catch((err) => {
-        logging.controllerLogger.error(new Error(err));
+        log.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,
@@ -162,17 +196,28 @@ export const userController = {
       });
   },
 
-  getReports: (req: any, res: Response) => {
+  getReports: async (req: Request, res: Response) => {
     const reqId = req.user.userId;
     const {
       params: { userId }
     } = req;
 
+    const _superuserId = await user._user_id(reqId);
+    const _superuserId_ = await user._user_id(userId);
+    const log = logging.userLogs(String(_superuserId_));
+
+    if (_superuserId !== _superuserId_) {
+      log.warn(`User ${reqId} tried to access user ${userId} tasks. Url: ${req.originalUrl} `)
+      return res.status(500).json({
+        status: false,
+        error: `User ${reqId} does not have the required permission to perform this operation`,
+      });
+    }
+
     user.userIdentify(reqId, _role, userId)
       .then((params) => {
         userCrud.findUser({ userId: params })
           .then((user) => {
-            const log = logging.userLogs(String(user?.superuserId));
             user?.getDailyRpts()
               .then((reports) => {
                 log.info(`All daily reports accessed by ${reqId}`);
@@ -190,7 +235,7 @@ export const userController = {
               });
           })
           .catch((err) => {
-            logging.controllerLogger.error(new Error(err));
+            log.error(new Error(err));
             return res.status(500).json({
               status: false,
               error: err,
@@ -198,7 +243,7 @@ export const userController = {
           });
       })
       .catch((err) => {
-        logging.controllerLogger.error(new Error(err));
+        log.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,
@@ -206,11 +251,22 @@ export const userController = {
       });
   },
 
-  getReportsCount: (req: any, res: Response) => {
+  getReportsCount: async (req: Request, res: Response) => {
     const reqId = req.user.userId;
     const {
       params: { userId }
     } = req;
+    const _superuserId = await user._user_id(reqId);
+    const _superuserId_ = await user._user_id(userId);
+    const log = logging.userLogs(String(_superuserId_));
+
+    if (_superuserId !== _superuserId_) {
+      log.warn(`User ${reqId} tried to access user ${userId} tasks. Url: ${req.originalUrl} `)
+      return res.status(500).json({
+        status: false,
+        error: `User ${reqId} does not have the required permission to perform this operation`,
+      });
+    }
 
     user.userIdentify(reqId, _role, userId)
       .then((params) => {
@@ -234,7 +290,7 @@ export const userController = {
               });
           })
           .catch((err) => {
-            logging.controllerLogger.error(new Error(err));
+            log.error(new Error(err));
             return res.status(500).json({
               status: false,
               error: err,
@@ -242,7 +298,7 @@ export const userController = {
           });
       })
       .catch((err) => {
-        logging.controllerLogger.error(new Error(err));
+        log.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,
@@ -250,11 +306,23 @@ export const userController = {
       })
   },
 
-  getChats: (req: any, res: Response) => {
+  getChats: async (req: Request, res: Response) => {
     const reqId = req.user.userId;
     const {
       params: { userId },
     } = req;
+
+    const _superuserId = await user._user_id(reqId);
+    const _superuserId_ = await user._user_id(userId);
+    const log = logging.userLogs(String(_superuserId_))
+
+    if (_superuserId !== _superuserId_) {
+      log.warn(`User ${reqId} tried to access user ${userId} tasks. Url: ${req.originalUrl} `)
+      return res.status(500).json({
+        status: false,
+        error: `User ${reqId} does not have the required permission to perform this operation`,
+      });
+    }
 
     user.userIdentify(reqId, _role, userId)
       .then((params) => {
@@ -278,7 +346,7 @@ export const userController = {
               });
           })
           .catch((err) => {
-            logging.controllerLogger.error(new Error(err));
+            log.error(new Error(err));
             return res.status(500).json({
               status: false,
               error: err,
@@ -286,7 +354,7 @@ export const userController = {
           });
       })
       .catch((err) => {
-        logging.controllerLogger.error(new Error(err));
+        log.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,
@@ -294,11 +362,23 @@ export const userController = {
       });
   },
 
-  getChatsCount: (req: any, res: Response) => {
+  getChatsCount: async (req: Request, res: Response) => {
     const reqId = req.user.userId;
     const {
       params: { userId },
     } = req;
+
+    const _superuserId = await user._user_id(reqId);
+    const _superuserId_ = await user._user_id(userId);
+    const log = logging.userLogs(String(_superuserId_))
+
+    if (_superuserId !== _superuserId_) {
+      log.warn(`User ${reqId} tried to access user ${userId} tasks. Url: ${req.originalUrl} `)
+      return res.status(500).json({
+        status: false,
+        error: `User ${reqId} does not have the required permission to perform this operation`,
+      });
+    }
 
     user.userIdentify(reqId, _role, userId)
       .then((params) => {
@@ -322,7 +402,7 @@ export const userController = {
               });
           })
           .catch((err) => {
-            logging.controllerLogger.error(new Error(err));
+            log.error(new Error(err));
             return res.status(500).json({
               status: false,
               error: err,
@@ -330,7 +410,7 @@ export const userController = {
           });
       })
       .catch((err) => {
-        logging.controllerLogger.error(new Error(err));
+        log.error(new Error(err));
         return res.status(500).json({
           status: false,
           error: err,
@@ -339,6 +419,8 @@ export const userController = {
   },
 
   updateUser: async (req: Request, res: Response) => {
+    const reqId = req.user.userId;
+    const _superuserId = await user._user_id(reqId);
     const {
       params: { userId },
       body: payload
@@ -346,17 +428,31 @@ export const userController = {
     const _user = await userCrud.findUser({ userId: userId });
     const log = logging.userLogs(String(_user?.superuserId));
 
+    if (_superuserId !== _user?.superuserId) {
+      log.warn(`An unknown user ${reqId} tried to update user ${userId}`);
+      return res.status(500).json({
+        status: false,
+        error: `User ${reqId} don't have the required permission to perform this operation.`,
+      });
+    }
     // if the payload does not have any keys, return an error
     if (!Object.keys(payload).length) {
       log.error(new Error('No update provided'));
       return res.status(400).json({
         status: false,
         error: {
-          message: 'Body is empty, hence cannot update the user',
+          message: 'update provided',
         },
       });
     }
-    userCrud.updateUser({ userId: userId }, payload)
+    let updateInfo;
+    if (payload.password) {
+      const securedPassword = auth.encryptPassword(payload.password);
+      updateInfo = { ...payload, password: securedPassword }
+    } else {
+    updateInfo = payload;
+    }
+    userCrud.updateUser({ userId: userId }, updateInfo)
       .then(() => {
         return userCrud.findUser({ userId: userId });
       })
@@ -377,12 +473,21 @@ export const userController = {
   },
 
   deleteUser: async (req: Request, res: Response) => {
+    const reqId = req.user.userId;
     const {
       params: { userId }
     } = req;
     
     const _user = await userCrud.findUser({ userId: userId });
     const log = logging.userLogs(String(_user?.superuserId));
+
+    if (reqId !== _user?.superuserId) {
+      log.warn(`User ${reqId} tried to delete User ${userId}.`);
+      return res.status(500).json({
+        status: false,
+        error: `User ${reqId} does not have the required permission to perform this operation`,
+      });
+    }
 
     userCrud.deleteUser({ userId: userId })
       .then((numberOfUsersDeleted) => {

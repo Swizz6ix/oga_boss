@@ -1,0 +1,105 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 30
+    },
+    "auditLog": "sysLogs/.bd0e141cb23cf56d3d2f48b24e0f3e3a98941c5b-audit.json",
+    "files": [
+        {
+            "date": 1705614690309,
+            "name": "sysLogs/app-logs-2024-01-18-22.log",
+            "hash": "0841a71f662d9c5df56593f7e811c83914e225a4f0862d82e388cce2062c112e"
+        },
+        {
+            "date": 1705615216148,
+            "name": "sysLogs/app-logs-2024-01-18-23.log",
+            "hash": "6558441df5ec9b6f987be1310bc5a4c4fec1f0258aa8fcbb212f71c55ba14da3"
+        },
+        {
+            "date": 1705618862199,
+            "name": "sysLogs/app-logs-2024-01-19-00.log",
+            "hash": "0c6fd91cb6e92546c84716dc95aa35d5aa16817131736524c9c3c6be3577ac5e"
+        },
+        {
+            "date": 1705644754260,
+            "name": "sysLogs/app-logs-2024-01-19-07.log",
+            "hash": "dc90d5911e960f61518d1c9b38e2acecab9f7336afe0aeb005428eda7130bad4"
+        },
+        {
+            "date": 1705647601372,
+            "name": "sysLogs/app-logs-2024-01-19-08.log",
+            "hash": "beefa9bcc112b6241d633495980e27ee37649cfca553bc05b0d255c8030a4b4a"
+        },
+        {
+            "date": 1705651260802,
+            "name": "sysLogs/app-logs-2024-01-19-09.log",
+            "hash": "645fa565decb79a3c1756a6afea0a8ccabf46ba0984748fc72b06791c469fd49"
+        },
+        {
+            "date": 1705654801559,
+            "name": "sysLogs/app-logs-2024-01-19-10.log",
+            "hash": "585c112178cddcc452984c86ebb680e4485685519493037c237cc3f4af9fbaba"
+        },
+        {
+            "date": 1705658413280,
+            "name": "sysLogs/app-logs-2024-01-19-11.log",
+            "hash": "58e65d278e384f1d1db889c4b7656e35bc490f1164691489c8e91b140c5d5696"
+        },
+        {
+            "date": 1705662005410,
+            "name": "sysLogs/app-logs-2024-01-19-12.log",
+            "hash": "65fbe0bc0f722a6e6396a8afdc04648c5af322259a7a0529c63e5ee9be5d0796"
+        },
+        {
+            "date": 1705673213839,
+            "name": "sysLogs/app-logs-2024-01-19-15.log",
+            "hash": "beddefab7f89c2e8df20b83b01fba89a25c76b2191fca6b5a2fc5b48cbb7cef1"
+        },
+        {
+            "date": 1705676520327,
+            "name": "sysLogs/app-logs-2024-01-19-16.log",
+            "hash": "8e2d8dc383947fc202e5571582fcc13db2b87e9c88fc31f073a67d5b60265268"
+        },
+        {
+            "date": 1705689090397,
+            "name": "sysLogs/app-logs-2024-01-19-19.log",
+            "hash": "1caa900bab2022d92ecb7117ad59798106332f73635edf57ab2c5fa577ec3041"
+        },
+        {
+            "date": 1705692028296,
+            "name": "sysLogs/app-logs-2024-01-19-20.log",
+            "hash": "73b71f9553d50fa7040a4192b21e56ba27a10fce8bc043c78577606041481451"
+        },
+        {
+            "date": 1705694415721,
+            "name": "sysLogs/app-logs-2024-01-19-21.log",
+            "hash": "8f0efbe5f434ade288b75643ec7715e3e0cbf30f62b4e3ba7086867a94586dea"
+        },
+        {
+            "date": 1705698199846,
+            "name": "sysLogs/app-logs-2024-01-19-22.log",
+            "hash": "d20ea846594d4e614c196736e2b0876fd14db20863ba1b65ca47177a8ec66375"
+        },
+        {
+            "date": 1705701609841,
+            "name": "sysLogs/app-logs-2024-01-19-23.log",
+            "hash": "9b33e7a5de50dc42e9984616d96b558836d1ced445ec417aaaf31f84c2b7bd1d"
+        },
+        {
+            "date": 1705707169685,
+            "name": "sysLogs/app-logs-2024-01-20-00.log",
+            "hash": "2b821e43385c9f2221204f6edd017bd647700cec627475b0b91ec67caf615108"
+        },
+        {
+            "date": 1705711520792,
+            "name": "sysLogs/app-logs-2024-01-20-01.log",
+            "hash": "e030a982c85f96b036b727c2694497eefdae3795b0d5cfb602bfd59d25768048"
+        },
+        {
+            "date": 1705712407855,
+            "name": "sysLogs/app-logs-2024-01-20-02.log",
+            "hash": "256b3059d377581ce4babacca6d691c162409cb784fd4642337d9bf9573dea76"
+        }
+    ],
+    "hashType": "sha256"
+}

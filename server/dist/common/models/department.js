@@ -1,4 +1,6 @@
 import { DataTypes, Model } from "sequelize";
+import { User } from "./user.js";
+import { Task } from "./task.js";
 const departmentModel = {
     departmentId: {
         type: DataTypes.UUID,
@@ -23,78 +25,78 @@ export const departmentCrud = {
     },
     findDept: (query) => {
         return Department.findOne({ where: query,
-            //   include: [{
-            //   model: User,
-            //   attributes: {
-            //     exclude: [
-            //       'password',
-            //       'email',
-            //       'userName',
-            //       'SuperUserId',
-            //       'DepartmentId',
-            //       'createdAt',
-            //       'updatedAt'
-            //     ],
-            //   }
-            // },
-            // {
-            //   model: Task,
-            //   attributes: {
-            //     exclude: [
-            //       'UserId',
-            //       'DepartmentId',
-            //       'deadline',
-            //       'urgencyLevel',
-            //       'createdAt',
-            //       'updatedAt'
-            //     ]
-            //   }
-            // }],
-            // attributes: {
-            //   exclude: [
-            //     'SuperUserId',
-            //     'createdAt',
-            //     'updatedAt'
-            //   ]
-            // }
+            include: [{
+                    model: User,
+                    attributes: {
+                        exclude: [
+                            'password',
+                            'email',
+                            'userName',
+                            'SuperUserId',
+                            'DepartmentId',
+                            'createdAt',
+                            'updatedAt'
+                        ],
+                    }
+                },
+                {
+                    model: Task,
+                    attributes: {
+                        exclude: [
+                            'UserId',
+                            'DepartmentId',
+                            'deadline',
+                            'urgencyLevel',
+                            'createdAt',
+                            'updatedAt'
+                        ]
+                    }
+                }],
+            attributes: {
+                exclude: [
+                    'SuperUserId',
+                    'createdAt',
+                    'updatedAt'
+                ]
+            }
         });
     },
     findAllDept: (query) => {
         return Department.findAll({ where: query,
-            //   include: [{
-            //   model: User,
-            //   attributes: {
-            //     exclude: [
-            //       'password',
-            //       'email',
-            //       'userName',
-            //       'SuperUserId',
-            //       'DepartmentId',
-            //       'createdAt',
-            //       'updatedAt'
-            //     ],
-            //   }
-            // },
-            // {
-            //   model: Task,
-            //   attributes: {
-            //     exclude: [
-            //       'UserId',
-            //       'DepartmentId',
-            //       'deadline',
-            //       'urgencyLevel',
-            //       'createdAt',
-            //       'updatedAt'
-            //     ]
-            //   }
-            // }],
-            // attributes: {
-            //   exclude: [
-            //     'SuperUserId',
-            //     'createdAt',
-            //     'updatedAt'
-            //   ]
-            // }
+            include: [{
+                    model: User,
+                    attributes: {
+                        exclude: [
+                            'password',
+                            'email',
+                            'userName',
+                            'SuperUserId',
+                            'DepartmentId',
+                            'createdAt',
+                            'updatedAt'
+                        ],
+                    }
+                },
+                {
+                    model: Task,
+                    attributes: {
+                        exclude: [
+                            'UserId',
+                            'DepartmentId',
+                            'deadline',
+                            'urgencyLevel',
+                            'createdAt',
+                            'updatedAt'
+                        ]
+                    }
+                }],
+            attributes: {
+                exclude: [
+                    'SuperUserId',
+                    'createdAt',
+                    'updatedAt'
+                ]
+            }
         });
     },
     updateDept: (query, updateValue) => {

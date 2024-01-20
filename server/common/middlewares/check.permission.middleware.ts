@@ -78,4 +78,19 @@ export const permission = {
         });
     };
   },
+  userActivity: (access: boolean) => {
+    return async (req: Request, res: Response, next: NextFunction) => {
+      const{
+        user: { userId }
+      } = req
+      const user = await userCrud.findUser({ userId: userId });
+      if (user?.vacation === access) {
+        return res.status(500).json({
+          status: false,
+          error: `User ${userId} cannot access information, contact an admin.`
+        })
+      }
+      next();
+    };
+  }
 }

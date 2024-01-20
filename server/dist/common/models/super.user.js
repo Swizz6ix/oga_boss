@@ -1,4 +1,5 @@
 import { DataTypes, Model, } from 'sequelize';
+import { User } from './user.js';
 import { configs } from '../../config.js';
 const superUserModel = {
     superuserId: {
@@ -49,7 +50,7 @@ export const superUserCrud = {
     },
     findUser: (query) => {
         return SuperUser.findOne({ where: query,
-            // include: { model: User } 
+            include: { model: User }
         });
     },
     updateUser: (query, updateValue) => {

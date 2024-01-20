@@ -1,0 +1,100 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 90
+    },
+    "auditLog": "sysLogs/.c235ab13a62c7e974530991b47e29c1233df6139-audit.json",
+    "files": [
+        {
+            "date": 1705614690262,
+            "name": "sysLogs/app-info-2024-01-18-22.log",
+            "hash": "b6756d3074b768e4013b70d6881ebdeae0b5b858ce92d5ea56be683bf1f46f81"
+        },
+        {
+            "date": 1705615216087,
+            "name": "sysLogs/app-info-2024-01-18-23.log",
+            "hash": "48268208da33cdb1cc325d949cc3a30a8d83b998f3965402e717b9f7734e2179"
+        },
+        {
+            "date": 1705618862105,
+            "name": "sysLogs/app-info-2024-01-19-00.log",
+            "hash": "c0fd65e8bda2071d3d90307f52da7139d77cc69a1b0c90a4d58e1ca6b34b7007"
+        },
+        {
+            "date": 1705644754202,
+            "name": "sysLogs/app-info-2024-01-19-07.log",
+            "hash": "ddb19f5e1cf2f31823e1fb047f2150fa2e067a1ff61514ef54c621ea63fc4310"
+        },
+        {
+            "date": 1705647601218,
+            "name": "sysLogs/app-info-2024-01-19-08.log",
+            "hash": "5d8da404bb4548d3625880ce41900b4c91898ecdddbe1d93698a6455531964c8"
+        },
+        {
+            "date": 1705651293790,
+            "name": "sysLogs/app-info-2024-01-19-09.log",
+            "hash": "cb3d02c4f123813d19d470ca17a4e5ce0f8c156b62315e9f3cb9f101907c367e"
+        },
+        {
+            "date": 1705654801423,
+            "name": "sysLogs/app-info-2024-01-19-10.log",
+            "hash": "97d692c22eab24137eae6993397b1ff9dca9f229b2c2b8ae9b6822fb9076f8db"
+        },
+        {
+            "date": 1705658413354,
+            "name": "sysLogs/app-info-2024-01-19-11.log",
+            "hash": "143e92d443fca9f4363e02cc553a6f04a39db56a966224bd9f66cc744a0ba6dd"
+        },
+        {
+            "date": 1705662005319,
+            "name": "sysLogs/app-info-2024-01-19-12.log",
+            "hash": "9d027705dd00251e56632eb365112e39299b10c67564d7bff0b787d72198db2f"
+        },
+        {
+            "date": 1705673213782,
+            "name": "sysLogs/app-info-2024-01-19-15.log",
+            "hash": "1ae9ba0ad1b1cbf8a539adda3586f0bc0f6789c2f8d5d5939434cab32e421522"
+        },
+        {
+            "date": 1705676520192,
+            "name": "sysLogs/app-info-2024-01-19-16.log",
+            "hash": "b98674d046863511b11c7b701ec448a2e525729c9206b0c7c277960aaee7d6f9"
+        },
+        {
+            "date": 1705692027954,
+            "name": "sysLogs/app-info-2024-01-19-20.log",
+            "hash": "70f230b8df39063b12f4c9e34b5a2dfb51faa9b5e6b979a985d4ff45b6a63294"
+        },
+        {
+            "date": 1705694415659,
+            "name": "sysLogs/app-info-2024-01-19-21.log",
+            "hash": "cf4901d0ffaff3895848e5d5d3ebc995edf21e9c03d3fac3daa1bd7e290c2fd3"
+        },
+        {
+            "date": 1705698199796,
+            "name": "sysLogs/app-info-2024-01-19-22.log",
+            "hash": "cb476f1e38608d9c5410bdbd1890b3898921e6e3a475af09bfd33ccd65c80b89"
+        },
+        {
+            "date": 1705701609786,
+            "name": "sysLogs/app-info-2024-01-19-23.log",
+            "hash": "9398182a1f449d6147064d8a5c287ba3a1bade90b9ddd012bda0f07e58c42404"
+        },
+        {
+            "date": 1705707169503,
+            "name": "sysLogs/app-info-2024-01-20-00.log",
+            "hash": "c4c0122fcd626c4b60847e43b41674555f89f96724f8d4121efa04afdb764bf6"
+        },
+        {
+            "date": 1705711520648,
+            "name": "sysLogs/app-info-2024-01-20-01.log",
+            "hash": "7f776b0b2e04a2bbea59d46a8fe4cbf4280dd08059928b395a534c58150de598"
+        },
+        {
+            "date": 1705712407773,
+            "name": "sysLogs/app-info-2024-01-20-02.log",
+            "hash": "867bf213594946c82a5141abcba69d5b3b3b4e4682055f2652f98195bf7089a8"
+        }
+    ],
+    "hashType": "sha256"
+}

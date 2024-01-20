@@ -1,3 +1,12 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 import { superUserCrud } from '../models/super.user.js';
 import { userCrud } from '../models/user.js';
 import { logging } from '../../engine/logging.js';
@@ -67,5 +76,18 @@ export const permission = {
             });
         };
     },
+    userActivity: (access) => {
+        return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+            const { user: { userId } } = req;
+            const user = yield userCrud.findUser({ userId: userId });
+            if ((user === null || user === void 0 ? void 0 : user.vacation) === access) {
+                return res.status(500).json({
+                    status: false,
+                    error: `User ${userId} cannot access information, contact an admin.`
+                });
+            }
+            next();
+        });
+    }
 };
 //# sourceMappingURL=check.permission.middleware.js.map
