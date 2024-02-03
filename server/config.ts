@@ -46,5 +46,49 @@ export const configs = {
     alert: 4,
     debug: 5,
     notice: 6,
+  },
+  logRotateOpts: {
+    error: {
+      filename: 'app-error-%DATE%.log',
+      level: 'error' 
+    },
+    warn: {
+      filename: 'app-warn-%DATE%.log',
+      level: 'warn'
+    },
+    info: {
+      filename: 'app-info-%DATE%.log',
+      level: 'info'
+    },
+    http: {
+      filename: 'app-http-%DATE%.log',
+      level: 'http'
+    },
+    alert: {
+      filename: 'app-alert-%DATE%.log',
+      level: 'alert'
+    },
+    allLogs: {
+      filename: 'app-logs-%DATE%.log'
+    },
+    rejection: {
+      filename: 'app-rejectionError-logs-%DATE%.log',
+    },
+    exception: {
+      filename: 'app-exceptionError-logs-%DATE%.log'
+    }
+  },
+  logDB: {
+    host: process.env.HOST as string,
+    user: process.env.DB_USER as string,
+    password: process.env.DB_PASSWORD as string,
+    database: process.env.DB_NAME as string,
+    table: process.env.LOG_TABLE as string,
+    fields: {
+      level: 'level',
+      meta: 'metadata',
+      message: 'source',
+      timestamp: 'time'
+    },
   }
 }

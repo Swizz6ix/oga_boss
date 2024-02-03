@@ -18,7 +18,11 @@ export const auth = {
         });
         return sign({ userId, username }, configs.jwtSecret, { expiresIn: configs.jwtExpirationSeconds });
     },
-    // Defines password encryption
+    /**
+     * Encrypt the user password with sha256 to provide more security.
+     * @param password
+     * @returns {string} - returns a string of the encrypted password.
+     */
     encryptPassword: (password) => {
         const hash = createHash('sha256');
         hash.update(password);

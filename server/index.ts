@@ -3,6 +3,8 @@ import session from 'express-session';
 import helmet from 'helmet';
 import  cors  from 'cors';
 import cookieParser from 'cookie-parser';
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { configs } from './config.js';
@@ -18,9 +20,11 @@ import { authenticated } from './common/middlewares/isAuthenticated.middleware.j
 import { userAuth } from './common/auth/user.login.controller.js';
 import { logging, morganMiddleware } from './engine/logging.js';
 import { logRoutes } from './common/routes/log.routes.js';
+import { apiDocumentation } from './docs.js';
 
 const port = configs.db_connections.port;
 const expire = configs.sessionExpire;
+const specs = swaggerJSDoc(apiDocumentation);
 const app: Express = express();
 const server = createServer(app);
 export const io = new Server(server);
@@ -59,6 +63,7 @@ export const expressApp = () => {
   app.get('/', (req: Request, res: Response ) => {
     res.send('Hi!, welcome to OGA BOSS');
   });
+  app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs, { explorer: true }))
   io.engine.use(sessionMiddleware);
   server.listen(port, () => {
     console.log(`[SERVER]: Server is up and running at http://localhost:${port}`);

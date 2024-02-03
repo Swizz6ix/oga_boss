@@ -146,7 +146,7 @@ export const departmentController = {
     deleteDept: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const reqId = req.user.userId;
         const { params: { deptId } } = req;
-        const dept = yield departmentCrud.findDept({ deptId: deptId });
+        const dept = yield departmentCrud.findDept({ departmentId: deptId });
         const log = logging.userLogs(String(dept === null || dept === void 0 ? void 0 : dept.superuserId));
         // Only the superuser who created can possibly destroy.
         if (reqId !== (dept === null || dept === void 0 ? void 0 : dept.superuserId)) {

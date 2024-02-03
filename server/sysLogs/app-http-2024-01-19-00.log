@@ -1,3 +1,0 @@
-{"id":"12345","level":"http","message":"\t{\"method\":\"POST\",\"url\":\"/superuser/login\",\"status\":200,\"content_length\":\"351\",\"response_time\":295.806}","timestamp":"2024-01-19 12:13:39.311 AM"}
-{"id":"12345","level":"http","message":"\t{\"method\":\"PATCH\",\"url\":\"/task/update/289a0615-2071-41aa-8b1d-849f7c41231e\",\"status\":500,\"content_length\":\"142\",\"response_time\":200.247}","timestamp":"2024-01-19 12:13:54.597 AM"}
-{"id":"12345","level":"http","message":"\t{\"method\":\"GET\",\"url\":\"/logs/all\",\"status\":200,\"content_length\":\"811418\",\"response_time\":489.442}","timestamp":"2024-01-19 12:14:07.716 AM"}

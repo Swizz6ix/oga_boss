@@ -13,6 +13,16 @@ import { auth } from './auth.js';
 import { logging } from '../../engine/logging.js';
 import { departmentCrud } from '../models/department.js';
 import { superUserCrud } from '../models/super.user.js';
+/**
+ *
+ * @function createUser that allows for the registration of new users in the system
+ * @param {Request} req - The request sent to the server, that carries the payload
+ * to create new user
+ * @param {Response} res - Response from the server, either success 201 or error
+ * @param {NextFunction} next -  allows the next execution process
+   * depending on the response receive from the server
+ * @returns {Promise<Response<any, Record<string, any>> | undefined>}
+ */
 export const createUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const payload = req.body;
     const user = configs.roles.USER;
