@@ -144,6 +144,11 @@
             "date": 1705788064502,
             "name": "sysLogs/app-error-2024-01-20-23.log",
             "hash": "6547b6ebd1e1aa77274ba4013d88cda4abd66c368f53917c5666e771f8676b8a"
+        },
+        {
+            "date": 1706993051319,
+            "name": "sysLogs/app-error-2024-02-03-21.log",
+            "hash": "0b03e656b8ac7e20d6406b42091b79af17771e63fa30c2c73491757b7f4ad31b"
         }
     ],
     "hashType": "sha256"
