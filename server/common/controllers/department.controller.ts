@@ -167,7 +167,7 @@ export const departmentController = {
       params: { deptId }
     } = req;
 
-    const dept = await departmentCrud.findDept({ deptId: deptId })
+    const dept = await departmentCrud.findDept({ departmentId: deptId })
     const log = logging.userLogs(String(dept?.superuserId));
 
     // Only the superuser who created can possibly destroy.

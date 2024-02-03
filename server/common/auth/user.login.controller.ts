@@ -8,14 +8,13 @@ export const userAuth = {
   login: (req: Request, res: Response, next: NextFunction) => {
     const { username, password } = req.body;
     const genLog = logging.userLogs('user-service');
-
     userCrud.findUser({ username })
       .then((user) => {
         const logger = logging.userLogs(String(user?.superuserId));
         // If user is not found return error
         if (!user) {
           genLog.error(new Error(`Could not find any user with username: ${username}`))
-          return res.status(400).json({
+          return res.status(401).json({
             status: false,
             error: {
               message: `username and password did not match`,
@@ -26,7 +25,7 @@ export const userAuth = {
         // return error, if the provided password does not match with the secured password.
         if (user.password !== isSecured) {
           logger.error(new Error(`User: ${user.username} couldn't provide a valid password`));
-          return res.status(400).json({
+          return res.status(401).json({
             status: false,
             error: {
               message: `username and password did not match.`
@@ -54,7 +53,6 @@ export const userAuth = {
             })
           })
         })
-
       })
       .catch((err) => {
         genLog.error(new Error(err))

@@ -69,7 +69,7 @@ export const dailyReport = {
           log.error(
             `User ${reqId} tried to access User ${report?.userId} report entry ${reportId}`
           );
-          return res.status(500).json({
+          return res.status(403).json({
             status: false,
             error: `User ${reqId} do not have the required permission to perform this operation`,
           })
@@ -77,7 +77,7 @@ export const dailyReport = {
         if ( reqId !== superuserId) {
           if (_user?.role !== role) {
             log.error(`User ${reqId} tried read the report ${reportId} of User ${report.userId}`);
-            return res.status(500).json({
+            return res.status(403).json({
               status: false,
               error: `User ${reqId} does not have the required permission to perform this operation.`
             })

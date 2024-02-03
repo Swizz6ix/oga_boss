@@ -11,9 +11,9 @@ const chatRoomModel = {
         type: DataTypes.STRING(2048),
         allowNull: false,
     },
-    messageFrom: {
-        type: DataTypes.STRING(128),
-    }
+    // messageFrom: {
+    //   type: DataTypes.STRING(128),
+    // }
 };
 export class ChatRoom extends Model {
 }

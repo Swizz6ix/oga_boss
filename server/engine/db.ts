@@ -15,7 +15,9 @@ export const connectDb = new Db(
   (configs.db_connections.db_name),
   (configs.db_connections.db_user),
   (configs.db_connections.db_password),
-  { dialect: configs.db_connections.dialect }
+  { dialect: configs.db_connections.dialect, 
+    // logging: false 
+  }
 );
 
 export const engine = {
@@ -91,7 +93,7 @@ export const engine = {
 
     User.hasMany(ChatRoom, {
       foreignKey: {
-        name: 'messageId',
+        name: 'userId',
         allowNull: false,
       },
       constraints: false,
@@ -101,31 +103,32 @@ export const engine = {
     });
     ChatRoom.belongsTo(User, {
       foreignKey: {
-        name: 'messageId',
+        name: 'userId',
       },
-      constraints: false,
+      // constraints: false,
     });
 
     SuperUser.hasMany(ChatRoom, {
       foreignKey: {
-        name: 'messageId',
+        name: 'superuserId',
         allowNull: false,
       },
-      constraints: false,
+      // constraints: false,/
       scope: {
         messageFrom: 'superUser'
       }
     });
     ChatRoom.belongsTo(SuperUser, {
       foreignKey: {
-        name: 'messageId',
+        name: 'superuserId',
       },
+      // constraints: false
     });
 
     User.hasMany(DailyRpt, {
       foreignKey: {
         name: 'userId',
-        allowNull: false
+        allowNull: true
       }
     });
     DailyRpt.belongsTo(User, {

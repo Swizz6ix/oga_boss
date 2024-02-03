@@ -42,6 +42,50 @@ export const configs = {
         alert: 4,
         debug: 5,
         notice: 6,
+    },
+    logRotateOpts: {
+        error: {
+            filename: 'app-error-%DATE%.log',
+            level: 'error'
+        },
+        warn: {
+            filename: 'app-warn-%DATE%.log',
+            level: 'warn'
+        },
+        info: {
+            filename: 'app-info-%DATE%.log',
+            level: 'info'
+        },
+        http: {
+            filename: 'app-http-%DATE%.log',
+            level: 'http'
+        },
+        alert: {
+            filename: 'app-alert-%DATE%.log',
+            level: 'alert'
+        },
+        allLogs: {
+            filename: 'app-logs-%DATE%.log'
+        },
+        rejection: {
+            filename: 'app-rejectionError-logs-%DATE%.log',
+        },
+        exception: {
+            filename: 'app-exceptionError-logs-%DATE%.log'
+        }
+    },
+    logDB: {
+        host: process.env.HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+        table: process.env.LOG_TABLE,
+        fields: {
+            level: 'level',
+            meta: 'metadata',
+            message: 'source',
+            timestamp: 'time'
+        },
     }
 };
 //# sourceMappingURL=config.js.map

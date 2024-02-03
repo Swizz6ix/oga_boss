@@ -66,7 +66,7 @@ export const dailyReport = {
             .then((report) => {
             if (superuserId !== (report === null || report === void 0 ? void 0 : report.superuserId)) {
                 log.error(`User ${reqId} tried to access User ${report === null || report === void 0 ? void 0 : report.userId} report entry ${reportId}`);
-                return res.status(500).json({
+                return res.status(403).json({
                     status: false,
                     error: `User ${reqId} do not have the required permission to perform this operation`,
                 });
@@ -74,7 +74,7 @@ export const dailyReport = {
             if (reqId !== superuserId) {
                 if ((_user === null || _user === void 0 ? void 0 : _user.role) !== role) {
                     log.error(`User ${reqId} tried read the report ${reportId} of User ${report.userId}`);
-                    return res.status(500).json({
+                    return res.status(403).json({
                         status: false,
                         error: `User ${reqId} does not have the required permission to perform this operation.`
                     });
