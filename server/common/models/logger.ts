@@ -1,7 +1,7 @@
 import { CreationOptional,
   DataTypes,
   InferAttributes,
-  InferCreationAttributes, Model, Sequelize } from "sequelize";
+  InferCreationAttributes, Model, NonAttribute, Sequelize, VIRTUAL } from "sequelize";
 
 const loggerModel = {
   logId: {

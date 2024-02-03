@@ -1,8 +1,10 @@
 import { CreationOptional,
   DataTypes,
+  ForeignKey,
   InferAttributes,
   InferCreationAttributes,
-  Model } from "sequelize";
+  Model, 
+  NonAttribute} from "sequelize";
 import { User } from "./user.js";
 import { SuperUser } from "./super.user.js";
 
@@ -16,16 +18,19 @@ const chatRoomModel = {
     type: DataTypes.STRING(2048),
     allowNull: false,
   },
-  messageFrom: {
-    type: DataTypes.STRING(128),
-  }
+  // messageFrom: {
+  //   type: DataTypes.STRING(128),
+  // }
 };
 
 export class ChatRoom extends Model<InferAttributes<ChatRoom>,
   InferCreationAttributes<ChatRoom>> {
     declare messageId: CreationOptional<string>;
     declare message: string;
-    declare messageFrom: string;
+    // declare messageFrom: string;
+    declare userId: ForeignKey<User['userId']>;
+    declare superuserId: ForeignKey<SuperUser['superuserId']>;
+    declare SuperUser?: NonAttribute<SuperUser>;
   };
 
 export const chatRoomCrud = {
